@@ -228,9 +228,12 @@
         left: calc(50% - 46vw) !important;
         width: 92vw !important;
       }
-      /* Clip carousel stage so off-screen prev/next don't trigger body overflow */
+      /* Clip only the stage (where GSAP-moved cards live) — not the whole section,
+         so the spice image can still overlap upward into the feature section */
       #carousel-stage   { overflow: hidden !important; }
-      #carousel-section { overflow: hidden !important; }
+      /* Make stage height match the square plate so there's no dead space */
+      #carousel-stage   { height: 92vw !important; }
+      #carousel-section { height: auto !important; overflow: visible !important; }
       /* Tighter carousel bottom panel on mobile */
       #carousel-section > div:last-child {
         padding: 0 1.5rem !important;
@@ -248,11 +251,16 @@
       #main-text {
         font-size: clamp(1.8rem, 6.5vw, 2.8rem) !important;
       }
-      /* Spice image: move it down so it doesn't overlap the hero */
+      /* Spice image: bigger and pulled up into the feature section transition */
       #spice-img {
-        top: 0 !important;
-        width: 55% !important;
-        left: -5% !important;
+        top: -28vh !important;
+        width: 80% !important;
+        left: -8% !important;
+      }
+      /* Bottom panel: auto height so it hugs content */
+      #carousel-section > div:last-child {
+        height: auto !important;
+        padding: 1.5rem 1.5rem 2rem !important;
       }
     }
   </style>
@@ -471,7 +479,7 @@
   <script>
     gsap.registerPlugin(ScrollTrigger);
 
-    /* ── Custom char splitter ─────────────────────────────────────────────────
+    /* ── Custom char splitter (desktop) ──────────────────────────────────────
        Wraps every non-space character in an inline-block span for GSAP stagger.
     ──────────────────────────────────────────────────────────────────────────── */
     function splitChars(el) {
@@ -493,6 +501,30 @@
       return spans;
     }
 
+    /* ── Word splitter (mobile) ───────────────────────────────────────────────
+       Wraps each whole word in an inline-block — lets the browser break lines
+       only at word boundaries so no mid-word wraps occur during GSAP stagger.
+    ──────────────────────────────────────────────────────────────────────────── */
+    function splitWords(el) {
+      const words = el.textContent.split(' ');
+      el.textContent = '';
+      const spans = [];
+      words.forEach((word, i) => {
+        const span = document.createElement('span');
+        span.textContent = word;
+        span.style.cssText = 'display:inline-block;white-space:nowrap;will-change:transform,opacity;';
+        el.appendChild(span);
+        spans.push(span);
+        if (i < words.length - 1) {
+          const sp = document.createElement('span');
+          sp.textContent = ' ';
+          sp.style.cssText = 'display:inline;';
+          el.appendChild(sp);
+        }
+      });
+      return spans;
+    }
+
     /* ── Scroll-linked text animation (ONE unified block) ─────────────────────
        plays forward on enter · reverses on scroll-up · re-triggers every pass
        On mobile: uses IntersectionObserver for reliable cross-browser support
@@ -502,19 +534,22 @@
       const isMobileView = window.innerWidth < 768;
 
       if (isMobileView) {
-        /* Mobile: simple fade-in via IntersectionObserver (no GSAP scroll dependency) */
-        mainTextEl.style.opacity = '0';
-        mainTextEl.style.transform = 'translateY(32px)';
-        mainTextEl.style.transition = 'opacity 0.9s ease, transform 0.9s ease';
+        /* Mobile: word-by-word GSAP stagger triggered by IntersectionObserver.
+           Words (not chars) are the split units so line breaks only happen at
+           word boundaries — no mid-word wraps during the animation.            */
+        const words = splitWords(mainTextEl);
+        gsap.set(words, { opacity: 0, y: 36, rotateZ: -2 });
         const obs = new IntersectionObserver((entries) => {
-          entries.forEach(entry => {
-            if (entry.isIntersecting) {
-              mainTextEl.style.opacity = '1';
-              mainTextEl.style.transform = 'translateY(0)';
-              obs.disconnect();
-            }
-          });
-        }, { threshold: 0, rootMargin: '0px 0px -60px 0px' });
+          if (entries[0].isIntersecting) {
+            gsap.to(words, {
+              opacity: 1, y: 0, rotateZ: 0,
+              stagger: 0.09,
+              duration: 0.75,
+              ease: 'power3.out'
+            });
+            obs.disconnect();
+          }
+        }, { threshold: 0, rootMargin: '0px 0px -80px 0px' });
         obs.observe(mainTextEl);
       } else {
         /* Desktop: GSAP char-by-char stagger with ScrollTrigger */
