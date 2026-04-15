@@ -288,15 +288,14 @@
         left: calc(50% - 46vw) !important;
         width: 92vw !important;
       }
-      /* Clip only the stage (where GSAP-moved cards live) — not the whole section,
-         so the spice image can still overlap upward into the feature section */
+      /* Clip only the stage so off-screen cards don't scroll the page */
       #carousel-stage   { overflow: hidden !important; }
-      /* Make stage height match the square plate so there's no dead space */
+      /* Make stage height square so there's no dead space on mobile */
       #carousel-stage   { height: 92vw !important; }
-      /* z-index:6 > feature-section z-index:5 so the spice image (which overflows
-         upward from this section) renders in front of the white feature background */
+      /* Section 2 stays sticky on mobile too; height auto so it hugs its content */
       #carousel-section { height: auto !important; overflow: visible !important;
-                          position: relative; z-index: 3 !important; }
+                          position: sticky !important; top: 0 !important;
+                          z-index: 1 !important; }
       /* Tighter carousel bottom panel on mobile */
       #carousel-section > div:last-child {
         padding: 0 1.5rem !important;
@@ -305,18 +304,13 @@
       .dish-name-el {
         font-size: 1.5rem !important;
       }
-      /* Feature section: tighter top padding on mobile, sits above carousel */
-      #feature-section > div {
-        padding-top: 4rem !important;
-        padding-bottom: 3rem !important;
-      }
       /* Feature text font size for mobile */
       #main-text {
         font-size: clamp(1.8rem, 6.5vw, 2.8rem) !important;
       }
-      /* Spice image: bigger and pulled up into the feature section transition */
+      /* Spice image repositioned within merged section on mobile */
       #spice-img {
-        top: -28vh !important;
+        top: 1.5rem !important;
         width: 80% !important;
         left: -8% !important;
       }
@@ -409,12 +403,21 @@
 
   <!-- ══════════════════════════════════ MOBILE MENU OVERLAY ══════════════ -->
   <div id="mobile-overlay" aria-hidden="true">
-    <!-- Header row: logo left, close right -->
+    <!-- Header row: Voltar left, logo right — mirrors the menu.html top nav -->
     <div style="display:flex;align-items:center;justify-content:space-between;
                 width:100%;padding:1.6rem 2rem;">
+      <button class="mob-close-btn" id="close-overlay" aria-label="Fechar menu"
+              style="display:inline-flex;align-items:center;gap:0.55rem;
+                     font-family:'Montserrat',sans-serif;font-size:0.56rem;
+                     font-weight:500;letter-spacing:0.2em;text-transform:uppercase;">
+        <svg width="15" height="10" viewBox="0 0 15 10" fill="none" style="flex-shrink:0;">
+          <line x1="14" y1="5" x2="1" y2="5" stroke="currentColor" stroke-width="0.85" stroke-linecap="round"/>
+          <polyline points="5,1 1,5 5,9" stroke="currentColor" stroke-width="0.85" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        Voltar
+      </button>
       <img src="Brand Reasources/logo.png" alt="Espaço Luanda"
-           style="height:52px;width:auto;display:block;opacity:0.92;" />
-      <button class="mob-close-btn" id="close-overlay" aria-label="Fechar menu">✕</button>
+           style="height:44px;width:auto;display:block;opacity:0.88;" />
     </div>
 
     <!-- Nav links — left-aligned, full-width -->
@@ -435,14 +438,21 @@
 
   </div>
 
-  <!-- ══════════════════════════════════ FEATURE SECTION — TEXT ONLY ═══════ -->
-  <section id="feature-section" style="position:sticky;top:0;width:100%;background:#fff;overflow:visible;z-index:1;">
+  <!-- ══════════════════════════════ SECTION 2 — TEXT + CAROUSEL (sticky) ═══
+       Everything on the white background: feature text (absolute, top of section),
+       spice scatter, plate stage (68vh), counter/arrows/name panel (32vh).
+       Sticks at top:0 so the entire section pins while section 3 slides over it.
+  ══════════════════════════════════════════════════════════════════════════ -->
+  <section id="carousel-section"
+           style="position:sticky;top:0;z-index:1;width:100%;height:100vh;
+                  background:#fff;overflow:visible;">
 
-    <div style="position:relative;z-index:2;
+    <!-- Feature text — absolute at the top, layered above the plates -->
+    <div style="position:absolute;top:0;left:0;right:0;z-index:5;
                 display:flex;flex-direction:column;align-items:center;
-                padding:11rem 2rem 8rem;">
+                padding:4rem 2rem 0;pointer-events:none;">
       <div id="feature-text"
-           style="text-align:center;max-width:760px;overflow:visible;position:relative;z-index:2;">
+           style="text-align:center;max-width:760px;overflow:visible;position:relative;">
         <p id="main-text" style="
           font-family:'Cormorant Garamond',serif;
           font-style:italic;
@@ -455,20 +465,9 @@
       </div>
     </div>
 
-  </section>
-
-  <!-- ══════════════════════════════════ CAROUSEL SECTION ════════════════════
-       Plate stage: 68vh tall (plates are large square images).
-       Bottom 32vh: counter + progress bar + arrows + large dish name.
-  ══════════════════════════════════════════════════════════════════════════ -->
-  <section id="carousel-section"
-           style="position:relative;width:100%;height:100vh;background:transparent;overflow:visible;z-index:3;">
-
-    <!-- Spice image bridges the text section above and the plates below.
-         Negative top pulls it up into the feature section so the scatter
-         sits at the transition zone, matching the reference layout.             -->
+    <!-- Spice image — decorative scatter, top-left area of section -->
     <img id="spice-img" src="falafel-bowl-bg.webp"
-         style="position:absolute;top:-55vh;left:-2%;width:47%;height:auto;
+         style="position:absolute;top:2rem;left:-2%;width:47%;height:auto;
                 pointer-events:none;z-index:0;display:block;"
          alt="" />
 
