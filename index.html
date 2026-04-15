@@ -201,12 +201,13 @@
     /* ─── Dining times section ───────────────────────────────────────────────── */
     .dining-item { margin-bottom: 5.5rem; }
     .dining-item:last-child { margin-bottom: 4rem; }
+    .dining-item img { border-radius: 14px; }
     .dining-title {
       font-family: 'Cormorant Garamond', serif;
       font-style: normal;
       font-weight: 300;
       font-size: clamp(2.6rem, 8vw, 5rem);
-      color: #1a1008;
+      color: #faf8f4;
       line-height: 1;
       margin-top: 1.2rem;
       letter-spacing: -0.02em;
@@ -225,7 +226,7 @@
       font-size: 0.78rem;
       font-weight: 300;
       line-height: 1.85;
-      color: rgba(26,16,8,0.82);
+      color: rgba(250,248,244,0.72);
       margin-top: 1.1rem;
     }
     .dining-btn {
@@ -236,7 +237,7 @@
       font-weight: 500;
       letter-spacing: 0.22em;
       text-transform: uppercase;
-      color: #1a1008;
+      color: rgba(250,248,244,0.85);
       text-decoration: none;
       border-bottom: 1px solid #c8a06a;
       padding-bottom: 3px;
@@ -551,7 +552,7 @@
        horizontal ticks extending left, label at active stop, sun/moon at ends
   ══════════════════════════════════════════════════════════════════════════ -->
   <section id="dining-section"
-           style="position:relative;width:100%;background:#faf8f4;">
+           style="position:relative;width:100%;background:#1a1008;">
 
     <!-- Logo — top left -->
     <div style="position:absolute;top:2rem;left:1.5rem;z-index:5;">
@@ -570,7 +571,7 @@
             <img src="dining-monday.jpg" alt="Segundas sem lei"
                  style="width:100%;aspect-ratio:3/4;object-fit:cover;display:block;" />
           </div>
-          <h2 class="dining-title">Segundas sem lei</h2>
+          <h2 class="dining-title">Segundas</h2>
           <p class="dining-sub">Segundas a partir das 18h</p>
           <p class="dining-desc">Aproveita a Segunda-feira Sem Lei com 20% de desconto nas nossas carnes premium. Vem relaxar, brindar e começar a semana do jeito certo... Sem regras, sem pressa, só boas vibes! Segunda é o novo sábado. Venha Viver sem lei...</p>
           <a href="#" class="dining-btn">Ver Mais</a>
@@ -582,7 +583,7 @@
             <img src="dining-tuesday.jpg" alt="Terça do Chefe"
                  style="width:100%;aspect-ratio:3/4;object-fit:cover;display:block;" />
           </div>
-          <h2 class="dining-title">Terça do Chefe</h2>
+          <h2 class="dining-title">Terças</h2>
           <p class="dining-sub">Terças a partir das 19h00</p>
           <p class="dining-desc">As terças-feiras ganharam um novo sabor no Espaço Luanda! Venha viver uma experiência gastronômica única com o menu exclusivo preparado pelo nosso Chefe. E para começar a noite da melhor forma, oferecemos uma rodada de caipirinha por nossa conta (por cliente!)</p>
           <a href="#" class="dining-btn">Ver Mais</a>
@@ -646,13 +647,13 @@
         <!-- Vertical line — right edge, spanning between sun and moon -->
         <div id="dining-track"
              style="position:absolute;right:20px;top:5.2rem;bottom:5.2rem;
-                    width:1px;background:rgba(26,16,8,0.16);">
+                    width:1px;background:rgba(255,255,255,0.18);">
 
           <!-- Moving dot on the line -->
           <div id="dining-dot"
                style="position:absolute;right:-4px;top:15%;
                       width:9px;height:9px;border-radius:50%;
-                      background:#faf8f4;border:1.5px solid #c8a06a;
+                      background:#1a1008;border:1.5px solid #c8a06a;
                       transform:translateY(-50%);
                       transition:top 0.65s cubic-bezier(0.4,0,0.2,1);"></div>
 
@@ -674,7 +675,7 @@
           <!-- Tick 1 — Terça (inactive) -->
           <div class="dining-tick" data-idx="1"
                style="position:absolute;top:38%;right:0;height:1px;
-                      width:12px;background:rgba(26,16,8,0.2);
+                      width:12px;background:rgba(255,255,255,0.2);
                       transition:width 0.4s ease,background 0.4s ease;">
             <span class="dining-tick-label"
                   style="position:absolute;right:calc(100% + 8px);top:50%;
@@ -682,14 +683,14 @@
                          font-family:'Montserrat',sans-serif;
                          font-size:0.42rem;font-weight:500;
                          letter-spacing:0.18em;text-transform:uppercase;
-                         color:rgba(26,16,8,0.3);opacity:0;
+                         color:rgba(255,255,255,0.3);opacity:0;
                          transition:opacity 0.4s ease,color 0.4s ease;">terça</span>
           </div>
 
           <!-- Tick 2 — Quinta (inactive) -->
           <div class="dining-tick" data-idx="2"
                style="position:absolute;top:62%;right:0;height:1px;
-                      width:12px;background:rgba(26,16,8,0.2);
+                      width:12px;background:rgba(255,255,255,0.2);
                       transition:width 0.4s ease,background 0.4s ease;">
             <span class="dining-tick-label"
                   style="position:absolute;right:calc(100% + 8px);top:50%;
@@ -697,14 +698,14 @@
                          font-family:'Montserrat',sans-serif;
                          font-size:0.42rem;font-weight:500;
                          letter-spacing:0.18em;text-transform:uppercase;
-                         color:rgba(26,16,8,0.3);opacity:0;
+                         color:rgba(255,255,255,0.3);opacity:0;
                          transition:opacity 0.4s ease,color 0.4s ease;">quinta</span>
           </div>
 
           <!-- Tick 3 — Sexta (inactive) -->
           <div class="dining-tick" data-idx="3"
                style="position:absolute;top:84%;right:0;height:1px;
-                      width:12px;background:rgba(26,16,8,0.2);
+                      width:12px;background:rgba(255,255,255,0.2);
                       transition:width 0.4s ease,background 0.4s ease;">
             <span class="dining-tick-label"
                   style="position:absolute;right:calc(100% + 8px);top:50%;
@@ -712,7 +713,7 @@
                          font-family:'Montserrat',sans-serif;
                          font-size:0.42rem;font-weight:500;
                          letter-spacing:0.18em;text-transform:uppercase;
-                         color:rgba(26,16,8,0.3);opacity:0;
+                         color:rgba(255,255,255,0.3);opacity:0;
                          transition:opacity 0.4s ease,color 0.4s ease;">sexta</span>
           </div>
 
@@ -1049,8 +1050,8 @@
             if (lbl) { lbl.style.opacity = '1'; lbl.style.color = '#c8a06a'; }
           } else {
             tick.style.width      = '12px';
-            tick.style.background = 'rgba(26,16,8,0.2)';
-            if (lbl) { lbl.style.opacity = '0'; lbl.style.color = 'rgba(26,16,8,0.3)'; }
+            tick.style.background = 'rgba(255,255,255,0.2)';
+            if (lbl) { lbl.style.opacity = '0'; lbl.style.color = 'rgba(255,255,255,0.3)'; }
           }
         });
       }
