@@ -127,6 +127,118 @@
     }
     .carousel-btn:hover  { opacity: 1; }
     .carousel-btn:active { opacity: 0.7; }
+
+    /* ─── Mobile hamburger button ─────────────────────────────────────────────── */
+    .hamburger-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 8px;
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      z-index: 20;
+    }
+    .ham-line {
+      display: block;
+      width: 22px;
+      height: 1px;
+      background: #fff;
+      transform-origin: center;
+      transition: transform 0.32s cubic-bezier(0.4,0,0.2,1),
+                  opacity  0.32s cubic-bezier(0.4,0,0.2,1);
+    }
+
+    /* ─── Full-screen mobile nav overlay ─────────────────────────────────────── */
+    #mobile-overlay {
+      position: fixed;
+      inset: 0;
+      background: #1a1008;
+      z-index: 200;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.42s cubic-bezier(0.4,0,0.2,1);
+    }
+    #mobile-overlay.open {
+      opacity: 1;
+      pointer-events: all;
+    }
+    .mob-link {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-weight: 300;
+      font-size: 2.6rem;
+      color: rgba(255,255,255,0.9);
+      text-decoration: none;
+      letter-spacing: 0.01em;
+      line-height: 1.3;
+      display: block;
+      text-align: center;
+      transition: color 0.22s ease;
+    }
+    .mob-link:hover { color: #c8a06a; }
+    .mob-close-btn {
+      position: absolute;
+      top: 1.8rem;
+      right: 2rem;
+      background: none;
+      border: none;
+      color: rgba(255,255,255,0.6);
+      font-size: 1.6rem;
+      cursor: pointer;
+      line-height: 1;
+      padding: 0.4rem;
+      transition: color 0.22s ease;
+    }
+    .mob-close-btn:hover { color: #fff; }
+    .mob-ornament {
+      width: 56px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, #c8a06a, transparent);
+      margin: 1.8rem auto;
+    }
+
+    /* ─── Mobile breakpoint overrides ────────────────────────────────────────── */
+    @media (max-width: 768px) {
+      .hamburger-btn     { display: flex !important; }
+      .desktop-links     { display: none !important; }
+      .desktop-spacer    { display: none !important; }
+      /* Push hamburger to far right on mobile */
+      nav { justify-content: flex-end !important; padding: 1.6rem 1.5rem !important; }
+      /* Ensure logo stays centered on mobile */
+      nav > div[style*="position:absolute"] {
+        left: 50% !important;
+        transform: translateX(-50%) !important;
+      }
+      .tagline {
+        font-size: clamp(3rem, 11.5vw, 4rem) !important;
+        line-height: 1.12 !important;
+      }
+      /* Active dish card fits mobile screen */
+      .dish-card {
+        left: calc(50% - 40vw) !important;
+        width: 80vw !important;
+      }
+      /* Tighter carousel bottom panel on mobile */
+      #carousel-section > div:last-child {
+        padding: 0 1.5rem !important;
+      }
+      /* Smaller dish names on mobile so they fit */
+      .dish-name-el {
+        font-size: 1.5rem !important;
+      }
+      /* Feature section: tighter top padding on mobile */
+      #feature-section > div {
+        padding-top: 5rem !important;
+        padding-bottom: 4rem !important;
+      }
+    }
   </style>
 </head>
 <body style="background:#fff; overflow-x:hidden;">
@@ -135,10 +247,10 @@
   <section style="position:relative;width:100%;height:100vh;min-height:600px;">
 
     <div style="position:absolute;inset:0;background:#1a1008;overflow:hidden;">
-      <video autoplay muted loop playsinline
+      <video id="hero-video" autoplay muted loop playsinline
              style="position:absolute;inset:0;width:100%;height:100%;
                     object-fit:cover;object-position:center;">
-        <source src="bg-video.mp4" type="video/mp4" />
+        <source id="hero-video-src" src="bg-video.mp4" type="video/mp4" />
       </video>
     </div>
 
@@ -148,19 +260,37 @@
     <nav style="position:absolute;top:0;left:0;right:0;z-index:10;
                 display:flex;align-items:center;justify-content:space-between;
                 padding:2.25rem 3rem;">
-      <div style="display:flex;align-items:center;gap:2.5rem;">
+
+      <!-- Left links (desktop only) -->
+      <div class="desktop-links" style="display:flex;align-items:center;gap:2.5rem;">
         <a href="#" class="nav-link" style="font-family:'Montserrat',sans-serif;font-size:0.65rem;font-weight:500;letter-spacing:0.22em;text-transform:uppercase;color:#fff;">Menu</a>
         <a href="#" class="nav-link" style="font-family:'Montserrat',sans-serif;font-size:0.65rem;font-weight:500;letter-spacing:0.22em;text-transform:uppercase;color:#fff;">Sobre</a>
       </div>
+
+      <!-- Spacer on mobile so logo stays centred -->
+      <div class="desktop-spacer" style="width:44px;"></div>
+
+      <!-- Logo (always centred, absolute) -->
       <div style="position:absolute;left:50%;transform:translateX(-50%);">
         <img src="Brand Reasources/logo.png" alt="Espaço Luanda"
              style="height:72px;width:auto;display:block;" />
       </div>
+
+      <!-- Right: desktop links + mobile hamburger -->
       <div style="display:flex;align-items:center;gap:2.5rem;">
-        <a href="#" class="nav-link" style="font-family:'Montserrat',sans-serif;font-size:0.65rem;font-weight:500;letter-spacing:0.22em;text-transform:uppercase;color:#fff;">Contacto</a>
-        <a href="#" class="nav-link" style="font-family:'Montserrat',sans-serif;font-size:0.65rem;font-weight:500;letter-spacing:0.22em;text-transform:uppercase;color:#fff;">Cartão Presente</a>
-        <a href="#" class="nav-link" style="font-family:'Montserrat',sans-serif;font-size:0.65rem;font-weight:500;letter-spacing:0.22em;text-transform:uppercase;color:#fff;">Encomendar Agora</a>
+        <div class="desktop-links" style="display:flex;align-items:center;gap:2.5rem;">
+          <a href="#" class="nav-link" style="font-family:'Montserrat',sans-serif;font-size:0.65rem;font-weight:500;letter-spacing:0.22em;text-transform:uppercase;color:#fff;">Contacto</a>
+          <a href="#" class="nav-link" style="font-family:'Montserrat',sans-serif;font-size:0.65rem;font-weight:500;letter-spacing:0.22em;text-transform:uppercase;color:#fff;">Cartão Presente</a>
+          <a href="#" class="nav-link" style="font-family:'Montserrat',sans-serif;font-size:0.65rem;font-weight:500;letter-spacing:0.22em;text-transform:uppercase;color:#fff;">Encomendar Agora</a>
+        </div>
+        <!-- Hamburger (mobile only) -->
+        <button class="hamburger-btn" id="hamburger-btn" aria-label="Abrir menu">
+          <span class="ham-line"></span>
+          <span class="ham-line"></span>
+          <span class="ham-line"></span>
+        </button>
       </div>
+
     </nav>
 
     <!-- ── HERO CENTRE ── -->
@@ -180,6 +310,25 @@
     </div>
 
   </section>
+
+  <!-- ══════════════════════════════════ MOBILE MENU OVERLAY ══════════════ -->
+  <div id="mobile-overlay" aria-hidden="true">
+    <!-- Close button -->
+    <button class="mob-close-btn" id="close-overlay" aria-label="Fechar menu">✕</button>
+    <!-- Logo -->
+    <img src="Brand Reasources/logo.png" alt="Espaço Luanda"
+         style="height:60px;width:auto;display:block;opacity:0.92;margin-bottom:0;" />
+    <div class="mob-ornament"></div>
+    <!-- Nav links -->
+    <nav style="display:flex;flex-direction:column;align-items:center;gap:1.5rem;">
+      <a href="#" class="mob-link" onclick="closeMenu()">Menu</a>
+      <a href="#" class="mob-link" onclick="closeMenu()">Sobre</a>
+      <a href="#" class="mob-link" onclick="closeMenu()">Contacto</a>
+      <a href="#" class="mob-link" onclick="closeMenu()">Cartão Presente</a>
+      <a href="#" class="mob-link" onclick="closeMenu()">Encomendar Agora</a>
+    </nav>
+    <div class="mob-ornament"></div>
+  </div>
 
   <!-- ══════════════════════════════════ FEATURE SECTION — TEXT ONLY ═══════ -->
   <section id="feature-section" style="position:relative;width:100%;background:#fff;overflow:visible;">
@@ -320,23 +469,45 @@
 
     /* ── Scroll-linked text animation (ONE unified block) ─────────────────────
        plays forward on enter · reverses on scroll-up · re-triggers every pass
+       On mobile: uses IntersectionObserver for reliable cross-browser support
     ──────────────────────────────────────────────────────────────────────────── */
     document.fonts.ready.then(() => {
-      const chars = splitChars(document.getElementById('main-text'));
-      gsap.fromTo(chars,
-        { opacity: 0, y: 40, rotateZ: -3 },
-        {
-          opacity: 1, y: 0, rotateZ: 0,
-          stagger: 0.022,
-          duration: 0.9,
-          ease: 'power3.out',
-          scrollTrigger: {
-            trigger: '#main-text',
-            start: 'top 55%',
-            toggleActions: 'play reverse play reverse'
+      const mainTextEl = document.getElementById('main-text');
+      const isMobileView = window.innerWidth < 768;
+
+      if (isMobileView) {
+        /* Mobile: simple fade-in via IntersectionObserver (no GSAP scroll dependency) */
+        mainTextEl.style.opacity = '0';
+        mainTextEl.style.transform = 'translateY(32px)';
+        mainTextEl.style.transition = 'opacity 0.9s ease, transform 0.9s ease';
+        const obs = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              mainTextEl.style.opacity = '1';
+              mainTextEl.style.transform = 'translateY(0)';
+              obs.disconnect();
+            }
+          });
+        }, { threshold: 0.2 });
+        obs.observe(mainTextEl);
+      } else {
+        /* Desktop: GSAP char-by-char stagger with ScrollTrigger */
+        const chars = splitChars(mainTextEl);
+        gsap.fromTo(chars,
+          { opacity: 0, y: 40, rotateZ: -3 },
+          {
+            opacity: 1, y: 0, rotateZ: 0,
+            stagger: 0.022,
+            duration: 0.9,
+            ease: 'power3.out',
+            scrollTrigger: {
+              trigger: '#main-text',
+              start: 'top 88%',
+              toggleActions: 'play reverse play reverse'
+            }
           }
-        }
-      );
+        );
+      }
     });
 
 
@@ -472,6 +643,67 @@
     initCarousel();
     updateCounter();
     resetAutoTimer();
+
+    /* ── ScrollTrigger refresh on full load ────────────────────────────────── */
+    window.addEventListener('load', () => { ScrollTrigger.refresh(); });
+
+    /* ── Mobile video swap ─────────────────────────────────────────────────── */
+    (function () {
+      if (window.innerWidth < 768) {
+        const src = document.getElementById('hero-video-src');
+        const vid = document.getElementById('hero-video');
+        if (src && vid) {
+          src.src = 'bg-video-mobile.mp4';
+          vid.load();
+        }
+      }
+    })();
+
+    /* ── Hamburger menu ────────────────────────────────────────────────────── */
+    const mobileOverlay = document.getElementById('mobile-overlay');
+    const hamBtn        = document.getElementById('hamburger-btn');
+    const closeBtn      = document.getElementById('close-overlay');
+    const mobLinks      = mobileOverlay ? Array.from(mobileOverlay.querySelectorAll('.mob-link')) : [];
+
+    function openMenu() {
+      if (!mobileOverlay) return;
+      mobileOverlay.setAttribute('aria-hidden', 'false');
+      mobileOverlay.classList.add('open');
+      document.body.style.overflow = 'hidden';
+      gsap.set(mobLinks, { opacity: 0, y: 32 });
+      gsap.to(mobLinks, {
+        opacity: 1, y: 0,
+        stagger: 0.07,
+        duration: 0.55,
+        ease: 'power3.out',
+        delay: 0.18
+      });
+    }
+
+    function closeMenu() {
+      if (!mobileOverlay) return;
+      gsap.to(mobLinks, {
+        opacity: 0, y: -18,
+        stagger: 0.04,
+        duration: 0.26,
+        ease: 'power2.in',
+        onComplete: () => {
+          mobileOverlay.classList.remove('open');
+          mobileOverlay.setAttribute('aria-hidden', 'true');
+          document.body.style.overflow = '';
+        }
+      });
+    }
+
+    if (hamBtn)   hamBtn.addEventListener('click', openMenu);
+    if (closeBtn) closeBtn.addEventListener('click', closeMenu);
+
+    /* Close overlay on Escape key */
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && mobileOverlay && mobileOverlay.classList.contains('open')) {
+        closeMenu();
+      }
+    });
 
   </script>
 
