@@ -947,13 +947,17 @@ void main() {
     titleEl.addEventListener('click', openCategory);
     descEl.addEventListener('click',  openCategory);
     btnEl.addEventListener('click',   openCategory);
-    canvas.addEventListener('click',  openCategory);
 
     const canvas = document.getElementById('infinite-grid-menu-canvas');
+    canvas.addEventListener('click', openCategory);
+
     const sketch = new InfiniteGridMenu(canvas, SPHERE_ITEMS, setActive, setMoving, sk => {
       setActive(0);
       setMoving(false);
       sk.run();
+      // Deep-link: if URL hash matches a category key, open it immediately
+      const hash = window.location.hash.replace('#', '');
+      if (hash && MENU[hash]) { showCategory(hash); }
     });
     window.addEventListener('resize', () => sketch.resize());
   </script>

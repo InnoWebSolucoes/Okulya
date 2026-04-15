@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Eventos — Espaço Luanda</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: #0e0904;
+      color: #f5f0e8;
+      font-family: 'Montserrat', sans-serif;
+      overflow-x: clip;
+    }
+
+    /* ── SCROLLBAR ─────────────────────────────────────────────── */
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: #0e0904; }
+    ::-webkit-scrollbar-thumb { background: #c8a06a44; border-radius: 2px; }
+
+    /* ── NAV ───────────────────────────────────────────────────── */
+    #top-nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 500;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.5rem 2.4rem;
+      background: linear-gradient(to bottom, rgba(14,9,4,0.9) 0%, rgba(14,9,4,0) 100%);
+    }
+    .nav-voltar {
+      display: inline-flex; align-items: center; gap: 0.55rem;
+      font-family: 'Montserrat', sans-serif; font-size: 0.56rem;
+      font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase;
+      color: #f5f0e8; background: none; border: none; cursor: pointer;
+      padding: 1rem 0 1rem 0; margin: -1rem 0 -1rem 0;
+      transition: opacity 0.25s ease;
+    }
+    .nav-voltar:hover { opacity: 0.6; }
+    .nav-logo { height: 40px; width: auto; max-width: none; display: block; }
+
+    /* ── MAGAZINE MASTHEAD ─────────────────────────────────────── */
+    #masthead {
+      position: relative; width: 100%; min-height: 100vh;
+      display: flex; flex-direction: column; justify-content: flex-end;
+      overflow: hidden;
+    }
+    #masthead-bg {
+      position: absolute; inset: 0;
+      background: linear-gradient(160deg, #1a1008 0%, #2a1a08 40%, #0e0904 100%);
+    }
+    /* grain texture */
+    #masthead-bg::after {
+      content: '';
+      position: absolute; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.035'/%3E%3C/svg%3E");
+      opacity: 0.4; pointer-events: none;
+    }
+    #masthead-img {
+      position: absolute; inset: 0;
+      background: url('dining-1.webp') center/cover no-repeat;
+      opacity: 0.22;
+      mix-blend-mode: luminosity;
+    }
+    /* gold radial glow */
+    #masthead-glow {
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse 70% 55% at 65% 60%, rgba(200,160,106,0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .masthead-inner {
+      position: relative; z-index: 2;
+      padding: 0 2.4rem 5rem;
+      display: grid; grid-template-columns: 1fr auto; align-items: end; gap: 2rem;
+    }
+    .masthead-meta {
+      font-family: 'Montserrat', sans-serif; font-size: 0.5rem;
+      font-weight: 500; letter-spacing: 0.3em; text-transform: uppercase;
+      color: #c8a06a; margin-bottom: 1.2rem;
+    }
+    .masthead-issue {
+      font-family: 'Montserrat', sans-serif; font-size: 0.44rem;
+      font-weight: 300; letter-spacing: 0.22em; text-transform: uppercase;
+      color: rgba(245,240,232,0.4); margin-bottom: 3rem;
+    }
+    .masthead-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(5.5rem, 16vw, 13rem);
+      font-weight: 300; letter-spacing: -0.02em; line-height: 0.88;
+      color: #f5f0e8;
+    }
+    .masthead-title em {
+      font-style: italic; color: #c8a06a;
+    }
+    .masthead-tagline {
+      font-family: 'Cormorant Garamond', serif; font-style: italic;
+      font-size: clamp(1rem, 2.2vw, 1.4rem); font-weight: 300;
+      color: rgba(245,240,232,0.65); margin-top: 1.8rem; max-width: 480px;
+      line-height: 1.6;
+    }
+    .masthead-divider {
+      width: 48px; height: 1px; background: #c8a06a;
+      margin: 2rem 0;
+    }
+    .masthead-side {
+      display: flex; flex-direction: column; align-items: flex-end; gap: 0.6rem;
+      padding-bottom: 0.4rem;
+    }
+    .masthead-side-label {
+      font-family: 'Montserrat', sans-serif; font-size: 0.42rem;
+      font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase;
+      color: rgba(200,160,106,0.6); writing-mode: vertical-rl;
+      transform: rotate(180deg);
+    }
+    .masthead-scroll-hint {
+      display: flex; align-items: center; gap: 0.8rem;
+      font-family: 'Montserrat', sans-serif; font-size: 0.44rem;
+      font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase;
+      color: rgba(245,240,232,0.3); margin-top: 4rem;
+    }
+    .masthead-scroll-hint::before {
+      content: ''; display: block; width: 24px; height: 1px;
+      background: rgba(245,240,232,0.2);
+    }
+
+    /* ── SECTION LABEL ─────────────────────────────────────────── */
+    .section-label {
+      font-family: 'Montserrat', sans-serif; font-size: 0.44rem;
+      font-weight: 500; letter-spacing: 0.3em; text-transform: uppercase;
+      color: #c8a06a; display: flex; align-items: center; gap: 1.2rem;
+    }
+    .section-label::after {
+      content: ''; flex: 1; height: 1px;
+      background: linear-gradient(to right, #c8a06a44, transparent);
+    }
+
+    /* ── FEATURED EVENT STRIP ──────────────────────────────────── */
+    #featured {
+      padding: 6rem 2.4rem 0;
+    }
+
+    /* ── EVENT GRID ────────────────────────────────────────────── */
+    #event-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 1.5rem;
+      padding: 3rem 2.4rem 6rem;
+    }
+
+    /* ── EVENT CARD ────────────────────────────────────────────── */
+    .ev-card {
+      position: relative; overflow: hidden; cursor: pointer;
+      background: #1a1008;
+    }
+    .ev-card::before {
+      content: ''; position: absolute; inset: 0; z-index: 2;
+      background: linear-gradient(to top, rgba(14,9,4,0.92) 0%, rgba(14,9,4,0.2) 60%, transparent 100%);
+      transition: opacity 0.4s ease;
+    }
+    .ev-card:hover::before { opacity: 0.75; }
+    .ev-card-img {
+      width: 100%; height: 100%; object-fit: cover; display: block;
+      transition: transform 0.9s cubic-bezier(0.25,0.46,0.45,0.94);
+    }
+    .ev-card:hover .ev-card-img { transform: scale(1.05); }
+    .ev-card-body {
+      position: absolute; bottom: 0; left: 0; right: 0; z-index: 3;
+      padding: 2rem 1.8rem 1.8rem;
+    }
+    .ev-card-tag {
+      font-family: 'Montserrat', sans-serif; font-size: 0.42rem;
+      font-weight: 500; letter-spacing: 0.25em; text-transform: uppercase;
+      color: #c8a06a; margin-bottom: 0.7rem;
+    }
+    .ev-card-title {
+      font-family: 'Cormorant Garamond', serif; font-weight: 400;
+      color: #f5f0e8; line-height: 1.15;
+    }
+    .ev-card-sub {
+      font-family: 'Montserrat', sans-serif; font-size: 0.55rem;
+      font-weight: 300; letter-spacing: 0.1em;
+      color: rgba(245,240,232,0.5); margin-top: 0.5rem;
+    }
+    .ev-card-arrow {
+      position: absolute; bottom: 1.8rem; right: 1.8rem; z-index: 3;
+      width: 36px; height: 36px; border-radius: 50%;
+      border: 1px solid rgba(200,160,106,0.3);
+      display: flex; align-items: center; justify-content: center;
+      transition: border-color 0.3s ease, background 0.3s ease;
+    }
+    .ev-card:hover .ev-card-arrow {
+      border-color: #c8a06a; background: rgba(200,160,106,0.1);
+    }
+
+    /* card size classes */
+    .ev-full   { grid-column: span 12; height: 70vh; min-height: 480px; }
+    .ev-large  { grid-column: span 7;  height: 60vh; min-height: 400px; }
+    .ev-medium { grid-column: span 5;  height: 60vh; min-height: 400px; }
+    .ev-wide   { grid-column: span 8;  height: 50vh; min-height: 340px; }
+    .ev-slim   { grid-column: span 4;  height: 50vh; min-height: 340px; }
+    .ev-third  { grid-column: span 4;  height: 46vh; min-height: 300px; }
+
+    .ev-full .ev-card-title  { font-size: clamp(2.4rem, 5vw, 4rem); }
+    .ev-large .ev-card-title { font-size: clamp(2rem, 3.5vw, 3rem); }
+    .ev-medium .ev-card-title { font-size: clamp(1.6rem, 2.5vw, 2.4rem); }
+    .ev-wide .ev-card-title  { font-size: clamp(1.8rem, 3vw, 2.6rem); }
+    .ev-slim .ev-card-title  { font-size: clamp(1.5rem, 2vw, 2rem); }
+    .ev-third .ev-card-title { font-size: clamp(1.4rem, 2vw, 2rem); }
+
+    /* ── MAGAZINE DIVIDER ──────────────────────────────────────── */
+    .mag-divider {
+      display: flex; align-items: center; gap: 2rem;
+      padding: 0 2.4rem; margin-bottom: 2rem;
+    }
+    .mag-divider-line { flex: 1; height: 1px; background: rgba(200,160,106,0.15); }
+    .mag-divider-text {
+      font-family: 'Montserrat', sans-serif; font-size: 0.42rem;
+      font-weight: 500; letter-spacing: 0.3em; text-transform: uppercase;
+      color: rgba(200,160,106,0.4);
+    }
+
+    /* ── EVENT DETAIL OVERLAY ──────────────────────────────────── */
+    #ev-overlay {
+      position: fixed; inset: 0; z-index: 1000;
+      background: #0e0904;
+      overflow-y: auto;
+      opacity: 0; pointer-events: none;
+      transition: opacity 0.5s cubic-bezier(0.4,0,0.2,1);
+    }
+    #ev-overlay.open {
+      opacity: 1; pointer-events: auto;
+    }
+    #ev-overlay-inner { min-height: 100vh; }
+
+    /* overlay nav */
+    #ev-overlay-nav {
+      position: sticky; top: 0; z-index: 10;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.5rem 2.4rem;
+      background: linear-gradient(to bottom, rgba(14,9,4,0.95) 0%, rgba(14,9,4,0) 100%);
+    }
+
+    /* overlay hero */
+    #ev-hero {
+      position: relative; width: 100%; height: 85vh; overflow: hidden;
+    }
+    #ev-hero-img {
+      width: 100%; height: 100%; object-fit: cover; display: block;
+    }
+    #ev-hero-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(14,9,4,1) 0%, rgba(14,9,4,0.5) 40%, rgba(14,9,4,0.1) 100%);
+    }
+    #ev-hero-content {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      padding: 4rem 2.4rem 3rem;
+    }
+    #ev-tag {
+      font-family: 'Montserrat', sans-serif; font-size: 0.44rem;
+      font-weight: 500; letter-spacing: 0.3em; text-transform: uppercase;
+      color: #c8a06a; margin-bottom: 1rem;
+    }
+    #ev-title {
+      font-family: 'Cormorant Garamond', serif; font-weight: 300;
+      font-size: clamp(3rem, 8vw, 6rem); line-height: 1; color: #f5f0e8;
+    }
+    #ev-title em { font-style: italic; color: #c8a06a; }
+    #ev-meta {
+      display: flex; align-items: center; gap: 2rem; margin-top: 1.5rem;
+      font-family: 'Montserrat', sans-serif; font-size: 0.52rem;
+      font-weight: 300; letter-spacing: 0.14em;
+      color: rgba(245,240,232,0.5);
+    }
+    #ev-meta span { display: flex; align-items: center; gap: 0.5rem; }
+
+    /* overlay body */
+    #ev-body { padding: 4rem 2.4rem 6rem; max-width: 900px; }
+    #ev-desc {
+      font-family: 'Cormorant Garamond', serif; font-style: italic;
+      font-size: clamp(1.2rem, 2.2vw, 1.6rem); font-weight: 300;
+      line-height: 1.75; color: rgba(245,240,232,0.85);
+      margin-bottom: 3rem;
+    }
+    #ev-detail-text {
+      font-family: 'Montserrat', sans-serif; font-size: 0.72rem;
+      font-weight: 300; line-height: 1.85;
+      color: rgba(245,240,232,0.55);
+    }
+
+    /* ── TESTIMONIALS ──────────────────────────────────────────── */
+    #ev-testimonials {
+      padding: 5rem 2.4rem;
+      background: #1a1008;
+      position: relative;
+    }
+    #ev-testimonials::before {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(ellipse 60% 80% at 20% 50%, rgba(200,160,106,0.06) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .test-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 2rem; margin-top: 3rem;
+    }
+    .test-card {
+      padding: 2rem; border: 1px solid rgba(200,160,106,0.15);
+      position: relative;
+    }
+    .test-card::before {
+      content: '\201C';
+      font-family: 'Cormorant Garamond', serif; font-size: 5rem;
+      font-weight: 300; color: rgba(200,160,106,0.2);
+      position: absolute; top: 0.5rem; left: 1.5rem; line-height: 1;
+    }
+    .test-quote {
+      font-family: 'Cormorant Garamond', serif; font-style: italic;
+      font-size: clamp(1rem, 1.5vw, 1.2rem); font-weight: 300;
+      line-height: 1.7; color: rgba(245,240,232,0.75);
+      margin-top: 1.5rem;
+    }
+    .test-author {
+      font-family: 'Montserrat', sans-serif; font-size: 0.5rem;
+      font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase;
+      color: #c8a06a; margin-top: 1.5rem;
+    }
+    .test-stars {
+      color: #c8a06a; font-size: 0.65rem; letter-spacing: 0.1em;
+      margin-top: 0.5rem;
+    }
+
+    /* ── GALLERY ───────────────────────────────────────────────── */
+    #ev-gallery { padding: 5rem 2.4rem 7rem; }
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      grid-auto-rows: 200px;
+      gap: 1rem; margin-top: 3rem;
+    }
+    .gal-item {
+      position: relative; overflow: hidden;
+      background: #1a1008;
+    }
+    .gal-item img {
+      width: 100%; height: 100%; object-fit: cover; display: block;
+      transition: transform 0.6s ease;
+    }
+    .gal-item:hover img { transform: scale(1.04); }
+    .gal-item.video-item::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: rgba(14,9,4,0.45);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .play-btn {
+      position: absolute; top: 50%; left: 50%;
+      transform: translate(-50%,-50%); z-index: 2;
+      width: 52px; height: 52px; border-radius: 50%;
+      border: 1.5px solid rgba(200,160,106,0.7);
+      display: flex; align-items: center; justify-content: center;
+      background: rgba(14,9,4,0.5);
+      transition: background 0.3s ease, border-color 0.3s ease;
+    }
+    .gal-item:hover .play-btn {
+      background: rgba(200,160,106,0.2); border-color: #c8a06a;
+    }
+    .g-tall  { grid-column: span 4; grid-row: span 2; }
+    .g-wide  { grid-column: span 8; grid-row: span 1; }
+    .g-half  { grid-column: span 4; grid-row: span 1; }
+    .g-med   { grid-column: span 6; grid-row: span 1; }
+    .g-full  { grid-column: span 12; grid-row: span 1; }
+
+    /* ── FOOTER ────────────────────────────────────────────────── */
+    footer {
+      background: #1a1008; border-top: 1px solid rgba(200,160,106,0.1);
+      padding: 3rem 2.4rem;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .footer-text {
+      font-family: 'Montserrat', sans-serif; font-size: 0.5rem;
+      font-weight: 300; letter-spacing: 0.16em; text-transform: uppercase;
+      color: rgba(245,240,232,0.3);
+    }
+
+    /* ── MOBILE ────────────────────────────────────────────────── */
+    @media (max-width: 768px) {
+      .masthead-inner { grid-template-columns: 1fr; }
+      .masthead-side { display: none; }
+      #event-grid { padding: 2rem 1.2rem 4rem; gap: 1rem; }
+      .ev-full   { grid-column: span 12; height: 55vw; min-height: 280px; }
+      .ev-large  { grid-column: span 12; height: 55vw; min-height: 260px; }
+      .ev-medium { grid-column: span 12; height: 50vw; min-height: 240px; }
+      .ev-wide   { grid-column: span 12; height: 50vw; }
+      .ev-slim   { grid-column: span 12; height: 50vw; }
+      .ev-third  { grid-column: span 12; height: 50vw; }
+      .test-grid { grid-template-columns: 1fr; }
+      .gallery-grid { grid-auto-rows: 140px; }
+      .g-tall  { grid-column: span 6; grid-row: span 2; }
+      .g-wide  { grid-column: span 6; grid-row: span 1; }
+      .g-half  { grid-column: span 6; }
+      .g-med   { grid-column: span 6; }
+      .g-full  { grid-column: span 12; }
+      #ev-body { padding: 2rem 1.2rem 4rem; }
+      #ev-hero { height: 65vh; }
+      #featured { padding: 4rem 1.2rem 0; }
+      .mag-divider { padding: 0 1.2rem; }
+      #top-nav { padding: 1.2rem 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── NAV ───────────────────────────────────────────────────── -->
+  <nav id="top-nav">
+    <button class="nav-voltar" onclick="window.location.href='index.html'">
+      <svg width="15" height="10" viewBox="0 0 15 10" fill="none" style="flex-shrink:0;">
+        <line x1="14" y1="5" x2="1" y2="5" stroke="currentColor" stroke-width="0.85" stroke-linecap="round"/>
+        <polyline points="5,1 1,5 5,9" stroke="currentColor" stroke-width="0.85" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      Voltar
+    </button>
+    <img src="Brand Reasources/logo.png" alt="Espaço Luanda" class="nav-logo" />
+  </nav>
+
+  <!-- ── MASTHEAD ───────────────────────────────────────────────── -->
+  <section id="masthead">
+    <div id="masthead-bg"></div>
+    <div id="masthead-img"></div>
+    <div id="masthead-glow"></div>
+
+    <div class="masthead-inner">
+      <div>
+        <p class="masthead-meta">Espaço Luanda — Steak & Sea</p>
+        <p class="masthead-issue">Vol. I &nbsp;·&nbsp; Edição Abril 2026 &nbsp;·&nbsp; Luanda, Angola</p>
+        <h1 class="masthead-title">
+          Even<em>tos</em>
+        </h1>
+        <div class="masthead-divider"></div>
+        <p class="masthead-tagline">
+          Uma curadoria de noites inesquecíveis, música ao vivo e experiências gastronómicas que definem o ritmo de Luanda.
+        </p>
+        <p class="masthead-scroll-hint">Explorar edição</p>
+      </div>
+      <div class="masthead-side">
+        <span class="masthead-side-label">Cultura &amp; Gastronomia</span>
+        <span class="masthead-side-label">2026</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FEATURED ───────────────────────────────────────────────── -->
+  <section id="featured">
+    <div class="section-label" style="margin-bottom:2rem;">Em destaque</div>
+
+    <div class="ev-card ev-full" onclick="openEvent('jazz')">
+      <img class="ev-card-img" src="dining-1.webp" alt="Wine &amp; Jazz" />
+      <div class="ev-card-body">
+        <p class="ev-card-tag">Todas as quartas &nbsp;·&nbsp; 19h00</p>
+        <h2 class="ev-card-title">Wine &amp; Jazz<br><em style="font-family:'Cormorant Garamond',serif;font-style:italic;color:#c8a06a;">Night</em></h2>
+        <p class="ev-card-sub">Carta de vinhos curada · Música ao vivo · Mesa do Chef</p>
+      </div>
+      <div class="ev-card-arrow">
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+          <path d="M2 10L10 2M10 2H4M10 2V8" stroke="#c8a06a" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── GRID ───────────────────────────────────────────────────── -->
+  <section id="event-grid">
+
+    <!-- Row 1: large + medium -->
+    <div class="ev-card ev-large" onclick="openEvent('sextas')">
+      <img class="ev-card-img" src="dining-friday.png" alt="Sextas com RYBAY" />
+      <div class="ev-card-body">
+        <p class="ev-card-tag">Todas as sextas &nbsp;·&nbsp; 20h00</p>
+        <h2 class="ev-card-title">Sextas com<br>RYBAY</h2>
+        <p class="ev-card-sub">Música ao vivo · Menu especial do Chef</p>
+      </div>
+      <div class="ev-card-arrow">
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+          <path d="M2 10L10 2M10 2H4M10 2V8" stroke="#c8a06a" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+    </div>
+
+    <div class="ev-card ev-medium" onclick="openEvent('carnaval')">
+      <img class="ev-card-img" src="dining-2.webp" alt="Festa de Carnaval" />
+      <div class="ev-card-body">
+        <p class="ev-card-tag">Evento especial</p>
+        <h2 class="ev-card-title">Festa de<br>Carnaval</h2>
+        <p class="ev-card-sub">Gastronomia · Dança · Cultura angolana</p>
+      </div>
+      <div class="ev-card-arrow">
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+          <path d="M2 10L10 2M10 2H4M10 2V8" stroke="#c8a06a" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+    </div>
+
+    <!-- Mag divider inside grid -->
+    <div style="grid-column:span 12; display:flex; align-items:center; gap:2rem; margin: 0.5rem 0;">
+      <div style="flex:1;height:1px;background:rgba(200,160,106,0.12);"></div>
+      <span style="font-family:'Montserrat',sans-serif;font-size:0.42rem;font-weight:500;letter-spacing:0.3em;text-transform:uppercase;color:rgba(200,160,106,0.35);">Agenda mensal</span>
+      <div style="flex:1;height:1px;background:rgba(200,160,106,0.12);"></div>
+    </div>
+
+    <!-- Row 2: three equal -->
+    <div class="ev-card ev-third" onclick="openEvent('terca')">
+      <img class="ev-card-img" src="dining-tuesday.jpg" alt="Terça do Chefe" />
+      <div class="ev-card-body">
+        <p class="ev-card-tag">Todas as terças &nbsp;·&nbsp; 19h00</p>
+        <h2 class="ev-card-title">Noite do<br>Chef</h2>
+        <p class="ev-card-sub">Menu exclusivo + caipirinha</p>
+      </div>
+      <div class="ev-card-arrow">
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+          <path d="M2 10L10 2M10 2H4M10 2V8" stroke="#c8a06a" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+    </div>
+
+    <div class="ev-card ev-third" onclick="openEvent('segunda')">
+      <img class="ev-card-img" src="dining-monday.jpg" alt="Segunda Sem Lei" />
+      <div class="ev-card-body">
+        <p class="ev-card-tag">Todas as segundas &nbsp;·&nbsp; 18h00</p>
+        <h2 class="ev-card-title">Segunda<br>Sem Lei</h2>
+        <p class="ev-card-sub">20% nas carnes premium</p>
+      </div>
+      <div class="ev-card-arrow">
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+          <path d="M2 10L10 2M10 2H4M10 2V8" stroke="#c8a06a" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+    </div>
+
+    <div class="ev-card ev-third" onclick="openEvent('quinta')">
+      <img class="ev-card-img" src="dining-thursday.jpg" alt="Quintas da Costela" />
+      <div class="ev-card-body">
+        <p class="ev-card-tag">Todas as quintas</p>
+        <h2 class="ev-card-title">Quintas da<br>Costela</h2>
+        <p class="ev-card-sub">2h cerveja Brava incluída</p>
+      </div>
+      <div class="ev-card-arrow">
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+          <path d="M2 10L10 2M10 2H4M10 2V8" stroke="#c8a06a" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+    </div>
+
+    <!-- Row 3: wide + slim -->
+    <div class="ev-card ev-wide" onclick="openEvent('cultural')">
+      <img class="ev-card-img" src="dining-3.webp" alt="Agenda Cultural" />
+      <div class="ev-card-body">
+        <p class="ev-card-tag">Mensal</p>
+        <h2 class="ev-card-title">Agenda<br>Cultural</h2>
+        <p class="ev-card-sub">Arte · Música · Gastronomia angolana</p>
+      </div>
+      <div class="ev-card-arrow">
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+          <path d="M2 10L10 2M10 2H4M10 2V8" stroke="#c8a06a" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+    </div>
+
+    <div class="ev-card ev-slim" onclick="openEvent('privado')">
+      <img class="ev-card-img" src="dining-2.webp" alt="Eventos Privados" />
+      <div class="ev-card-body">
+        <p class="ev-card-tag">Sob reserva</p>
+        <h2 class="ev-card-title">Eventos<br>Privados</h2>
+        <p class="ev-card-sub">Jantares corporativos · Aniversários</p>
+      </div>
+      <div class="ev-card-arrow">
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+          <path d="M2 10L10 2M10 2H4M10 2V8" stroke="#c8a06a" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ── FOOTER ─────────────────────────────────────────────────── -->
+  <footer>
+    <img src="Brand Reasources/logo.png" alt="Espaço Luanda" style="height:34px;width:auto;max-width:none;opacity:0.6;" />
+    <span class="footer-text">© 2026 Espaço Luanda &nbsp;·&nbsp; Luanda, Angola</span>
+    <span class="footer-text">Reservas: +244 900 000 000</span>
+  </footer>
+
+
+  <!-- ═══════════════════════════════════════════════════════════════
+       EVENT DETAIL OVERLAY
+  ═══════════════════════════════════════════════════════════════ -->
+  <div id="ev-overlay" role="dialog" aria-modal="true">
+    <div id="ev-overlay-inner">
+
+      <!-- sticky overlay nav -->
+      <nav id="ev-overlay-nav">
+        <button class="nav-voltar" id="ev-close">
+          <svg width="15" height="10" viewBox="0 0 15 10" fill="none" style="flex-shrink:0;">
+            <line x1="14" y1="5" x2="1" y2="5" stroke="currentColor" stroke-width="0.85" stroke-linecap="round"/>
+            <polyline points="5,1 1,5 5,9" stroke="currentColor" stroke-width="0.85" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          Voltar
+        </button>
+        <img src="Brand Reasources/logo.png" alt="Espaço Luanda" class="nav-logo" />
+      </nav>
+
+      <!-- Hero image -->
+      <div id="ev-hero">
+        <img id="ev-hero-img" src="" alt="" />
+        <div id="ev-hero-overlay"></div>
+        <div id="ev-hero-content">
+          <p id="ev-tag"></p>
+          <h1 id="ev-title"></h1>
+          <div id="ev-meta">
+            <span id="ev-when"></span>
+            <span id="ev-time"></span>
+            <span id="ev-loc">Espaço Luanda, Luanda</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Body text -->
+      <div id="ev-body">
+        <p id="ev-desc"></p>
+        <p id="ev-detail-text"></p>
+      </div>
+
+      <!-- Testimonials -->
+      <section id="ev-testimonials">
+        <div class="section-label">O que dizem</div>
+        <div class="test-grid" id="test-grid"></div>
+      </section>
+
+      <!-- Gallery -->
+      <section id="ev-gallery">
+        <div class="section-label">Galeria</div>
+        <div class="gallery-grid" id="gal-grid"></div>
+      </section>
+
+    </div>
+  </div>
+
+
+  <script>
+    /* ── EVENT DATA ─────────────────────────────────────────────── */
+    const EVENTS = {
+      jazz: {
+        tag: 'Todas as quartas · 19h00',
+        title: 'Wine &amp; Jazz <em>Night</em>',
+        when: 'Toda quarta-feira',
+        time: '19h00 — encerramento',
+        img: 'dining-1.webp',
+        desc: 'Uma noite construída em torno do silêncio que só o jazz pode criar — quebrado pelas notas certas, pelo vinho certo, pelo prato certo.',
+        detail: 'Cada quarta-feira, o Espaço Luanda transforma-se num palco intimista para os melhores músicos de jazz de Luanda e convidados internacionais. A nossa carta de vinhos, curada pelo sommelier da casa, apresenta mais de 40 rótulos seleccionados. O menu do Chef muda a cada semana, reflectindo o melhor do mercado local e a visão criativa da nossa cozinha. Mesas limitadas — reserva antecipada recomendada.',
+        testimonials: [
+          { quote: 'A melhor noite de jazz que já vivi fora de Lisboa. O ambiente, a comida, o vinho — tudo numa sintonia perfeita.', author: 'Maria C.', stars: '★★★★★' },
+          { quote: 'Vim pela primeira vez numa quarta e não consigo parar de voltar. O trio de jazz e o risotto de marisco são incomparáveis.', author: 'João A.', stars: '★★★★★' },
+          { quote: 'O sommelier recomendou um Douro que nunca tinha provado. Casamento perfeito com o entrecôte. Experiência memorável.', author: 'Carla M.', stars: '★★★★★' },
+        ],
+        galleryImgs: ['dining-1.webp','dining-2.webp','dining-3.webp','dining-tuesday.jpg','dining-friday.png','dining-monday.jpg'],
+        galleryTypes: ['photo','photo','photo','photo','photo','photo'],
+      },
+      sextas: {
+        tag: 'Todas as sextas · 20h00',
+        title: 'Sextas com <em>RYBAY</em>',
+        when: 'Toda sexta-feira',
+        time: '20h00 — encerramento',
+        img: 'dining-friday.png',
+        desc: 'O fim de semana começa quando RYBAY pega na guitarra e o Chef abre o seu menu mais ousado da semana.',
+        detail: 'As sextas no Espaço Luanda têm uma energia única. RYBAY, um dos artistas mais talentosos da cena musical de Luanda, toca ao vivo enquanto a cozinha serve o Menu Especial À Moda do Chef — um percurso de 5 momentos que celebra a fusão entre a cozinha angolana e técnicas de alta gastronomia. Ambiente vibrante, mas elegante. A noite perfeita para entrar no fim de semana com estilo.',
+        testimonials: [
+          { quote: 'RYBAY ao vivo é uma experiência que não se descreve. E a costela do Chef? Absurda — no bom sentido.', author: 'Pedro L.', stars: '★★★★★' },
+          { quote: 'Trouxe clientes de Lisboa para jantar e ficaram boquiabertos. Disseram que era melhor do que qualquer restaurante europeu que frequentam.', author: 'Ana B.', stars: '★★★★★' },
+          { quote: 'As sextas aqui tornaram-se o meu ritual semanal. A música, a comida e a equipa fazem sempre sentir que somos especiais.', author: 'Miguel S.', stars: '★★★★★' },
+        ],
+        galleryImgs: ['dining-friday.png','dining-1.webp','dining-3.webp','dining-2.webp','dish-1.webp','dish-2.webp'],
+        galleryTypes: ['photo','photo','video','photo','photo','video'],
+      },
+      carnaval: {
+        tag: 'Evento especial anual',
+        title: 'Festa de <em>Carnaval</em>',
+        when: 'Época de Carnaval',
+        time: 'Edição limitada',
+        img: 'dining-2.webp',
+        desc: 'Uma celebração que mistura os sabores mais profundos de Angola com a euforia da época mais colorida do ano.',
+        detail: 'A Festa de Carnaval do Espaço Luanda é o evento mais aguardado do ano. Durante a época de Carnaval, o restaurante veste-se de cor e energia com um programa especial de 3 noites: música ao vivo com bandas convidadas, menu temático com pratos tradicionais angolanos reinterpretados, cocktails exclusivos criados para a ocasião e actuações de dança. Uma imersão total na cultura e gastronomia angolana.',
+        testimonials: [
+          { quote: 'Nunca tinha visto o Carnaval desta forma. Comi, dancei e saí com lágrimas nos olhos de tanta emoção. Que noite!', author: 'Luísa F.', stars: '★★★★★' },
+          { quote: 'O muamba que serviram nessa noite fez-me lembrar a comida da minha avó. Perfeito. Absolutamente perfeito.', author: 'Eduardo K.', stars: '★★★★★' },
+          { quote: 'Vim com um grupo de 12 pessoas e toda a gente ainda fala no jantar de Carnaval do Espaço Luanda.', author: 'Sofia N.', stars: '★★★★★' },
+        ],
+        galleryImgs: ['dining-2.webp','dining-1.webp','dining-3.webp','dining-tuesday.jpg','dish-3.webp','dish-4.webp'],
+        galleryTypes: ['photo','video','photo','photo','photo','video'],
+      },
+      terca: {
+        tag: 'Todas as terças · 19h00',
+        title: 'Noite do <em>Chef</em>',
+        when: 'Toda terça-feira',
+        time: '19h00 — encerramento',
+        img: 'dining-tuesday.jpg',
+        desc: 'Uma mesa para os curiosos — onde o Chef partilha a sua visão sem filtros, com ingredientes que chegaram nessa manhã ao mercado.',
+        detail: 'As terças pertencem ao Chef. É a noite em que a criatividade da cozinha do Espaço Luanda não tem limites. O menu é surpresa e muda todas as semanas, mas uma coisa é certa: começa sempre com uma rodada de caipirinha por nossa conta para cada cliente. Ingredientes locais, técnica internacional, resultado imprevisível — mas sempre extraordinário. Para reservas de grupo, é possível solicitar uma visita à cozinha.',
+        testimonials: [
+          { quote: 'Nunca sei o que vai aparecer na mesa, mas sei sempre que vai ser incrível. É a minha noite favorita da semana.', author: 'Ricardo A.', stars: '★★★★★' },
+          { quote: 'A caipirinha de boas-vindas já devia ser lei em todos os restaurantes. E o menu? Teatro puro na mesa.', author: 'Cristina V.', stars: '★★★★★' },
+          { quote: 'O Chef passou pela mesa para explicar o menu. Uma pessoa apaixonada. Sente-se em cada prato.', author: 'Nuno P.', stars: '★★★★★' },
+        ],
+        galleryImgs: ['dining-tuesday.jpg','dish-1.webp','dish-2.webp','dining-1.webp','dish-3.webp','dish-4.webp'],
+        galleryTypes: ['photo','photo','video','photo','photo','photo'],
+      },
+      segunda: {
+        tag: 'Todas as segundas · 18h00',
+        title: 'Segunda <em>Sem Lei</em>',
+        when: 'Toda segunda-feira',
+        time: '18h00 — encerramento',
+        img: 'dining-monday.jpg',
+        desc: 'Porque a segunda-feira não precisa de ser o dia mais duro da semana. Comece a semana como se fosse um sábado.',
+        detail: 'A Segunda Sem Lei é a forma do Espaço Luanda dizer que a semana merece começar com alegria. Todos os clientes que jantem às segundas beneficiam de 20% de desconto em toda a carta de carnes premium — dos cortes americanos aged aos medalhões da costa angolana. Sem código de desconto, sem complicações. Só boa carne, bom vinho e boa energia.',
+        testimonials: [
+          { quote: 'Descobri as Segundas Sem Lei há 3 meses e desde então raramente janto segunda em casa. O desconto nas carnes é real e a qualidade ainda melhor.', author: 'Carlos M.', stars: '★★★★★' },
+          { quote: 'O entrecôte com 20% foi literalmente o melhor jantar de segunda que tive na vida.', author: 'Patrícia L.', stars: '★★★★★' },
+          { quote: 'Vim com a equipa do escritório. Saímos unidos para a semana toda. Magia.', author: 'Fernando T.', stars: '★★★★★' },
+        ],
+        galleryImgs: ['dining-monday.jpg','dish-1.webp','dining-2.webp','dish-2.webp','dining-3.webp','dish-4.webp'],
+        galleryTypes: ['photo','photo','photo','video','photo','photo'],
+      },
+      quinta: {
+        tag: 'Todas as quintas',
+        title: 'Quintas da <em>Costela</em>',
+        when: 'Toda quinta-feira',
+        time: 'A partir das 19h00',
+        img: 'dining-thursday.jpg',
+        desc: 'A costela premium do Espaço Luanda com 2 horas de cerveja Brava incluída. Noite de generosidade pura.',
+        detail: 'Na quinta-feira, a costela é rainha. O nosso corte de costela premium — marinado por 24 horas e assado lentamente — vem acompanhado por 2 horas de cerveja Brava por nossa conta para cada cliente que pedir o prato. Uma promoção que celebra a generosidade angolana e a nossa paixão por grandes cortes. Disponível enquanto houver stock — chegue cedo.',
+        testimonials: [
+          { quote: 'A costela desfaz-se na boca. Já comi costela em muitos sítios mas esta tem qualquer coisa diferente. E a Brava de brinde? Perfeito.', author: 'Tiago R.', stars: '★★★★★' },
+          { quote: 'A minha quinta perfeita: costela, cerveja, boa conversa. O Espaço Luanda percebeu o que a vida deve ser.', author: 'Daniela C.', stars: '★★★★★' },
+          { quote: 'Marquei com amigos às 20h e já não havia mais costela. Aprendi a chegar mais cedo. Mas valeu a pena a espera por outra noite.', author: 'Alexandre M.', stars: '★★★★★' },
+        ],
+        galleryImgs: ['dining-thursday.jpg','dish-1.webp','dish-3.webp','dining-1.webp','dish-2.webp','dining-2.webp'],
+        galleryTypes: ['photo','photo','photo','video','photo','photo'],
+      },
+      cultural: {
+        tag: 'Mensal',
+        title: 'Agenda <em>Cultural</em>',
+        when: 'Mensal — ver calendário',
+        time: 'Horário variável',
+        img: 'dining-3.webp',
+        desc: 'Um mês, uma agenda. Arte, música e gastronomia em diálogo permanente — o Espaço Luanda como palco da cultura angolana.',
+        detail: 'A Agenda Cultural do Espaço Luanda é um programa mensal que convida artistas, músicos, escritores e chefs convidados a partilhar a sua visão com os nossos clientes. Cada edição é diferente: pode ser um jantar com um artista plástico cujas obras decoram a sala durante a noite, uma sessão de poesia ao vivo acompanhada de cocktails, ou um showcooking com um chef convidado de outro país africano. Consulte a agenda do mês nas nossas redes sociais.',
+        testimonials: [
+          { quote: 'Fui à edição de Março com uma exposição fotográfica. Fiquei uma hora a olhar para as fotos entre pratos. Arte e comida — que combinação.', author: 'Beatriz A.', stars: '★★★★★' },
+          { quote: 'A edição com o chef moçambicano foi extraordinária. Fusão real, sem artificialidade. Esperamos mais.', author: 'Henrique S.', stars: '★★★★★' },
+          { quote: 'É raro um restaurante ter esta visão cultural. O Espaço Luanda não é só um restaurante — é um espaço de cultura mesmo.', author: 'Inês M.', stars: '★★★★★' },
+        ],
+        galleryImgs: ['dining-3.webp','dining-1.webp','falafel-bowl-bg.webp','dining-2.webp','dish-1.webp','dining-friday.png'],
+        galleryTypes: ['photo','video','photo','photo','photo','photo'],
+      },
+      privado: {
+        tag: 'Sob reserva',
+        title: 'Eventos <em>Privados</em>',
+        when: 'Mediante disponibilidade',
+        time: 'Horário personalizado',
+        img: 'dining-2.webp',
+        desc: 'O Espaço Luanda a tempo inteiro, para celebrar os seus momentos mais importantes com a mesma excelência que nos define.',
+        detail: 'Aniversários, jantares corporativos, lançamentos de produto, celebrações de casamento — o Espaço Luanda está disponível para eventos privados de 20 a 120 pessoas em regime exclusivo. A nossa equipa de eventos trabalha consigo na criação de um menu personalizado, decoração temática e programação musical. Contacte-nos para receber uma proposta à medida.',
+        testimonials: [
+          { quote: 'Organizei o jantar de aniversário da empresa aqui e foi o evento corporativo mais elogiado que já organizámos. A equipa cuidou de tudo.', author: 'Directora RH, Empresa Luanda', stars: '★★★★★' },
+          { quote: 'Celebrei os meus 40 anos com família e amigos. O Chef criou um menu especial com os meus pratos favoritos. Nunca me senti tão especial.', author: 'Fernanda C.', stars: '★★★★★' },
+          { quote: 'Logística impecável, comida extraordinária, staff discreto e profissional. Recomendo sem hesitar.', author: 'Jorge A.', stars: '★★★★★' },
+        ],
+        galleryImgs: ['dining-2.webp','dining-1.webp','dining-3.webp','dining-friday.png','dish-3.webp','falafel-bowl-bg.webp'],
+        galleryTypes: ['photo','photo','video','photo','photo','photo'],
+      },
+    };
+
+    /* Gallery layout patterns (cycles through) */
+    const GAL_LAYOUTS = [
+      ['g-tall','g-wide','g-half','g-wide','g-half'],
+      ['g-med','g-med','g-tall','g-half','g-wide'],
+    ];
+
+    const overlay   = document.getElementById('ev-overlay');
+    const evClose   = document.getElementById('ev-close');
+
+    function openEvent(key) {
+      const ev = EVENTS[key];
+      if (!ev) return;
+
+      document.getElementById('ev-hero-img').src = ev.img;
+      document.getElementById('ev-hero-img').alt = ev.title.replace(/<[^>]+>/g,'');
+      document.getElementById('ev-tag').textContent = ev.tag;
+      document.getElementById('ev-title').innerHTML = ev.title;
+      document.getElementById('ev-when').textContent = ev.when;
+      document.getElementById('ev-time').textContent = ev.time;
+      document.getElementById('ev-desc').textContent = ev.desc;
+      document.getElementById('ev-detail-text').textContent = ev.detail;
+
+      // Testimonials
+      const tg = document.getElementById('test-grid');
+      tg.innerHTML = ev.testimonials.map(t => `
+        <div class="test-card">
+          <p class="test-quote">${t.quote}</p>
+          <p class="test-author">${t.author}</p>
+          <p class="test-stars">${t.stars}</p>
+        </div>
+      `).join('');
+
+      // Gallery
+      const gg = document.getElementById('gal-grid');
+      const layout = GAL_LAYOUTS[Object.keys(EVENTS).indexOf(key) % GAL_LAYOUTS.length];
+      gg.innerHTML = ev.galleryImgs.map((img, i) => {
+        const cls  = layout[i % layout.length];
+        const type = ev.galleryTypes[i];
+        const playBtn = type === 'video'
+          ? `<div class="play-btn"><svg width="14" height="16" viewBox="0 0 14 16" fill="none"><path d="M2 1.5L12 8L2 14.5V1.5Z" fill="#c8a06a"/></svg></div>`
+          : '';
+        return `<div class="gal-item ${cls} ${type === 'video' ? 'video-item' : ''}">
+          <img src="${img}" alt="" loading="lazy" />
+          ${playBtn}
+        </div>`;
+      }).join('');
+
+      // Open overlay
+      overlay.scrollTop = 0;
+      overlay.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeEvent() {
+      overlay.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    evClose.addEventListener('click', closeEvent);
+
+    // Close on Escape
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') closeEvent();
+    });
+  </script>
+</body>
+</html>
