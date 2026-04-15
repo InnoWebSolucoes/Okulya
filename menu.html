@@ -68,10 +68,10 @@
 
     /* ── SPHERE ITEM OVERLAYS ────────────────────────────────────── */
     .face-title {
-      position: absolute; left: 50%; top: 24%;
+      position: absolute; left: 50%; top: 22%;
       font-family: 'Cormorant Garamond', serif;
       font-style: italic; font-weight: 300;
-      font-size: clamp(1.8rem, 4.5vw, 3rem);
+      font-size: clamp(2.6rem, 7vw, 4.2rem);
       color: #faf8f4; line-height: 1.05;
       letter-spacing: -0.01em;
       text-align: center;
@@ -90,11 +90,11 @@
     }
 
     .face-description {
-      position: absolute; left: 50%; top: 69%;
+      position: absolute; left: 50%; top: 73%;
       font-family: 'Montserrat', sans-serif;
-      font-size: 0.52rem; font-weight: 400;
-      letter-spacing: 0.2em; text-transform: uppercase;
-      color: rgba(250,248,244,0.45);
+      font-size: 0.68rem; font-weight: 400;
+      letter-spacing: 0.22em; text-transform: uppercase;
+      color: rgba(250,248,244,0.55);
       text-align: center; white-space: nowrap;
       cursor: pointer; user-select: none; -webkit-user-select: none;
     }
@@ -231,6 +231,8 @@
       </svg>
       Voltar
     </a>
+    <img src="Brand Reasources/logo.png" class="nav-logo" alt="Espaço Luanda"
+         style="height:44px;width:auto;display:block;opacity:0.88;" />
   </nav>
 
   <!-- ── SPHERE VIEW ─────────────────────────────────────────── -->
@@ -942,7 +944,11 @@ void main() {
     btnEl.addEventListener('click',   openCategory);
 
     const canvas = document.getElementById('infinite-grid-menu-canvas');
-    const sketch = new InfiniteGridMenu(canvas, SPHERE_ITEMS, setActive, setMoving, sk => sk.run());
+    const sketch = new InfiniteGridMenu(canvas, SPHERE_ITEMS, setActive, setMoving, sk => {
+      setActive(0);
+      setMoving(false);
+      sk.run();
+    });
     window.addEventListener('resize', () => sketch.resize());
   </script>
 </body>
