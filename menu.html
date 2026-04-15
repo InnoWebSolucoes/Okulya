@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400;1,600&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
 
     body {
       background: #1a1008;
@@ -36,6 +36,7 @@
       letter-spacing: 0.2em; text-transform: uppercase;
       transition: color 0.22s ease;
       background: none; border: none; cursor: pointer;
+      user-select: none; -webkit-user-select: none;
     }
     .back-link:hover { color: #c8a06a; }
     .nav-logo { height: 40px; width: auto; display: block; }
@@ -67,42 +68,43 @@
 
     /* ── SPHERE ITEM OVERLAYS ────────────────────────────────────── */
     .face-title {
-      position: absolute; left: 2rem; top: 50%;
+      position: absolute; left: 50%; top: 24%;
       font-family: 'Cormorant Garamond', serif;
       font-style: italic; font-weight: 300;
       font-size: clamp(1.8rem, 4.5vw, 3rem);
       color: #faf8f4; line-height: 1.05;
       letter-spacing: -0.01em;
-      cursor: pointer; user-select: none;
-      max-width: 28vw;
+      text-align: center;
+      cursor: pointer; user-select: none; -webkit-user-select: none;
+      white-space: nowrap;
     }
     .face-title.active {
-      opacity: 1; transform: translateY(-50%);
+      opacity: 1; transform: translateX(-50%);
       pointer-events: auto;
       transition: opacity 0.5s ease, transform 0.5s ease;
     }
     .face-title.inactive {
-      opacity: 0; transform: translateY(calc(-50% + 14px));
+      opacity: 0; transform: translate(-50%, -12px);
       pointer-events: none;
       transition: opacity 0.12s ease, transform 0.12s ease;
     }
 
     .face-description {
-      position: absolute; right: 2rem; top: 50%;
+      position: absolute; left: 50%; top: 69%;
       font-family: 'Montserrat', sans-serif;
       font-size: 0.52rem; font-weight: 400;
       letter-spacing: 0.2em; text-transform: uppercase;
       color: rgba(250,248,244,0.45);
-      max-width: 14ch; text-align: right;
-      cursor: pointer; user-select: none;
+      text-align: center; white-space: nowrap;
+      cursor: pointer; user-select: none; -webkit-user-select: none;
     }
     .face-description.active {
-      opacity: 1; transform: translateY(-50%);
+      opacity: 1; transform: translateX(-50%);
       pointer-events: auto;
       transition: opacity 0.5s ease, transform 0.5s ease;
     }
     .face-description.inactive {
-      opacity: 0; transform: translateY(calc(-50% + 8px));
+      opacity: 0; transform: translate(-50%, 8px);
       pointer-events: none;
       transition: opacity 0.12s ease;
     }
@@ -151,9 +153,11 @@
       letter-spacing: 0.2em; text-transform: uppercase;
       color: rgba(250,248,244,0.38);
       cursor: pointer; text-align: left;
-      display: inline-flex; align-items: center; gap: 0.55rem;
+      display: none;
+      align-items: center; gap: 0.55rem;
       margin-bottom: 2rem;
       transition: color 0.22s ease;
+      user-select: none; -webkit-user-select: none;
     }
     #cat-back:hover { color: #c8a06a; }
 
@@ -210,8 +214,7 @@
 
     /* ── MOBILE: stack title / desc vertically ───────────────────── */
     @media (max-width: 600px) {
-      .face-title { left: 1.4rem; max-width: 50vw; font-size: clamp(1.5rem, 6vw, 2.2rem); }
-      .face-description { right: 1.4rem; }
+      .face-title { font-size: clamp(1.5rem, 6vw, 2.2rem); }
       #cat-header { padding: 6rem 1.6rem 2rem; }
       #cat-items { padding: 0 1.6rem 5rem; }
     }
@@ -228,8 +231,6 @@
       </svg>
       Voltar
     </a>
-    <img src="Brand Reasources/logo.png" class="nav-logo" alt="Espaço Luanda" />
-    <div style="width:72px;"></div>
   </nav>
 
   <!-- ── SPHERE VIEW ─────────────────────────────────────────── -->
@@ -246,13 +247,11 @@
   <!-- ── CATEGORY VIEW ───────────────────────────────────────── -->
   <div id="cat-view">
     <div id="cat-header">
-      <button id="cat-back">
-        <svg width="15" height="10" viewBox="0 0 15 10" fill="none" style="flex-shrink:0;">
-          <line x1="14" y1="5" x2="1" y2="5" stroke="currentColor" stroke-width="0.85" stroke-linecap="round"/>
-          <polyline points="5,1 1,5 5,9" stroke="currentColor" stroke-width="0.85" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-        Explorar Menu
-      </button>
+      <div style="display:flex;justify-content:flex-end;margin-bottom:2rem;">
+        <img src="Brand Reasources/logo.png" alt="Espaço Luanda"
+             style="height:64px;width:auto;display:block;opacity:0.9;" />
+      </div>
+      <button id="cat-back"></button>
       <h1 id="cat-title"></h1>
       <p  id="cat-sub"></p>
       <div class="cat-orn"></div>
@@ -319,10 +318,10 @@
     };
 
     const SPHERE_ITEMS = [
-      { image: 'dish-1.webp', link: 'entradas',   title: 'Entradas',          description: 'Petiscos & Sopas'   },
-      { image: 'dish-2.webp', link: 'pratos',      title: 'Pratos Principais', description: 'Mar & Terra'        },
-      { image: 'dish-3.webp', link: 'sobremesas',  title: 'Sobremesas',        description: 'Doces & Cafés'      },
-      { image: 'dish-4.webp', link: 'bebidas',     title: 'Bebidas',           description: 'Vinhos & Cocktails' },
+      { image: 'dining-monday.jpg',   link: 'entradas',   title: 'Entradas',          description: 'Petiscos & Sopas'   },
+      { image: 'dining-tuesday.jpg',  link: 'pratos',      title: 'Pratos Principais', description: 'Mar & Terra'        },
+      { image: 'dining-thursday.jpg', link: 'sobremesas',  title: 'Sobremesas',        description: 'Doces & Cafés'      },
+      { image: 'dining-friday.png',   link: 'bebidas',     title: 'Bebidas',           description: 'Vinhos & Cocktails' },
     ];
 
     /* ════════════════════════════════════════════════════════════

@@ -46,6 +46,7 @@
     .slot-btn {
       display: inline-flex; align-items: center; justify-content: center;
       width: 88px; height: 88px;
+      flex-shrink: 0; aspect-ratio: 1 / 1;
       border-radius: 50%;
       border: 1px solid rgba(255,255,255,0.65);
       color: #fff; cursor: pointer; text-decoration: none;
@@ -297,7 +298,7 @@
       /* z-index:6 > feature-section z-index:5 so the spice image (which overflows
          upward from this section) renders in front of the white feature background */
       #carousel-section { height: auto !important; overflow: visible !important;
-                          position: relative; z-index: 6 !important; }
+                          position: relative; z-index: 3 !important; }
       /* Tighter carousel bottom panel on mobile */
       #carousel-section > div:last-child {
         padding: 0 1.5rem !important;
@@ -329,7 +330,7 @@
     }
   </style>
 </head>
-<body style="background:#fff; overflow-x:hidden; max-width:100vw;">
+<body style="background:#fff; overflow-x:clip; max-width:100vw;">
 
   <!-- ═══════════════════════════════════════════════════════ HERO SECTION ═══ -->
   <section style="position:relative;width:100%;height:100vh;min-height:600px;">
@@ -378,8 +379,6 @@
       <div style="display:flex;align-items:center;gap:2.5rem;">
         <div class="desktop-links" style="display:flex;align-items:center;gap:2.5rem;">
           <a href="#" class="nav-link" style="font-family:'Montserrat',sans-serif;font-size:0.65rem;font-weight:500;letter-spacing:0.22em;text-transform:uppercase;color:#fff;">Contacto</a>
-          <a href="#" class="nav-link" style="font-family:'Montserrat',sans-serif;font-size:0.65rem;font-weight:500;letter-spacing:0.22em;text-transform:uppercase;color:#fff;">Cartão Presente</a>
-          <a href="#" class="nav-link" style="font-family:'Montserrat',sans-serif;font-size:0.65rem;font-weight:500;letter-spacing:0.22em;text-transform:uppercase;color:#fff;">Encomendar Agora</a>
         </div>
         <!-- Hamburger (mobile only) -->
         <button class="hamburger-btn" id="hamburger-btn" aria-label="Abrir menu">
@@ -423,8 +422,6 @@
       <a href="menu.html" class="mob-link" onclick="closeMenu()">Menu</a>
       <a href="#" class="mob-link" onclick="closeMenu()">Sobre</a>
       <a href="#" class="mob-link" onclick="closeMenu()">Contacto</a>
-      <a href="#" class="mob-link" onclick="closeMenu()">Cartão Presente</a>
-      <a href="#" class="mob-link" onclick="closeMenu()">Encomendar Agora</a>
     </nav>
 
     <!-- Contact info pinned to bottom -->
@@ -437,7 +434,7 @@
   </div>
 
   <!-- ══════════════════════════════════ FEATURE SECTION — TEXT ONLY ═══════ -->
-  <section id="feature-section" style="position:relative;width:100%;background:#fff;overflow:visible;z-index:5;">
+  <section id="feature-section" style="position:sticky;top:0;width:100%;background:#fff;overflow:visible;z-index:1;">
 
     <div style="position:relative;z-index:2;
                 display:flex;flex-direction:column;align-items:center;
@@ -452,7 +449,7 @@
           color:#1a1008;
           line-height:1.4;
           letter-spacing:0.01em;
-        ">fresh sea food. prime steaks. timeless taste. the Art of Luanda</p>
+        ">Um restaurante sofisticado de carnes e mariscos onde a arte, a cultura e a gastronomia se encontram: &#8220;Onde a arte encontra o sabor, e a cultura é servida.&#8221;</p>
       </div>
     </div>
 
@@ -463,7 +460,7 @@
        Bottom 32vh: counter + progress bar + arrows + large dish name.
   ══════════════════════════════════════════════════════════════════════════ -->
   <section id="carousel-section"
-           style="position:relative;width:100%;height:100vh;background:#fff;overflow:visible;">
+           style="position:relative;width:100%;height:100vh;background:#fff;overflow:visible;z-index:3;">
 
     <!-- Spice image bridges the text section above and the plates below.
          Negative top pulls it up into the feature section so the scatter
@@ -552,7 +549,7 @@
        horizontal ticks extending left, label at active stop, sun/moon at ends
   ══════════════════════════════════════════════════════════════════════════ -->
   <section id="dining-section"
-           style="position:relative;width:100%;background:#1a1008;">
+           style="position:relative;width:100%;background:#1a1008;z-index:4;">
 
     <!-- Logo — top left -->
     <div style="position:absolute;top:2rem;left:1.5rem;z-index:5;">
@@ -935,8 +932,8 @@
         tl.to(nameEls[oldR.hidden], { x: NX.next,    opacity: 0, duration: D, ease: 'power2.out' }, 0);
 
         /* Wobble: incoming plate leans as it decelerates, then elastically settles. */
-        tl.to(cards[oldR.next], { rotateZ: -5, duration: D * 0.52, ease: 'power1.out' }, 0);
-        tl.to(cards[oldR.next], { rotateZ:  0, duration: D * 0.9,  ease: 'elastic.out(1.05,0.38)' }, D * 0.52);
+        tl.to(cards[oldR.next], { rotateZ: -9, duration: D * 0.52, ease: 'power1.out' }, 0);
+        tl.to(cards[oldR.next], { rotateZ:  0, duration: D * 0.9,  ease: 'elastic.out(1.5,0.32)' }, D * 0.52);
 
       } else {
         /* BACKWARD — everything shifts right at identical velocity.             */
@@ -953,14 +950,14 @@
         tl.to(nameEls[oldR.hidden], { x: NX.prev,    opacity: 0, duration: D, ease: 'power2.out' }, 0);
 
         /* Wobble: mirror direction for backward advance. */
-        tl.to(cards[oldR.prev], { rotateZ:  5, duration: D * 0.52, ease: 'power1.out' }, 0);
-        tl.to(cards[oldR.prev], { rotateZ:  0, duration: D * 0.9,  ease: 'elastic.out(1.05,0.38)' }, D * 0.52);
+        tl.to(cards[oldR.prev], { rotateZ:  9, duration: D * 0.52, ease: 'power1.out' }, 0);
+        tl.to(cards[oldR.prev], { rotateZ:  0, duration: D * 0.9,  ease: 'elastic.out(1.5,0.32)' }, D * 0.52);
       }
     }
 
     function resetAutoTimer() {
       clearInterval(autoTimer);
-      autoTimer = setInterval(() => carouselAdvance(1), 4500);
+      autoTimer = setInterval(() => carouselAdvance(1), 3200);
     }
 
     initCarousel();
