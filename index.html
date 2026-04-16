@@ -1132,6 +1132,16 @@
       items.forEach(item => obs.observe(item));
     })();
 
+    /* ── Smooth scroll to #contact (overflow-x:clip on body blocks native anchor nav) ── */
+    document.querySelectorAll('a[href="#contact"]').forEach(a => {
+      a.addEventListener('click', e => {
+        e.preventDefault();
+        const overlay = document.getElementById('mobile-overlay');
+        if (overlay && overlay.getAttribute('aria-hidden') === 'false') closeMenu();
+        document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+      });
+    });
+
   </script>
 
 </body>
