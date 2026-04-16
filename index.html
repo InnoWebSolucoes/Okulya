@@ -82,9 +82,9 @@
     /* ─── Dish card — square at 80vh, fills the plate stage ────────────────── */
     .dish-card {
       position: absolute;
-      left: calc(50% - 40vh);
+      left: calc(50% - 50vh);
       top: 0;
-      width: 80vh;
+      width: 100vh;
       height: 100%;
       transform-origin: center center;
       will-change: transform, opacity;
@@ -291,7 +291,7 @@
       /* Clip only the stage so off-screen cards don't scroll the page */
       #carousel-stage   { overflow: hidden !important; }
       /* Make stage height square so there's no dead space on mobile */
-      #carousel-stage   { height: 78vw !important; }
+      #carousel-stage   { height: 92vw !important; }
       /* Section 2 stays sticky on mobile too; height auto so it hugs its content */
       #carousel-section { height: auto !important; overflow: visible !important;
                           position: sticky !important; top: 0 !important;
@@ -450,7 +450,7 @@
     <!-- Feature text — in flow, compact top so plates stay in viewport -->
     <div style="position:relative;z-index:2;
                 display:flex;flex-direction:column;align-items:center;
-                padding:4rem 2rem 3.5rem;">
+                padding:4rem 2rem 6rem;">
       <div id="feature-text"
            style="text-align:center;max-width:760px;overflow:visible;position:relative;z-index:2;">
         <p id="main-text" style="
@@ -473,7 +473,7 @@
 
     <!-- ── PLATE STAGE ─────────────────────────────────────────────── -->
     <div id="carousel-stage"
-         style="position:relative;width:100%;height:58vh;overflow:visible;perspective:1400px;z-index:2;">
+         style="position:relative;width:100%;height:68vh;overflow:visible;perspective:1400px;z-index:2;">
 
       <div class="dish-card" id="card-0">
         <img class="dish-card-img" src="dish-1.webp" alt="Dish 1" />
