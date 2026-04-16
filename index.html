@@ -388,7 +388,7 @@
       <!-- Left links (desktop only) -->
       <div class="desktop-links" style="display:flex;align-items:center;gap:2.5rem;">
         <a href="menu.html" class="nav-link" style="font-family:'Montserrat',sans-serif;font-size:0.65rem;font-weight:500;letter-spacing:0.22em;text-transform:uppercase;color:#fff;">Menu</a>
-        <a href="#" class="nav-link" style="font-family:'Montserrat',sans-serif;font-size:0.65rem;font-weight:500;letter-spacing:0.22em;text-transform:uppercase;color:#fff;">Sobre</a>
+        <a href="sobre.html" class="nav-link" style="font-family:'Montserrat',sans-serif;font-size:0.65rem;font-weight:500;letter-spacing:0.22em;text-transform:uppercase;color:#fff;">Sobre</a>
         <a href="events.html" class="nav-link" style="font-family:'Montserrat',sans-serif;font-size:0.65rem;font-weight:500;letter-spacing:0.22em;text-transform:uppercase;color:#fff;">Eventos</a>
       </div>
 
@@ -457,9 +457,9 @@
     <nav style="display:flex;flex-direction:column;align-items:flex-start;
                 width:100%;padding:1.2rem 2.5rem 0;">
       <a href="menu.html" class="mob-link" onclick="closeMenu()">Menu</a>
-      <a href="#" class="mob-link" onclick="closeMenu()">Sobre</a>
+      <a href="sobre.html" class="mob-link" onclick="closeMenu()">Sobre</a>
       <a href="events.html" class="mob-link" onclick="closeMenu()">Eventos</a>
-      <a href="#contact" class="mob-link" onclick="closeMenu()">Contacto</a>
+      <a href="#contact" class="mob-link">Contacto</a>
     </nav>
 
     <!-- Contact info pinned to bottom -->
@@ -1065,7 +1065,7 @@
       });
     }
 
-    function closeMenu() {
+    function closeMenu(afterClose) {
       if (!mobileOverlay) return;
       gsap.to(mobLinks, {
         opacity: 0, y: -18,
@@ -1075,13 +1075,17 @@
         onComplete: () => {
           mobileOverlay.classList.remove('open');
           mobileOverlay.setAttribute('aria-hidden', 'true');
-          /* Restore scroll position */
+          /* Restore scroll position (or run afterClose callback instead) */
           document.body.style.position = '';
           document.body.style.top      = '';
           document.body.style.left     = '';
           document.body.style.right    = '';
           document.body.style.overflow = '';
-          window.scrollTo(0, savedScroll);
+          if (typeof afterClose === 'function') {
+            afterClose();
+          } else {
+            window.scrollTo(0, savedScroll);
+          }
         }
       });
     }
@@ -1137,8 +1141,14 @@
       a.addEventListener('click', e => {
         e.preventDefault();
         const overlay = document.getElementById('mobile-overlay');
-        if (overlay && overlay.getAttribute('aria-hidden') === 'false') closeMenu();
-        document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+        if (overlay && overlay.getAttribute('aria-hidden') === 'false') {
+          /* Close the mobile menu first, then scroll once the animation is done */
+          closeMenu(() => {
+            document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+          });
+        } else {
+          document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+        }
       });
     });
 
