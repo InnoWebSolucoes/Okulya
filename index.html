@@ -442,17 +442,16 @@
       #hero-logo-wrap { top: 4.5rem !important; }
       /* Spacer that delays section 3 from overlaying section 2 */
       #sec2-spacer { display: block !important; height: 120vh !important; }
-      /* Sidebar: fixed, vertically centered, compact — sun & moon always visible */
+      /* Sidebar: sticky within dining section — confined, never bleeds into hero or footer */
       #dining-timeline-col {
-        position: fixed !important;
-        right: 0 !important;
+        position: sticky !important;
         top: 22.5vh !important;
         height: 55vh !important;
         width: 52px !important;
-        z-index: 20 !important;
+        align-self: flex-start !important;
+        z-index: 5 !important;
       }
-      /* Compensate for fixed sidebar so content doesn't slide under it */
-      #dining-left-col { padding-right: 56px !important; }
+      #dining-left-col { padding-right: 1.6rem !important; }
     }
   </style>
 </head>
@@ -589,9 +588,9 @@
       <div id="feature-text"
            style="text-align:center;max-width:760px;overflow:visible;position:relative;z-index:2;">
         <p id="main-text" style="
-          font-family:'Agbalumo',cursive;
+          font-family:'ABeeZee',sans-serif;
           font-style:italic;
-          font-weight:300;
+          font-weight:400;
           font-size:clamp(2.2rem,3.4vw,3.8rem);
           color:#47331F;
           line-height:1.4;
