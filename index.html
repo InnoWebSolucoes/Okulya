@@ -441,7 +441,18 @@
       /* Push hero logo down on mobile */
       #hero-logo-wrap { top: 4.5rem !important; }
       /* Spacer that delays section 3 from overlaying section 2 */
-      #sec2-spacer { display: block !important; height: 55vh !important; }
+      #sec2-spacer { display: block !important; height: 120vh !important; }
+      /* Sidebar: fixed, vertically centered, compact — sun & moon always visible */
+      #dining-timeline-col {
+        position: fixed !important;
+        right: 0 !important;
+        top: 22.5vh !important;
+        height: 55vh !important;
+        width: 52px !important;
+        z-index: 20 !important;
+      }
+      /* Compensate for fixed sidebar so content doesn't slide under it */
+      #dining-left-col { padding-right: 56px !important; }
     }
   </style>
 </head>
@@ -540,7 +551,7 @@
         Voltar
       </button>
       <img src="Brand Reasources/logo.png" alt="Okulya Café"
-           style="height:44px;width:auto;display:block;opacity:0.88;" />
+           style="height:72px;width:auto;display:block;opacity:0.88;" />
     </div>
 
     <!-- Nav links — left-aligned, full-width -->
@@ -685,7 +696,7 @@
                 display:flex;align-items:center;padding:0.9rem 1.8rem;
                 background:#47331F;border-bottom:1px solid rgba(193,123,5,0.12);">
       <img src="Brand Reasources/logo.png" alt="Okulya Café"
-           style="height:44px;width:auto;max-width:none;display:block;opacity:0.9;" />
+           style="height:72px;width:auto;max-width:none;display:block;opacity:0.9;" />
     </div>
 
     <div id="dining-content-wrapper" style="display:flex;width:100%;align-items:flex-start;">
@@ -696,7 +707,7 @@
         <!-- Item 0: Coffee -->
         <article class="dining-item" data-period="0">
           <div class="dining-item-img-col" style="overflow:hidden;">
-            <img src="https://placehold.co/600x800/3d2314/c8a06a?text=coffee" alt="Coffee"
+            <img src="dish-1.webp" alt="Café"
                  style="width:100%;aspect-ratio:3/4;object-fit:cover;display:block;" />
           </div>
           <div class="dining-item-text-col">
@@ -710,7 +721,7 @@
         <!-- Item 1: Pastries -->
         <article class="dining-item" data-period="1">
           <div class="dining-item-img-col" style="overflow:hidden;">
-            <img src="https://placehold.co/600x800/f0ebe0/47331f?text=pastries" alt="Pastries"
+            <img src="dining-2.webp" alt="Pastelaria"
                  style="width:100%;aspect-ratio:3/4;object-fit:cover;display:block;" />
           </div>
           <div class="dining-item-text-col">
@@ -724,7 +735,7 @@
         <!-- Item 2: Light Lunch -->
         <article class="dining-item" data-period="2">
           <div class="dining-item-img-col" style="overflow:hidden;">
-            <img src="https://placehold.co/600x800/1a1a1a/c8a06a?text=light+lunch" alt="Light Lunch"
+            <img src="dish-3.webp" alt="Almoço Ligeiro"
                  style="width:100%;aspect-ratio:3/4;object-fit:cover;display:block;" />
           </div>
           <div class="dining-item-text-col">
@@ -738,7 +749,7 @@
         <!-- Item 3: Snacks -->
         <article class="dining-item" data-period="3">
           <div class="dining-item-img-col" style="overflow:hidden;">
-            <img src="https://placehold.co/600x800/222222/c8a06a?text=snacks" alt="Snacks"
+            <img src="dining-3.webp" alt="Petiscos"
                  style="width:100%;aspect-ratio:3/4;object-fit:cover;display:block;" />
           </div>
           <div class="dining-item-text-col">
@@ -752,7 +763,7 @@
         <!-- Item 4: Wine -->
         <article class="dining-item" data-period="4">
           <div class="dining-item-img-col" style="overflow:hidden;">
-            <img src="https://placehold.co/600x800/1a0a0a/c8a06a?text=wine" alt="Wine"
+            <img src="dining-tuesday.jpg" alt="Vinho"
                  style="width:100%;aspect-ratio:3/4;object-fit:cover;display:block;" />
           </div>
           <div class="dining-item-text-col">
@@ -766,7 +777,7 @@
         <!-- Item 5: Cocktails -->
         <article class="dining-item" data-period="5">
           <div class="dining-item-img-col" style="overflow:hidden;">
-            <img src="https://placehold.co/600x800/0a0a0a/c8a06a?text=cocktails" alt="Cocktails"
+            <img src="dining-friday.png" alt="Cocktails"
                  style="width:100%;aspect-ratio:3/4;object-fit:cover;display:block;" />
           </div>
           <div class="dining-item-text-col">
