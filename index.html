@@ -291,14 +291,38 @@
     /* ─── Desktop overrides (min-width: 769px) ─────────────────────────────── */
     @media (min-width: 769px) {
 
-      /* Section 2: tighten feature-text padding so bottom panel stays in viewport */
+      /* Section 2: sticky at top:0 so full 100vh is usable */
+      #carousel-section { top: 0 !important; }
+      /* Feature text: tight padding */
       #section2-feature-text {
-        padding: 1.5rem 2rem !important;
+        padding: 0.5rem 2rem 0.3rem !important;
       }
-      /* Reduce stage height so stage + bottom panel fit within the viewport
-         when the section is sticky at top:-15vh */
+      /* Prevent browser hyphenation; widen container for cleaner line breaks */
+      #main-text {
+        font-size: clamp(1.3rem, 1.8vw, 2.2rem) !important;
+        hyphens: none !important;
+        -webkit-hyphens: none !important;
+        overflow-wrap: normal !important;
+        word-break: normal !important;
+      }
+      #feature-text {
+        max-width: 860px !important;
+      }
+      /* Stage: 65vh — nearly original size; feature~14vh+stage65+panel22=101vh,
+         names land at ~96vh so everything is visible */
       #carousel-stage {
-        height: 64vh !important;
+        height: 65vh !important;
+      }
+      /* Panel: 22vh */
+      #sec2-bottom-panel {
+        height: 22vh !important;
+        padding: 0 3.5rem !important;
+      }
+      /* Spice: fade out toward bottom so the panel doesn't hard-cut it */
+      #spice-img {
+        max-height: 65vh !important;
+        -webkit-mask-image: linear-gradient(to bottom, black 40%, transparent 90%) !important;
+        mask-image: linear-gradient(to bottom, black 40%, transparent 90%) !important;
       }
 
       /* Section 3 dining — alternating image / text layout ───────────────────── */
@@ -414,9 +438,17 @@
       .dish-name-el {
         font-size: 1.5rem !important;
       }
-      /* Feature text font size for mobile */
+      /* Feature text: compact padding + font for mobile */
+      #section2-feature-text {
+        padding: 1rem 1.5rem 0.5rem !important;
+      }
       #main-text {
-        font-size: clamp(1.8rem, 6.5vw, 2.8rem) !important;
+        font-size: clamp(1.5rem, 5.5vw, 2.4rem) !important;
+      }
+      /* Panel: auto height on mobile (content is shorter) */
+      #sec2-bottom-panel {
+        height: auto !important;
+        padding: 1rem 1.5rem 1.8rem !important;
       }
       /* Spice image: below text, into plate area on mobile */
       #spice-img {
@@ -441,7 +473,7 @@
       /* Push hero logo down on mobile */
       #hero-logo-wrap { top: 4.5rem !important; }
       /* Spacer that delays section 3 from overlaying section 2 */
-      #sec2-spacer { display: block !important; height: 120vh !important; }
+      #sec2-spacer { display: block !important; height: 280vh !important; }
       /* Sidebar: sticky within dining section — confined, never bleeds into hero or footer */
       #dining-timeline-col {
         position: sticky !important;
@@ -625,7 +657,7 @@
     </div><!-- /stage -->
 
     <!-- ── BOTTOM PANEL ─────────────────────────────────────────── -->
-    <div style="position:relative;width:100%;height:26vh;padding:0 3.5rem;
+    <div id="sec2-bottom-panel" style="position:relative;width:100%;height:26vh;padding:0 3.5rem;
                 display:flex;flex-direction:column;justify-content:center;gap:1.4rem;
                 z-index:30;
                 background:linear-gradient(to top,rgba(255,255,255,1) 55%,rgba(255,255,255,0) 100%);">
@@ -678,8 +710,8 @@
 
     </div>
 
-    <!-- Mobile-only spacer: forces more scroll before section 3 overlays -->
-    <div id="sec2-spacer" style="display:none;"></div>
+    <!-- Spacer: forces more scroll before section 3 overlays section 2's bottom panel -->
+    <div id="sec2-spacer" style="display:block;height:50vh;"></div>
 
   </section>
 
@@ -720,7 +752,7 @@
         <!-- Item 1: Pastries -->
         <article class="dining-item" data-period="1">
           <div class="dining-item-img-col" style="overflow:hidden;">
-            <img src="dining-2.webp" alt="Pastelaria"
+            <img src="dining-pastry.webp" alt="Pastelaria"
                  style="width:100%;aspect-ratio:3/4;object-fit:cover;display:block;" />
           </div>
           <div class="dining-item-text-col">
@@ -734,7 +766,7 @@
         <!-- Item 2: Light Lunch -->
         <article class="dining-item" data-period="2">
           <div class="dining-item-img-col" style="overflow:hidden;">
-            <img src="dish-3.webp" alt="Almoço Ligeiro"
+            <img src="dining-lunch.webp" alt="Almoço Ligeiro"
                  style="width:100%;aspect-ratio:3/4;object-fit:cover;display:block;" />
           </div>
           <div class="dining-item-text-col">
@@ -748,7 +780,7 @@
         <!-- Item 3: Snacks -->
         <article class="dining-item" data-period="3">
           <div class="dining-item-img-col" style="overflow:hidden;">
-            <img src="dining-3.webp" alt="Petiscos"
+            <img src="dining-snacks.webp" alt="Petiscos"
                  style="width:100%;aspect-ratio:3/4;object-fit:cover;display:block;" />
           </div>
           <div class="dining-item-text-col">
@@ -776,7 +808,7 @@
         <!-- Item 5: Cocktails -->
         <article class="dining-item" data-period="5">
           <div class="dining-item-img-col" style="overflow:hidden;">
-            <img src="dining-friday.png" alt="Cocktails"
+            <img src="dining-cocktails.webp" alt="Cocktails"
                  style="width:100%;aspect-ratio:3/4;object-fit:cover;display:block;" />
           </div>
           <div class="dining-item-text-col">
