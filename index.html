@@ -9,7 +9,7 @@
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Agbalumo&family=ABeeZee:ital@0;1&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Agbalumo&family=Quicksand:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -27,8 +27,8 @@
       position: absolute;
       bottom: -1px;
       left: 50%;
-      /* ornamental SVG: line ─── • ○◆○ • ─── line, coloured #8aab3e */
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 80 8' xmlns='http://www.w3.org/2000/svg'%3E%3Cline x1='0' y1='4' x2='26' y2='4' stroke='%238daa46' stroke-width='0.7'/%3E%3Ccircle cx='28.5' cy='4' r='1' fill='%238daa46'/%3E%3Ccircle cx='32.5' cy='4' r='1.6' fill='none' stroke='%238daa46' stroke-width='0.75'/%3E%3Cpolygon points='40,1.2 44,4 40,6.8 36,4' fill='none' stroke='%238daa46' stroke-width='0.9'/%3E%3Ccircle cx='40' cy='4' r='1.3' fill='%238daa46'/%3E%3Ccircle cx='47.5' cy='4' r='1.6' fill='none' stroke='%238daa46' stroke-width='0.75'/%3E%3Ccircle cx='51.5' cy='4' r='1' fill='%238daa46'/%3E%3Cline x1='54' y1='4' x2='80' y2='4' stroke='%238daa46' stroke-width='0.7'/%3E%3C/svg%3E");
+      /* ornamental SVG: line ─── • ○◆○ • ─── line, coloured #ED9B23 */
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 80 8' xmlns='http://www.w3.org/2000/svg'%3E%3Cline x1='0' y1='4' x2='26' y2='4' stroke='%23ED9B23' stroke-width='0.7'/%3E%3Ccircle cx='28.5' cy='4' r='1' fill='%23ED9B23'/%3E%3Ccircle cx='32.5' cy='4' r='1.6' fill='none' stroke='%23ED9B23' stroke-width='0.75'/%3E%3Cpolygon points='40,1.2 44,4 40,6.8 36,4' fill='none' stroke='%23ED9B23' stroke-width='0.9'/%3E%3Ccircle cx='40' cy='4' r='1.3' fill='%23ED9B23'/%3E%3Ccircle cx='47.5' cy='4' r='1.6' fill='none' stroke='%23ED9B23' stroke-width='0.75'/%3E%3Ccircle cx='51.5' cy='4' r='1' fill='%23ED9B23'/%3E%3Cline x1='54' y1='4' x2='80' y2='4' stroke='%23ED9B23' stroke-width='0.7'/%3E%3C/svg%3E");
       background-size: contain;
       background-repeat: no-repeat;
       background-position: center;
@@ -62,7 +62,7 @@
     }
     .slot-btn:hover .slot-track { transform: translateY(-14px); }
     .slot-word {
-      font-family: 'ABeeZee', sans-serif;
+      font-family: 'Quicksand', sans-serif;
       font-size: 0.58rem; font-weight: 500;
       letter-spacing: 0.18em; text-transform: uppercase;
       line-height: 14px; height: 14px;
@@ -107,7 +107,7 @@
       font-weight: 500;
       font-style: normal;
       font-size: clamp(2rem, 3.2vw, 3rem);
-      color: #1C2210;
+      color: #482E2B;
       letter-spacing: -0.01em;
       line-height: 1.1;
       will-change: transform, opacity;
@@ -156,7 +156,7 @@
     #mobile-overlay {
       position: fixed;
       inset: 0;
-      background: #1C2210;
+      background: #482E2B;
       z-index: 200;
       display: flex;
       flex-direction: column;
@@ -171,26 +171,27 @@
       pointer-events: all;
     }
     .mob-link {
-      font-family: 'Agbalumo', cursive;
-      font-style: italic;
+      font-family: 'Quicksand', sans-serif;
+      font-style: normal;
       font-weight: 300;
-      font-size: 2.4rem;
+      font-size: 1.9rem;
       color: rgba(255,255,255,0.88);
       text-decoration: none;
-      letter-spacing: 0.01em;
-      line-height: 1.25;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      line-height: 1.3;
       display: block;
       text-align: left;
       width: 100%;
-      padding: 0.65rem 0;
+      padding: 0.7rem 0;
       border-bottom: 1px solid rgba(255,255,255,0.08);
       transition: color 0.22s ease;
     }
     .mob-link:last-child { border-bottom: none; }
-    .mob-link:hover { color: #8aab3e; }
+    .mob-link:hover { color: #ED9B23; }
     /* Contact info in overlay */
     .mob-contact {
-      font-family: 'ABeeZee', sans-serif;
+      font-family: 'Quicksand', sans-serif;
       font-size: 0.56rem;
       font-weight: 400;
       letter-spacing: 0.18em;
@@ -208,43 +209,43 @@
       font-style: normal;
       font-weight: 300;
       font-size: clamp(2.6rem, 8vw, 5rem);
-      color: #F0F0E8;
+      color: #F1FFFF;
       line-height: 1;
       margin-top: 1.2rem;
       letter-spacing: -0.02em;
     }
     .dining-sub {
-      font-family: 'ABeeZee', sans-serif;
+      font-family: 'Quicksand', sans-serif;
       font-size: 0.6rem;
       font-weight: 500;
       letter-spacing: 0.22em;
       text-transform: uppercase;
-      color: #8aab3e;
+      color: #ED9B23;
       margin-top: 0.75rem;
     }
     .dining-desc {
-      font-family: 'ABeeZee', sans-serif;
+      font-family: 'Quicksand', sans-serif;
       font-size: 0.78rem;
       font-weight: 300;
       line-height: 1.85;
-      color: rgba(240,240,232,0.72);
+      color: rgba(241,255,255,0.72);
       margin-top: 1.1rem;
     }
     .dining-btn {
       display: inline-block;
       margin-top: 1.6rem;
-      font-family: 'ABeeZee', sans-serif;
+      font-family: 'Quicksand', sans-serif;
       font-size: 0.58rem;
       font-weight: 500;
       letter-spacing: 0.22em;
       text-transform: uppercase;
-      color: rgba(240,240,232,0.85);
+      color: rgba(241,255,255,0.85);
       text-decoration: none;
-      border-bottom: 1px solid #8aab3e;
+      border-bottom: 1px solid #ED9B23;
       padding-bottom: 3px;
       transition: color 0.22s ease;
     }
-    .dining-btn:hover { color: #8aab3e; }
+    .dining-btn:hover { color: #ED9B23; }
     .mob-close-btn {
       background: none;
       border: none;
@@ -260,7 +261,7 @@
     .mob-ornament {
       width: 56px;
       height: 1px;
-      background: linear-gradient(90deg, transparent, #8aab3e, transparent);
+      background: linear-gradient(90deg, transparent, #ED9B23, transparent);
       margin: 1.8rem auto;
     }
 
@@ -276,16 +277,16 @@
     }
     .contact-col { padding: 2rem 0; }
     .contact-col + .contact-col {
-      border-left: 1px solid rgba(138,171,62,0.12);
+      border-left: 1px solid rgba(237,155,35,0.12);
     }
     .contact-label {
-      font-family: 'ABeeZee', sans-serif; font-size: 0.6rem;
+      font-family: 'Quicksand', sans-serif; font-size: 0.6rem;
       font-weight: 500; letter-spacing: 0.28em; text-transform: uppercase;
-      color: #8aab3e; margin-bottom: 1rem; display: block;
+      color: #ED9B23; margin-bottom: 1rem; display: block;
     }
     .contact-val {
       font-family: 'Agbalumo', cursive; font-size: 1.2rem;
-      font-weight: 300; line-height: 1.7; color: rgba(238,238,230,0.72);
+      font-weight: 300; line-height: 1.7; color: rgba(235,250,250,0.72);
     }
 
     /* ─── Desktop overrides (min-width: 769px) ─────────────────────────────── */
@@ -347,7 +348,7 @@
         margin-bottom: 0 !important;
         padding: 6rem 9% !important;
         gap: 7% !important;
-        border-bottom: 1px solid rgba(138,171,62,0.07) !important;
+        border-bottom: 1px solid rgba(237,155,35,0.07) !important;
       }
       .dining-item:last-child {
         margin-bottom: 0 !important;
@@ -469,7 +470,7 @@
       }
       .contact-col + .contact-col {
         border-left: none !important;
-        border-top: 1px solid rgba(138,171,62,0.12) !important;
+        border-top: 1px solid rgba(237,155,35,0.12) !important;
       }
       /* Push hero logo down on mobile */
       #hero-logo-wrap { top: 4.5rem !important; }
@@ -493,7 +494,7 @@
   <!-- ═══════════════════════════════════════════════════════ HERO SECTION ═══ -->
   <section style="position:relative;width:100%;height:100vh;min-height:600px;">
 
-    <div style="position:absolute;inset:0;background:#1C2210;overflow:hidden;">
+    <div style="position:absolute;inset:0;background:#482E2B;overflow:hidden;">
       <video id="hero-video" autoplay muted loop playsinline
              style="position:absolute;inset:0;width:100%;height:100%;
                     object-fit:cover;object-position:center;">
@@ -520,9 +521,9 @@
 
       <!-- Left links (desktop only) -->
       <div class="desktop-links" style="display:flex;align-items:center;gap:2.5rem;">
-        <a href="menu.html" class="nav-link" style="font-family:'ABeeZee',sans-serif;font-size:0.65rem;font-weight:500;letter-spacing:0.22em;text-transform:uppercase;color:#fff;">Menu</a>
-        <a href="sobre.html" class="nav-link" style="font-family:'ABeeZee',sans-serif;font-size:0.65rem;font-weight:500;letter-spacing:0.22em;text-transform:uppercase;color:#fff;">Sobre</a>
-        <a href="events.html" class="nav-link" style="font-family:'ABeeZee',sans-serif;font-size:0.65rem;font-weight:500;letter-spacing:0.22em;text-transform:uppercase;color:#fff;">Experiências</a>
+        <a href="menu.html" class="nav-link" style="font-family:'Quicksand',sans-serif;font-size:0.65rem;font-weight:500;letter-spacing:0.22em;text-transform:uppercase;color:#fff;">Menu</a>
+        <a href="sobre.html" class="nav-link" style="font-family:'Quicksand',sans-serif;font-size:0.65rem;font-weight:500;letter-spacing:0.22em;text-transform:uppercase;color:#fff;">Sobre</a>
+        <a href="events.html" class="nav-link" style="font-family:'Quicksand',sans-serif;font-size:0.65rem;font-weight:500;letter-spacing:0.22em;text-transform:uppercase;color:#fff;">Experiências</a>
       </div>
 
       <!-- Spacer on mobile so logo stays centred -->
@@ -537,7 +538,7 @@
       <!-- Right: desktop links + mobile hamburger -->
       <div style="display:flex;align-items:center;gap:2.5rem;">
         <div class="desktop-links" style="display:flex;align-items:center;gap:2.5rem;">
-          <a href="#contact" class="nav-link" style="font-family:'ABeeZee',sans-serif;font-size:0.65rem;font-weight:500;letter-spacing:0.22em;text-transform:uppercase;color:#fff;">Contacto</a>
+          <a href="#contact" class="nav-link" style="font-family:'Quicksand',sans-serif;font-size:0.65rem;font-weight:500;letter-spacing:0.22em;text-transform:uppercase;color:#fff;">Contacto</a>
         </div>
         <!-- Hamburger (mobile only) -->
         <button class="hamburger-btn" id="hamburger-btn" aria-label="Abrir menu">
@@ -574,7 +575,7 @@
                 width:100%;padding:1.6rem 2rem;">
       <button class="mob-close-btn" id="close-overlay" aria-label="Fechar menu"
               style="display:inline-flex;align-items:center;gap:0.55rem;
-                     font-family:'ABeeZee',sans-serif;font-size:0.56rem;
+                     font-family:'Quicksand',sans-serif;font-size:0.56rem;
                      font-weight:500;letter-spacing:0.2em;text-transform:uppercase;">
         <svg width="15" height="10" viewBox="0 0 15 10" fill="none" style="flex-shrink:0;">
           <line x1="14" y1="5" x2="1" y2="5" stroke="currentColor" stroke-width="0.85" stroke-linecap="round"/>
@@ -621,11 +622,11 @@
       <div id="feature-text"
            style="text-align:center;max-width:760px;overflow:visible;position:relative;z-index:2;">
         <p id="main-text" style="
-          font-family:'ABeeZee',sans-serif;
+          font-family:'Quicksand',sans-serif;
           font-style:italic;
           font-weight:400;
           font-size:clamp(2.2rem,3.4vw,3.8rem);
-          color:#1C2210;
+          color:#482E2B;
           line-height:1.4;
           letter-spacing:0.01em;
         ">O café mais acolhedor em Luanda, onde os sabores africanos, a cultura e o ambiente vibrante se encontram</p>
@@ -670,15 +671,15 @@
         <div style="display:flex;align-items:baseline;gap:0.3rem;flex-shrink:0;">
           <span id="counter-current"
                 style="font-family:'Agbalumo',cursive;font-style:italic;
-                       font-size:2.1rem;font-weight:400;color:#1C2210;line-height:1;">01</span>
-          <span style="font-family:'ABeeZee',sans-serif;font-size:0.52rem;
-                       font-weight:400;color:#5A7A22;letter-spacing:0.12em;">04</span>
+                       font-size:2.1rem;font-weight:400;color:#482E2B;line-height:1;">01</span>
+          <span style="font-family:'Quicksand',sans-serif;font-size:0.52rem;
+                       font-weight:400;color:#C07B10;letter-spacing:0.12em;">04</span>
         </div>
 
         <!-- Progress bar (grows to fill space between number and arrows) -->
-        <div style="flex:1;position:relative;height:1px;background:rgba(13,17,8,0.1);">
+        <div style="flex:1;position:relative;height:1px;background:rgba(14,9,6,0.1);">
           <div id="progress-bar"
-               style="position:absolute;left:0;top:0;height:100%;background:#8aab3e;
+               style="position:absolute;left:0;top:0;height:100%;background:#ED9B23;
                       width:25%;transition:width 0.6s cubic-bezier(0.4,0,0.2,1);"></div>
         </div>
 
@@ -686,13 +687,13 @@
         <div style="display:flex;gap:1.4rem;align-items:center;flex-shrink:0;">
           <button class="carousel-btn" onclick="carouselAdvance(-1)" aria-label="Previous">
             <svg width="22" height="18" viewBox="0 0 22 18" fill="none">
-              <polyline points="13 1 3 9 13 17" stroke="#1C2210" stroke-width="0.9"
+              <polyline points="13 1 3 9 13 17" stroke="#482E2B" stroke-width="0.9"
                         stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
           </button>
           <button class="carousel-btn" onclick="carouselAdvance(1)" aria-label="Next">
             <svg width="22" height="18" viewBox="0 0 22 18" fill="none">
-              <polyline points="9 1 19 9 9 17" stroke="#1C2210" stroke-width="0.9"
+              <polyline points="9 1 19 9 9 17" stroke="#482E2B" stroke-width="0.9"
                         stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
           </button>
@@ -721,12 +722,12 @@
        horizontal ticks extending left, label at active stop, sun/moon at ends
   ══════════════════════════════════════════════════════════════════════════ -->
   <section id="dining-section"
-           style="position:relative;width:100%;background:#1C2210;z-index:2;">
+           style="position:relative;width:100%;background:#482E2B;z-index:2;">
 
     <!-- Sticky header bar — stays fixed to top of viewport as user scrolls weekly specials -->
     <div style="position:sticky;top:0;z-index:10;width:100%;
                 display:flex;align-items:center;padding:0.9rem 1.8rem;
-                background:#1C2210;border-bottom:1px solid rgba(138,171,62,0.12);">
+                background:#482E2B;border-bottom:1px solid rgba(237,155,35,0.12);">
       <img src="Brand Reasources/logo.png" alt="Okulya Café"
            style="height:72px;width:auto;max-width:none;display:block;opacity:0.9;" />
     </div>
@@ -828,15 +829,15 @@
         <!-- Sun — top right -->
         <div style="position:absolute;top:2.8rem;right:14px;">
           <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-            <circle cx="7" cy="7" r="2.9" stroke="#8aab3e" stroke-width="0.85"/>
-            <line x1="7" y1="0.4" x2="7" y2="2.2" stroke="#8aab3e" stroke-width="0.8"/>
-            <line x1="7" y1="11.8" x2="7" y2="13.6" stroke="#8aab3e" stroke-width="0.8"/>
-            <line x1="0.4" y1="7" x2="2.2" y2="7" stroke="#8aab3e" stroke-width="0.8"/>
-            <line x1="11.8" y1="7" x2="13.6" y2="7" stroke="#8aab3e" stroke-width="0.8"/>
-            <line x1="2.5" y1="2.5" x2="3.8" y2="3.8" stroke="#8aab3e" stroke-width="0.8"/>
-            <line x1="10.2" y1="10.2" x2="11.5" y2="11.5" stroke="#8aab3e" stroke-width="0.8"/>
-            <line x1="11.5" y1="2.5" x2="10.2" y2="3.8" stroke="#8aab3e" stroke-width="0.8"/>
-            <line x1="3.8" y1="10.2" x2="2.5" y2="11.5" stroke="#8aab3e" stroke-width="0.8"/>
+            <circle cx="7" cy="7" r="2.9" stroke="#ED9B23" stroke-width="0.85"/>
+            <line x1="7" y1="0.4" x2="7" y2="2.2" stroke="#ED9B23" stroke-width="0.8"/>
+            <line x1="7" y1="11.8" x2="7" y2="13.6" stroke="#ED9B23" stroke-width="0.8"/>
+            <line x1="0.4" y1="7" x2="2.2" y2="7" stroke="#ED9B23" stroke-width="0.8"/>
+            <line x1="11.8" y1="7" x2="13.6" y2="7" stroke="#ED9B23" stroke-width="0.8"/>
+            <line x1="2.5" y1="2.5" x2="3.8" y2="3.8" stroke="#ED9B23" stroke-width="0.8"/>
+            <line x1="10.2" y1="10.2" x2="11.5" y2="11.5" stroke="#ED9B23" stroke-width="0.8"/>
+            <line x1="11.5" y1="2.5" x2="10.2" y2="3.8" stroke="#ED9B23" stroke-width="0.8"/>
+            <line x1="3.8" y1="10.2" x2="2.5" y2="11.5" stroke="#ED9B23" stroke-width="0.8"/>
           </svg>
         </div>
 
@@ -847,7 +848,7 @@
                      c1.7 0 3.2-.9 4-2.3-0.7.3-1.5.5-2.3.5
                      C5.6 9 3.5 6.9 3.5 4.3c0-1.3.5-2.4 1.4-3.2
                      A4.8 4.8 0 006.5 1.2z"
-                  stroke="#8aab3e" stroke-width="0.85" stroke-linecap="round" fill="none"/>
+                  stroke="#ED9B23" stroke-width="0.85" stroke-linecap="round" fill="none"/>
           </svg>
         </div>
 
@@ -860,22 +861,22 @@
           <div id="dining-dot"
                style="position:absolute;right:-4px;top:10%;
                       width:9px;height:9px;border-radius:50%;
-                      background:#F0F0E8;border:1.5px solid #8aab3e;
+                      background:#F1FFFF;border:1.5px solid #ED9B23;
                       transform:translateY(-50%);
                       transition:top 0.65s cubic-bezier(0.4,0,0.2,1);"></div>
 
           <!-- Tick 0 — Coffee (active by default) -->
           <div class="dining-tick" data-idx="0"
                style="position:absolute;top:10%;right:0;height:1px;
-                      width:26px;background:#8aab3e;
+                      width:26px;background:#ED9B23;
                       transition:width 0.4s ease,background 0.4s ease;">
             <span class="dining-tick-label"
                   style="position:absolute;right:calc(100% + 8px);top:50%;
                          transform:translateY(-50%);white-space:nowrap;
-                         font-family:'ABeeZee',sans-serif;
+                         font-family:'Quicksand',sans-serif;
                          font-size:0.42rem;font-weight:500;
                          letter-spacing:0.18em;text-transform:uppercase;
-                         color:#8aab3e;
+                         color:#ED9B23;
                          transition:opacity 0.4s ease,color 0.4s ease;">café</span>
           </div>
 
@@ -887,7 +888,7 @@
             <span class="dining-tick-label"
                   style="position:absolute;right:calc(100% + 8px);top:50%;
                          transform:translateY(-50%);white-space:nowrap;
-                         font-family:'ABeeZee',sans-serif;
+                         font-family:'Quicksand',sans-serif;
                          font-size:0.42rem;font-weight:500;
                          letter-spacing:0.18em;text-transform:uppercase;
                          color:rgba(255,255,255,0.3);opacity:0;
@@ -902,7 +903,7 @@
             <span class="dining-tick-label"
                   style="position:absolute;right:calc(100% + 8px);top:50%;
                          transform:translateY(-50%);white-space:nowrap;
-                         font-family:'ABeeZee',sans-serif;
+                         font-family:'Quicksand',sans-serif;
                          font-size:0.42rem;font-weight:500;
                          letter-spacing:0.18em;text-transform:uppercase;
                          color:rgba(255,255,255,0.3);opacity:0;
@@ -917,7 +918,7 @@
             <span class="dining-tick-label"
                   style="position:absolute;right:calc(100% + 8px);top:50%;
                          transform:translateY(-50%);white-space:nowrap;
-                         font-family:'ABeeZee',sans-serif;
+                         font-family:'Quicksand',sans-serif;
                          font-size:0.42rem;font-weight:500;
                          letter-spacing:0.18em;text-transform:uppercase;
                          color:rgba(255,255,255,0.3);opacity:0;
@@ -932,7 +933,7 @@
             <span class="dining-tick-label"
                   style="position:absolute;right:calc(100% + 8px);top:50%;
                          transform:translateY(-50%);white-space:nowrap;
-                         font-family:'ABeeZee',sans-serif;
+                         font-family:'Quicksand',sans-serif;
                          font-size:0.42rem;font-weight:500;
                          letter-spacing:0.18em;text-transform:uppercase;
                          color:rgba(255,255,255,0.3);opacity:0;
@@ -947,7 +948,7 @@
             <span class="dining-tick-label"
                   style="position:absolute;right:calc(100% + 8px);top:50%;
                          transform:translateY(-50%);white-space:nowrap;
-                         font-family:'ABeeZee',sans-serif;
+                         font-family:'Quicksand',sans-serif;
                          font-size:0.42rem;font-weight:500;
                          letter-spacing:0.18em;text-transform:uppercase;
                          color:rgba(255,255,255,0.3);opacity:0;
@@ -964,8 +965,8 @@
 
   <!-- ══════════════════════════════════════════════════ CONTACT FOOTER ══════ -->
   <footer id="contact" style="
-    background:#0D1108;
-    border-top:1px solid rgba(138,171,62,0.12);
+    background:#000000;
+    border-top:1px solid rgba(237,155,35,0.12);
     padding:7rem 2.4rem 4rem;
     position:relative;
     z-index:2;
@@ -975,7 +976,7 @@
     <!-- Radial glow -->
     <div style="position:absolute;inset:0;pointer-events:none;
                 background:radial-gradient(ellipse 70% 60% at 50% 0%,
-                  rgba(138,171,62,0.06) 0%, transparent 70%);"></div>
+                  rgba(237,155,35,0.06) 0%, transparent 70%);"></div>
 
     <!-- Info grid -->
     <div class="contact-grid">
@@ -994,13 +995,13 @@
     </div>
 
     <!-- Divider -->
-    <div style="width:48px;height:1px;background:rgba(138,171,62,0.22);
+    <div style="width:48px;height:1px;background:rgba(237,155,35,0.22);
                 margin:0 auto 2.5rem;position:relative;z-index:1;"></div>
 
     <!-- Copyright -->
-    <p style="font-family:'ABeeZee',sans-serif;font-size:0.52rem;font-weight:300;
+    <p style="font-family:'Quicksand',sans-serif;font-size:0.52rem;font-weight:300;
               letter-spacing:0.2em;text-transform:uppercase;
-              color:rgba(238,238,230,0.18);text-align:center;
+              color:rgba(235,250,250,0.18);text-align:center;
               position:relative;z-index:1;">
       &copy; 2026 Okulya Café &nbsp;&middot;&nbsp; Luanda, Angola
     </p>
@@ -1320,8 +1321,8 @@
           const lbl = tick.querySelector('.dining-tick-label');
           if (i === idx) {
             tick.style.width      = '26px';
-            tick.style.background = '#8aab3e';
-            if (lbl) { lbl.style.opacity = '1'; lbl.style.color = '#8aab3e'; }
+            tick.style.background = '#ED9B23';
+            if (lbl) { lbl.style.opacity = '1'; lbl.style.color = '#ED9B23'; }
           } else {
             tick.style.width      = '12px';
             tick.style.background = 'rgba(255,255,255,0.2)';
