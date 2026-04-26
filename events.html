@@ -28,7 +28,7 @@
       position: fixed; top: 0; left: 0; right: 0; z-index: 500;
       display: flex; align-items: center; justify-content: space-between;
       padding: 1rem 2.4rem;
-      background: #482E2B;
+      background: #47331F;
       border-bottom: 1px solid rgba(237,155,35,0.12);
     }
     .nav-voltar {
@@ -50,7 +50,7 @@
     }
     #masthead-bg {
       position: absolute; inset: 0;
-      background: linear-gradient(160deg, #482E2B 0%, #3A2020 40%, #000000 100%);
+      background: linear-gradient(160deg, #47331F 0%, #3A2020 40%, #000000 100%);
     }
     #masthead-bg::after {
       content: '';
@@ -149,7 +149,7 @@
       background: linear-gradient(to right, rgba(5,3,2,0.15) 0%, rgba(5,3,2,0) 100%);
     }
     .upcoming-content {
-      background: #482E2B; padding: 4rem 3.5rem;
+      background: #47331F; padding: 4rem 3.5rem;
       display: flex; flex-direction: column; justify-content: center;
       border: 1px solid rgba(237,155,35,0.1); border-left: none;
       position: relative; overflow: hidden;
@@ -163,7 +163,7 @@
       display: inline-flex; align-items: center; gap: 0.6rem;
       font-family: 'Quicksand', sans-serif; font-size: 0.65rem;
       font-weight: 500; letter-spacing: 0.28em; text-transform: uppercase;
-      color: #F1FFFF; background: #482E2B;
+      color: #F1FFFF; background: #47331F;
       padding: 0.4rem 1rem; margin-bottom: 2.5rem; align-self: flex-start;
     }
     .upcoming-date-block { margin-bottom: 2rem; }
@@ -215,7 +215,7 @@
     /* ── EVENT CARD ────────────────────────────────────────────── */
     .ev-card {
       position: relative; overflow: hidden; cursor: pointer;
-      background: #482E2B;
+      background: #47331F;
     }
     .ev-card::before {
       content: ''; position: absolute; inset: 0; z-index: 2;
@@ -296,7 +296,7 @@
       position: sticky; top: 0; z-index: 10;
       display: flex; align-items: center; justify-content: space-between;
       padding: 1rem 2.4rem;
-      background: #482E2B;
+      background: #47331F;
       border-bottom: 1px solid rgba(237,155,35,0.12);
     }
 
@@ -341,7 +341,7 @@
     /* ── TESTIMONIALS SLIDER ───────────────────────────────────── */
     #ev-testimonials {
       padding: 5rem 2.4rem;
-      background: #482E2B;
+      background: #47331F;
       position: relative;
     }
     #ev-testimonials::before {
@@ -399,7 +399,7 @@
       grid-auto-rows: 200px;
       gap: 1rem; margin-top: 3rem;
     }
-    .gal-item { position: relative; overflow: hidden; background: #482E2B; }
+    .gal-item { position: relative; overflow: hidden; background: #47331F; }
     .gal-item img {
       width: 100%; height: 100%; object-fit: cover; display: block;
       transition: transform 0.6s ease;
@@ -461,7 +461,7 @@
       #ev-gallery { padding: 3rem 1.2rem 5rem; }
     }
 
-    /* ── Contact footer grid ─────────────────────────────────────── */
+    /* ── Contact footer ───────────────────────────────────────────── */
     .contact-grid {
       display: grid; grid-template-columns: 1fr 1fr 1fr;
       gap: 3rem; max-width: 800px; margin: 0 auto 4rem;
@@ -481,6 +481,38 @@
     @media (max-width: 768px) {
       .contact-grid { grid-template-columns: 1fr !important; gap: 0 !important; }
       .contact-col + .contact-col { border-left: none !important; border-top: 1px solid rgba(237,155,35,0.12) !important; }
+    }
+    /* ── Footer social section ────────────────────────────────────── */
+    .footer-social-cta {
+      position: relative; z-index: 1; text-align: center;
+      padding: 2rem 2.4rem 3.5rem;
+      border-top: 1px solid rgba(237,155,35,0.1);
+    }
+    .social-icons-row {
+      display: flex; align-items: center; justify-content: center;
+      gap: 1.4rem; flex-wrap: nowrap; margin-bottom: 1.5rem;
+    }
+    .social-icon-btn {
+      display: inline-flex; flex-direction: column; align-items: center;
+      gap: 0.5rem; text-decoration: none;
+      transition: transform 0.22s cubic-bezier(0.34,1.56,0.64,1);
+    }
+    .social-icon-btn:hover { transform: translateY(-4px); }
+    .social-icon-circle {
+      width: 46px; height: 46px; border-radius: 50%;
+      border: 1px solid rgba(241,255,255,0.12);
+      background: rgba(241,255,255,0.04);
+      display: flex; align-items: center; justify-content: center;
+      color: #F1FFFF;
+      transition: border-color 0.22s ease, background 0.22s ease;
+    }
+    .social-icon-btn:hover .social-icon-circle { border-color: #ED9B23; background: rgba(237,155,35,0.08); }
+    .social-icon-btn:hover .social-icon-circle svg { color: #ED9B23; }
+    .social-icon-label {
+      font-family: 'Quicksand', sans-serif;
+      font-size: 0.48rem; font-weight: 500;
+      letter-spacing: 0.18em; text-transform: uppercase;
+      color: rgba(241,255,255,0.3);
     }
     /* ── WhatsApp widget ─────────────────────────────────── */
     #wa-widget {
@@ -682,34 +714,38 @@
     </div>
 
     <!-- SOCIAL CTA (second) -->
-    <div style="position:relative;z-index:1;text-align:center;padding:2rem 2.4rem 3.5rem;border-top:1px solid rgba(237,155,35,0.1);">
-      <p style="font-family:'Quicksand',sans-serif;font-size:0.58rem;font-weight:500;letter-spacing:0.35em;text-transform:uppercase;color:#ED9B23;margin-bottom:1.2rem;">Siga-nos</p>
-      <h2 style="font-family:'Playfair Display',serif;font-style:italic;font-weight:700;font-size:clamp(2rem,4.5vw,3.8rem);color:#F1FFFF;letter-spacing:-0.02em;line-height:1.1;margin-bottom:0.8rem;">Siga. Partilhe. <em style="color:#ED9B23;font-style:normal;">Inspire.</em></h2>
-      <p style="font-family:'Quicksand',sans-serif;font-size:0.78rem;font-weight:300;color:rgba(241,255,255,0.4);margin-bottom:0.5rem;letter-spacing:0.04em;">Marque-nos nas suas fotos e faça parte da nossa história.</p>
-      <p style="font-family:'Playfair Display',serif;font-style:italic;font-size:1.1rem;color:rgba(237,155,35,0.55);margin-bottom:2.4rem;">@0kulya.cafe</p>
-      <div style="display:flex;align-items:center;justify-content:center;gap:1.4rem;flex-wrap:nowrap;margin-bottom:1.5rem;">
-        <a href="https://www.instagram.com/0kulya.cafe/" target="_blank" rel="noopener" style="display:inline-flex;flex-direction:column;align-items:center;gap:0.5rem;text-decoration:none;transition:transform 0.22s cubic-bezier(0.34,1.56,0.64,1);" onmouseover="this.style.transform='translateY(-4px)'" onmouseout="this.style.transform=''">
-          <div style="width:46px;height:46px;border-radius:50%;border:1px solid rgba(241,255,255,0.12);background:rgba(241,255,255,0.04);display:flex;align-items:center;justify-content:center;color:#F1FFFF;transition:border-color 0.22s ease,background 0.22s ease;" onmouseover="this.style.borderColor='#ED9B23';this.style.background='rgba(237,155,35,0.08)'" onmouseout="this.style.borderColor='rgba(241,255,255,0.12)';this.style.background='rgba(241,255,255,0.04)'"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></div>
-          <span style="font-family:'Quicksand',sans-serif;font-size:0.48rem;font-weight:500;letter-spacing:0.18em;text-transform:uppercase;color:rgba(241,255,255,0.3);">Instagram</span>
+    <div class="footer-social-cta">
+      <p style="font-family:'Quicksand',sans-serif;font-size:0.58rem;font-weight:500;letter-spacing:0.35em;text-transform:uppercase;color:#ED9B23;margin-bottom:1.2rem;position:relative;z-index:1;">Siga-nos</p>
+      <h2 style="font-family:'Playfair Display',serif;font-style:italic;font-weight:700;font-size:clamp(2rem,4.5vw,3.8rem);color:#F1FFFF;letter-spacing:-0.02em;line-height:1.1;margin-bottom:0.8rem;position:relative;z-index:1;">Siga. Partilhe. <em style="color:#ED9B23;font-style:normal;">Inspire.</em></h2>
+      <p style="font-family:'Quicksand',sans-serif;font-size:0.78rem;font-weight:300;color:rgba(241,255,255,0.4);margin-bottom:0.5rem;letter-spacing:0.04em;position:relative;z-index:1;">Marque-nos nas suas fotos e faça parte da nossa história.</p>
+      <p style="font-family:'Playfair Display',serif;font-style:italic;font-size:1.1rem;color:rgba(237,155,35,0.55);margin-bottom:2.4rem;position:relative;z-index:1;">@0kulya.cafe</p>
+      <div class="social-icons-row" style="position:relative;z-index:1;">
+        <a href="https://www.instagram.com/0kulya.cafe/" target="_blank" rel="noopener" class="social-icon-btn">
+          <div class="social-icon-circle"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></div>
+          <span class="social-icon-label">Instagram</span>
         </a>
-        <a href="https://www.facebook.com/profile.php?id=100083340589429" target="_blank" rel="noopener" style="display:inline-flex;flex-direction:column;align-items:center;gap:0.5rem;text-decoration:none;transition:transform 0.22s cubic-bezier(0.34,1.56,0.64,1);" onmouseover="this.style.transform='translateY(-4px)'" onmouseout="this.style.transform=''">
-          <div style="width:46px;height:46px;border-radius:50%;border:1px solid rgba(241,255,255,0.12);background:rgba(241,255,255,0.04);display:flex;align-items:center;justify-content:center;color:#F1FFFF;transition:border-color 0.22s ease,background 0.22s ease;" onmouseover="this.style.borderColor='#ED9B23';this.style.background='rgba(237,155,35,0.08)'" onmouseout="this.style.borderColor='rgba(241,255,255,0.12)';this.style.background='rgba(241,255,255,0.04)'"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></div>
-          <span style="font-family:'Quicksand',sans-serif;font-size:0.48rem;font-weight:500;letter-spacing:0.18em;text-transform:uppercase;color:rgba(241,255,255,0.3);">Facebook</span>
+        <a href="https://www.facebook.com/profile.php?id=100083340589429" target="_blank" rel="noopener" class="social-icon-btn">
+          <div class="social-icon-circle"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></div>
+          <span class="social-icon-label">Facebook</span>
         </a>
-        <a href="https://www.tiktok.com/@0kulya.cafe" target="_blank" rel="noopener" style="display:inline-flex;flex-direction:column;align-items:center;gap:0.5rem;text-decoration:none;transition:transform 0.22s cubic-bezier(0.34,1.56,0.64,1);" onmouseover="this.style.transform='translateY(-4px)'" onmouseout="this.style.transform=''">
-          <div style="width:46px;height:46px;border-radius:50%;border:1px solid rgba(241,255,255,0.12);background:rgba(241,255,255,0.04);display:flex;align-items:center;justify-content:center;color:#F1FFFF;transition:border-color 0.22s ease,background 0.22s ease;" onmouseover="this.style.borderColor='#ED9B23';this.style.background='rgba(237,155,35,0.08)'" onmouseout="this.style.borderColor='rgba(241,255,255,0.12)';this.style.background='rgba(241,255,255,0.04)'"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.29 6.29 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.34-6.34V8.74a8.2 8.2 0 0 0 4.79 1.52V6.82a4.85 4.85 0 0 1-1.03-.13z"/></svg></div>
-          <span style="font-family:'Quicksand',sans-serif;font-size:0.48rem;font-weight:500;letter-spacing:0.18em;text-transform:uppercase;color:rgba(241,255,255,0.3);">TikTok</span>
+        <a href="https://www.tiktok.com/@0kulya.cafe" target="_blank" rel="noopener" class="social-icon-btn">
+          <div class="social-icon-circle"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.29 6.29 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.34-6.34V8.74a8.2 8.2 0 0 0 4.79 1.52V6.82a4.85 4.85 0 0 1-1.03-.13z"/></svg></div>
+          <span class="social-icon-label">TikTok</span>
         </a>
-        <a href="https://www.linkedin.com/company/okulya" target="_blank" rel="noopener" style="display:inline-flex;flex-direction:column;align-items:center;gap:0.5rem;text-decoration:none;transition:transform 0.22s cubic-bezier(0.34,1.56,0.64,1);" onmouseover="this.style.transform='translateY(-4px)'" onmouseout="this.style.transform=''">
-          <div style="width:46px;height:46px;border-radius:50%;border:1px solid rgba(241,255,255,0.12);background:rgba(241,255,255,0.04);display:flex;align-items:center;justify-content:center;color:#F1FFFF;transition:border-color 0.22s ease,background 0.22s ease;" onmouseover="this.style.borderColor='#ED9B23';this.style.background='rgba(237,155,35,0.08)'" onmouseout="this.style.borderColor='rgba(241,255,255,0.12)';this.style.background='rgba(241,255,255,0.04)'"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></div>
-          <span style="font-family:'Quicksand',sans-serif;font-size:0.48rem;font-weight:500;letter-spacing:0.18em;text-transform:uppercase;color:rgba(241,255,255,0.3);">LinkedIn</span>
+        <a href="https://www.linkedin.com/company/okulya" target="_blank" rel="noopener" class="social-icon-btn">
+          <div class="social-icon-circle"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></div>
+          <span class="social-icon-label">LinkedIn</span>
         </a>
-        <a href="https://www.tripadvisor.co.uk/Restaurant_Review-g293763-d33320831-Reviews-Okulya_Cafe-Luanda_Luanda_Province.html" target="_blank" rel="noopener" style="display:inline-flex;flex-direction:column;align-items:center;gap:0.5rem;text-decoration:none;transition:transform 0.22s cubic-bezier(0.34,1.56,0.64,1);" onmouseover="this.style.transform='translateY(-4px)'" onmouseout="this.style.transform=''">
-          <div style="width:46px;height:46px;border-radius:50%;border:1px solid rgba(241,255,255,0.12);background:rgba(241,255,255,0.04);display:flex;align-items:center;justify-content:center;color:#F1FFFF;transition:border-color 0.22s ease,background 0.22s ease;" onmouseover="this.style.borderColor='#ED9B23';this.style.background='rgba(237,155,35,0.08)'" onmouseout="this.style.borderColor='rgba(241,255,255,0.12)';this.style.background='rgba(241,255,255,0.04)'"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12.006 4.295c-2.02 0-4.035.554-5.773 1.633A9.91 9.91 0 003 8.3L.68 6.27v5.026l2.9.028C3.79 16.05 7.465 19.5 12 19.5s8.21-3.45 8.42-8.176l2.9-.028V6.27L21 8.3a9.91 9.91 0 00-3.233-2.372A11.105 11.105 0 0012.006 4.295zM8.064 8.28a4.5 4.5 0 110 9 4.5 4.5 0 010-9zm7.872 0a4.5 4.5 0 110 9 4.5 4.5 0 010-9zm-7.872 2a2.5 2.5 0 100 5 2.5 2.5 0 000-5zm7.872 0a2.5 2.5 0 100 5 2.5 2.5 0 000-5z"/></svg></div>
-          <span style="font-family:'Quicksand',sans-serif;font-size:0.48rem;font-weight:500;letter-spacing:0.18em;text-transform:uppercase;color:rgba(241,255,255,0.3);">TripAdvisor</span>
+        <a href="https://www.tripadvisor.co.uk/Restaurant_Review-g293763-d33320831-Reviews-Okulya_Cafe-Luanda_Luanda_Province.html" target="_blank" rel="noopener" class="social-icon-btn">
+          <div class="social-icon-circle"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12.006 4.295c-2.02 0-4.035.554-5.773 1.633A9.91 9.91 0 003 8.3L.68 6.27v5.026l2.9.028C3.79 16.05 7.465 19.5 12 19.5s8.21-3.45 8.42-8.176l2.9-.028V6.27L21 8.3a9.91 9.91 0 00-3.233-2.372A11.105 11.105 0 0012.006 4.295zM8.064 8.28a4.5 4.5 0 110 9 4.5 4.5 0 010-9zm7.872 0a4.5 4.5 0 110 9 4.5 4.5 0 010-9zm-7.872 2a2.5 2.5 0 100 5 2.5 2.5 0 000-5zm7.872 0a2.5 2.5 0 100 5 2.5 2.5 0 000-5z"/></svg></div>
+          <span class="social-icon-label">TripAdvisor</span>
         </a>
       </div>
-      <a href="https://linktr.ee/okulya.cafe" target="_blank" rel="noopener" style="font-family:'Quicksand',sans-serif;font-size:0.6rem;font-weight:500;letter-spacing:0.18em;text-transform:uppercase;color:rgba(237,155,35,0.45);text-decoration:none;transition:color 0.22s ease;" onmouseover="this.style.color='#ED9B23'" onmouseout="this.style.color='rgba(237,155,35,0.45)'">Todos os nossos links &nbsp;→&nbsp; linktr.ee/okulya.cafe</a>
+      <a href="https://linktr.ee/okulya.cafe" target="_blank" rel="noopener"
+         style="font-family:'Quicksand',sans-serif;font-size:0.6rem;font-weight:500;letter-spacing:0.18em;text-transform:uppercase;color:rgba(237,155,35,0.45);text-decoration:none;transition:color 0.22s ease;position:relative;z-index:1;"
+         onmouseover="this.style.color='#ED9B23'" onmouseout="this.style.color='rgba(237,155,35,0.45)'">
+        Todos os nossos links &nbsp;→&nbsp; linktr.ee/okulya.cafe
+      </a>
     </div>
 
     <p style="font-family:'Quicksand',sans-serif;font-size:0.52rem;font-weight:300;letter-spacing:0.2em;text-transform:uppercase;color:rgba(235,250,250,0.28);text-align:center;padding-bottom:1.5rem;position:relative;z-index:1;">&copy; 2026 Okulya Café &nbsp;&middot;&nbsp; Talatona, Luanda, Angola</p>
