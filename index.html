@@ -13,7 +13,7 @@
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    /* ─── Nav link — ornamental hover underline ─────────────────────────────
+    /* ─── Nav link - ornamental hover underline ─────────────────────────────
        On hover a small calligraphic ornament scales in from the centre,
        replacing the old shining-line sweep.
     ─────────────────────────────────────────────────────────────────────── */
@@ -79,7 +79,7 @@
       text-shadow: 0 2px 32px rgba(0,0,0,0.45);
     }
 
-    /* ─── Dish card — square at 80vh, fills the plate stage ────────────────── */
+    /* ─── Dish card - square at 80vh, fills the plate stage ────────────────── */
     .dish-card {
       position: absolute;
       left: calc(50% - 50vh);
@@ -114,7 +114,7 @@
       pointer-events: none;
     }
 
-    /* ─── Carousel arrow buttons — minimal angle-bracket style ──────────────── */
+    /* ─── Carousel arrow buttons - minimal angle-bracket style ──────────────── */
     .carousel-btn {
       background: none;
       border: none;
@@ -308,7 +308,7 @@
       #feature-text {
         max-width: 860px !important;
       }
-      /* Stage: 65vh — nearly original size; feature~14vh+stage65+panel22=101vh,
+      /* Stage: 65vh - nearly original size; feature~14vh+stage65+panel22=101vh,
          names land at ~96vh so everything is visible */
       #carousel-stage {
         height: 65vh !important;
@@ -325,7 +325,7 @@
         mask-image: linear-gradient(to bottom, black 40%, transparent 90%) !important;
       }
 
-      /* Section 3 dining — alternating image / text layout ───────────────────── */
+      /* Section 3 dining - alternating image / text layout ───────────────────── */
       #dining-content-wrapper {
         display: block !important;
         width: 100% !important;
@@ -417,7 +417,7 @@
         font-size: clamp(3rem, 11.5vw, 4rem) !important;
         line-height: 1.12 !important;
       }
-      /* Larger dish cards on mobile — nearly full width */
+      /* Larger dish cards on mobile - nearly full width */
       .dish-card {
         left: calc(50% - 46vw) !important;
         width: 92vw !important;
@@ -475,7 +475,7 @@
       #hero-logo-wrap { top: 4.5rem !important; }
       /* Spacer that delays section 3 from overlaying section 2 */
       #sec2-spacer { display: block !important; height: 90vh !important; }
-      /* Sidebar: sticky within dining section — confined, never bleeds into hero or footer */
+      /* Sidebar: sticky within dining section - confined, never bleeds into hero or footer */
       #dining-timeline-col {
         position: sticky !important;
         top: 22.5vh !important;
@@ -633,7 +633,7 @@
 
   <!-- ══════════════════════════════════ MOBILE MENU OVERLAY ══════════════ -->
   <div id="mobile-overlay" aria-hidden="true">
-    <!-- Header row: Voltar left, logo right — mirrors the menu.html top nav -->
+    <!-- Header row: Voltar left, logo right - mirrors the menu.html top nav -->
     <div style="display:flex;align-items:center;justify-content:space-between;
                 width:100%;padding:1.6rem 2rem;">
       <button class="mob-close-btn" id="close-overlay" aria-label="Fechar menu"
@@ -650,7 +650,7 @@
            style="height:72px;width:auto;display:block;opacity:0.88;" />
     </div>
 
-    <!-- Nav links — left-aligned, full-width -->
+    <!-- Nav links - left-aligned, full-width -->
     <nav style="display:flex;flex-direction:column;align-items:flex-start;
                 width:100%;padding:1.2rem 2.5rem 0;">
       <a href="menu.html" class="mob-link" onclick="closeMenu()">Menu</a>
@@ -668,7 +668,7 @@
 
   </div>
 
-  <!-- ══════════════════════════════ SECTION 2 — TEXT + CAROUSEL (sticky) ═══
+  <!-- ══════════════════════════════ SECTION 2 - TEXT + CAROUSEL (sticky) ═══
        Everything on the white background: feature text (absolute, top of section),
        spice scatter, plate stage (68vh), counter/arrows/name panel (32vh).
        Sticks at top:0 so the entire section pins while section 3 slides over it.
@@ -677,7 +677,7 @@
            style="position:sticky;top:-15vh;z-index:1;width:100%;
                   background:#fff;overflow:visible;">
 
-    <!-- Feature text — in flow, compact top so plates stay in viewport -->
+    <!-- Feature text - in flow, compact top so plates stay in viewport -->
     <div id="section2-feature-text"
          style="position:relative;z-index:2;
                 display:flex;flex-direction:column;align-items:center;
@@ -696,7 +696,7 @@
       </div>
     </div>
 
-    <!-- Spice image — below the text, overlapping into the plate area -->
+    <!-- Spice image - below the text, overlapping into the plate area -->
     <img id="spice-img" src="falafel-bowl-bg.webp"
          style="position:absolute;top:18vh;left:-2%;width:47%;height:auto;
                 pointer-events:none;z-index:0;display:block;"
@@ -746,7 +746,7 @@
                       width:25%;transition:width 0.6s cubic-bezier(0.4,0,0.2,1);"></div>
         </div>
 
-        <!-- Arrows — thin SVG chevrons, no borders -->
+        <!-- Arrows - thin SVG chevrons, no borders -->
         <div style="display:flex;gap:1.4rem;align-items:center;flex-shrink:0;">
           <button class="carousel-btn" onclick="carouselAdvance(-1)" aria-label="Previous">
             <svg width="22" height="18" viewBox="0 0 22 18" fill="none">
@@ -781,13 +781,13 @@
   </section>
 
   <!-- ═══════════════════════════════════════════════ DINING TIMES SECTION ═══
-       4 weekly specials — sticky right timeline: vertical line on right edge,
+       4 weekly specials - sticky right timeline: vertical line on right edge,
        horizontal ticks extending left, label at active stop, sun/moon at ends
   ══════════════════════════════════════════════════════════════════════════ -->
   <section id="dining-section"
            style="position:relative;width:100%;background:#482E2B;z-index:2;">
 
-    <!-- Sticky header bar — stays fixed to top of viewport as user scrolls weekly specials -->
+    <!-- Sticky header bar - stays fixed to top of viewport as user scrolls weekly specials -->
     <div style="position:sticky;top:0;z-index:10;width:100%;
                 display:flex;align-items:center;padding:0.9rem 1.8rem;
                 background:#482E2B;border-bottom:1px solid rgba(237,155,35,0.12);">
@@ -892,10 +892,10 @@
 
       </div>
 
-      <!-- ── RIGHT: sticky timeline — vertical line RIGHT, ticks extend LEFT ── -->
+      <!-- ── RIGHT: sticky timeline - vertical line RIGHT, ticks extend LEFT ── -->
       <div id="dining-timeline-col" style="width:84px;flex-shrink:0;position:sticky;top:0;height:100vh;">
 
-        <!-- Sun — top right -->
+        <!-- Sun - top right -->
         <div style="position:absolute;top:2.8rem;right:14px;">
           <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
             <circle cx="7" cy="7" r="2.9" stroke="#ED9B23" stroke-width="0.85"/>
@@ -910,7 +910,7 @@
           </svg>
         </div>
 
-        <!-- Moon — bottom right -->
+        <!-- Moon - bottom right -->
         <div style="position:absolute;bottom:2.8rem;right:13px;">
           <svg width="13" height="13" viewBox="0 0 13 13" fill="none">
             <path d="M6.5 1.2C3.9 1.2 1.8 3.3 1.8 6s2.1 4.8 4.7 4.8
@@ -921,7 +921,7 @@
           </svg>
         </div>
 
-        <!-- Vertical line — right edge, spanning between sun and moon -->
+        <!-- Vertical line - right edge, spanning between sun and moon -->
         <div id="dining-track"
              style="position:absolute;right:20px;top:5.2rem;bottom:5.2rem;
                     width:1px;background:rgba(255,255,255,0.18);">
@@ -934,7 +934,7 @@
                       transform:translateY(-50%);
                       transition:top 0.65s cubic-bezier(0.4,0,0.2,1);"></div>
 
-          <!-- Tick 0 — Coffee (active by default) -->
+          <!-- Tick 0 - Coffee (active by default) -->
           <div class="dining-tick" data-idx="0"
                style="position:absolute;top:10%;right:0;height:1px;
                       width:26px;background:#ED9B23;
@@ -949,7 +949,7 @@
                          transition:opacity 0.4s ease,color 0.4s ease;">café</span>
           </div>
 
-          <!-- Tick 1 — Pastries (inactive) -->
+          <!-- Tick 1 - Pastries (inactive) -->
           <div class="dining-tick" data-idx="1"
                style="position:absolute;top:26%;right:0;height:1px;
                       width:12px;background:rgba(255,255,255,0.2);
@@ -964,7 +964,7 @@
                          transition:opacity 0.4s ease,color 0.4s ease;">pastelaria</span>
           </div>
 
-          <!-- Tick 2 — Light Lunch (inactive) -->
+          <!-- Tick 2 - Light Lunch (inactive) -->
           <div class="dining-tick" data-idx="2"
                style="position:absolute;top:42%;right:0;height:1px;
                       width:12px;background:rgba(255,255,255,0.2);
@@ -979,7 +979,7 @@
                          transition:opacity 0.4s ease,color 0.4s ease;">almoço</span>
           </div>
 
-          <!-- Tick 3 — Snacks (inactive) -->
+          <!-- Tick 3 - Snacks (inactive) -->
           <div class="dining-tick" data-idx="3"
                style="position:absolute;top:58%;right:0;height:1px;
                       width:12px;background:rgba(255,255,255,0.2);
@@ -994,7 +994,7 @@
                          transition:opacity 0.4s ease,color 0.4s ease;">petiscos</span>
           </div>
 
-          <!-- Tick 4 — Wine (inactive) -->
+          <!-- Tick 4 - Wine (inactive) -->
           <div class="dining-tick" data-idx="4"
                style="position:absolute;top:74%;right:0;height:1px;
                       width:12px;background:rgba(255,255,255,0.2);
@@ -1009,7 +1009,7 @@
                          transition:opacity 0.4s ease,color 0.4s ease;">vinho</span>
           </div>
 
-          <!-- Tick 5 — Cocktails (inactive) -->
+          <!-- Tick 5 - Cocktails (inactive) -->
           <div class="dining-tick" data-idx="5"
                style="position:absolute;top:90%;right:0;height:1px;
                       width:12px;background:rgba(255,255,255,0.2);
@@ -1145,7 +1145,7 @@
     }
 
     /* ── Word splitter (mobile) ───────────────────────────────────────────────
-       Wraps each whole word in an inline-block — lets the browser break lines
+       Wraps each whole word in an inline-block - lets the browser break lines
        only at word boundaries so no mid-word wraps occur during GSAP stagger.
     ──────────────────────────────────────────────────────────────────────────── */
     function splitWords(el) {
@@ -1235,7 +1235,7 @@
       };
     }
 
-    /* Positions — pure horizontal slides, no tilt. Card ≈ 68vh wide.
+    /* Positions - pure horizontal slides, no tilt. Card ≈ 68vh wide.
        prev/next are scaled down and offset so they peek from the edges.        */
     const POS = {
       active:  { x:    0, scaleX: 1,    scaleY: 1,    opacity: 1, zIndex: 20 },
@@ -1277,7 +1277,7 @@
     }
 
     /* D = shared slide duration. Both the outgoing and incoming plate use the
-       SAME ease + duration so they move as one locked unit — no overlap.       */
+       SAME ease + duration so they move as one locked unit - no overlap.       */
     const D    = 0.72;
     const EASE = 'power2.inOut';
 
@@ -1287,7 +1287,7 @@
       resetAutoTimer();
 
       const oldR = roles(cur);
-      cur = (cur + dir + TOTAL) % TOTAL;   /* update IMMEDIATELY — counter ticks now */
+      cur = (cur + dir + TOTAL) % TOTAL;   /* update IMMEDIATELY - counter ticks now */
       updateCounter();
 
       /* Snap hidden card to the correct waiting side (happens off-screen).     */
@@ -1302,7 +1302,7 @@
       const tl = gsap.timeline({ onComplete: () => { busy = false; } });
 
       if (dir > 0) {
-        /* FORWARD — everything shifts left at identical velocity.               */
+        /* FORWARD - everything shifts left at identical velocity.               */
         tl.to(cards[oldR.active],   { ...POS.prev,    duration: D, ease: EASE }, 0);
         tl.to(nameEls[oldR.active], { x: NX.prev,    opacity: 0, duration: D, ease: EASE }, 0);
 
@@ -1320,7 +1320,7 @@
         tl.to(cards[oldR.next], { rotateZ:  0, duration: D * 0.9,  ease: 'elastic.out(1.5,0.32)' }, D * 0.52);
 
       } else {
-        /* BACKWARD — everything shifts right at identical velocity.             */
+        /* BACKWARD - everything shifts right at identical velocity.             */
         tl.to(cards[oldR.active],   { ...POS.next,    duration: D, ease: EASE }, 0);
         tl.to(nameEls[oldR.active], { x: NX.next,    opacity: 0, duration: D, ease: EASE }, 0);
 
@@ -1360,7 +1360,7 @@
 
     function openMenu() {
       if (!mobileOverlay) return;
-      /* Lock scroll — position:fixed approach works on iOS Safari */
+      /* Lock scroll - position:fixed approach works on iOS Safari */
       savedScroll = window.scrollY;
       document.body.style.position = 'fixed';
       document.body.style.top      = `-${savedScroll}px`;
