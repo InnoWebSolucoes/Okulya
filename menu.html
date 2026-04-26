@@ -9,214 +9,170 @@
   <link href="https://fonts.googleapis.com/css2?family=Agbalumo&family=Quicksand:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
-    html { scroll-behavior: smooth; }
 
     body {
-      background: #000000;
-      color: #F1FFFF;
+      background: #482E2B;
+      min-height: 100svh;
       font-family: 'Quicksand', sans-serif;
       overflow-x: hidden;
     }
 
-    ::-webkit-scrollbar { width: 4px; }
-    ::-webkit-scrollbar-track { background: #000000; }
-    ::-webkit-scrollbar-thumb { background: #ED9B2344; border-radius: 2px; }
-
-    /* ── NAV ──────────────────────────────────────────────────── */
+    /* ── TOP NAV ─────────────────────────────────────────────────── */
     #top-nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 300;
       display: flex; align-items: center; justify-content: space-between;
-      padding: 1rem 2.4rem;
-      background: #482E2B;
-      border-bottom: 1px solid rgba(237,155,35,0.12);
+      padding: 1.4rem 2rem;
+      background: linear-gradient(to bottom, rgba(14,9,6,0.92) 0%, transparent 100%);
     }
+
     .back-link {
       display: inline-flex; align-items: center; gap: 0.55rem;
-      color: rgba(241,255,255,0.7); text-decoration: none;
+      color: rgba(241,255,255,0.5); text-decoration: none;
       font-family: 'Quicksand', sans-serif;
-      font-size: 0.62rem; font-weight: 500;
+      font-size: 0.56rem; font-weight: 500;
       letter-spacing: 0.2em; text-transform: uppercase;
       transition: color 0.22s ease;
       background: none; border: none; cursor: pointer;
-      padding: 1rem 0; margin: -1rem 0;
+      padding: 1rem 1.4rem 1rem 0;
+      margin: -1rem -1.4rem -1rem 0;
     }
     .back-link:hover { color: #ED9B23; }
-    .nav-logo { height: 72px; width: auto; display: block; }
-    .nav-contact {
-      font-family: 'Quicksand', sans-serif;
-      font-size: 0.62rem; font-weight: 500;
-      letter-spacing: 0.2em; text-transform: uppercase;
-      color: rgba(241,255,255,0.45); text-decoration: none;
-      transition: color 0.22s ease;
-    }
-    .nav-contact:hover { color: #ED9B23; }
 
-    /* ── HERO ─────────────────────────────────────────────────── */
-    #menu-hero {
-      padding: 9rem 2.4rem 4rem;
-      position: relative;
-      background: #000000;
-      border-bottom: 1px solid rgba(237,155,35,0.1);
+    .nav-logo {
+      height: 64px; width: auto; display: block; opacity: 0.88;
     }
-    #menu-hero::after {
-      content: '';
-      position: absolute; inset: 0; pointer-events: none;
-      background: radial-gradient(ellipse 60% 80% at 0% 50%, rgba(72,46,43,0.4) 0%, transparent 65%);
+
+    /* ── PICKER VIEW ─────────────────────────────────────────────── */
+    #picker-view {
+      min-height: 100svh;
+      display: flex; flex-direction: column; justify-content: center;
+      padding: 7rem 2.4rem 4rem;
+      transition: opacity 0.4s ease;
     }
-    .hero-overline {
-      font-family: 'Quicksand', sans-serif;
-      font-size: 0.6rem; font-weight: 500;
-      letter-spacing: 0.35em; text-transform: uppercase;
-      color: #ED9B23; margin-bottom: 1rem;
-      position: relative; z-index: 1;
-    }
-    .hero-title {
+    #picker-view.hidden { opacity: 0; pointer-events: none; }
+
+    .picker-heading {
       font-family: 'Agbalumo', cursive;
-      font-style: italic; font-weight: 300;
-      font-size: clamp(3.5rem, 12vw, 7rem);
-      color: #F1FFFF; letter-spacing: -0.02em; line-height: 0.92;
-      margin-bottom: 1.4rem;
-      position: relative; z-index: 1;
+      font-weight: 300;
+      font-size: clamp(3.2rem, 12vw, 6rem);
+      color: #F1FFFF;
+      letter-spacing: -0.02em; line-height: 1;
+      margin-bottom: 0.6rem;
     }
-    .hero-rule {
-      width: 40px; height: 1px;
+
+    .picker-rule {
+      width: 36px; height: 1px;
       background: linear-gradient(to right, #ED9B23, transparent);
-      margin-bottom: 1.2rem;
-      position: relative; z-index: 1;
-    }
-    .hero-sub {
-      font-family: 'Quicksand', sans-serif;
-      font-size: 0.8rem; font-weight: 300; line-height: 1.7;
-      color: rgba(241,255,255,0.4); max-width: 38ch;
-      position: relative; z-index: 1;
+      margin-bottom: 3rem;
     }
 
-    /* ── STICKY CATEGORY NAV ──────────────────────────────────── */
-    #cat-nav {
-      position: sticky; top: 74px; z-index: 200;
-      background: rgba(0,0,0,0.92);
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid rgba(237,155,35,0.1);
-      overflow-x: auto; overflow-y: hidden;
-      -webkit-overflow-scrolling: touch;
-      scrollbar-width: none;
+    .cat-row {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.6rem 0;
+      border-top: 1px solid rgba(241,255,255,0.07);
+      cursor: pointer; background: none; border-left: none; border-right: none; border-bottom: none;
+      width: 100%; text-align: left;
+      transition: background 0.2s ease;
+      -webkit-tap-highlight-color: transparent;
     }
-    #cat-nav::-webkit-scrollbar { display: none; }
-    #cat-nav-inner {
-      display: flex; gap: 0;
-      min-width: max-content;
-      padding: 0 2.4rem;
-    }
-    .cat-nav-btn {
-      font-family: 'Quicksand', sans-serif;
-      font-size: 0.6rem; font-weight: 500;
-      letter-spacing: 0.22em; text-transform: uppercase;
-      color: rgba(241,255,255,0.35);
-      background: none; border: none; cursor: pointer;
-      padding: 1.1rem 1.4rem;
-      border-bottom: 2px solid transparent;
-      transition: color 0.22s ease, border-color 0.22s ease;
-      white-space: nowrap;
-    }
-    .cat-nav-btn:hover { color: rgba(241,255,255,0.7); }
-    .cat-nav-btn.active { color: #ED9B23; border-bottom-color: #ED9B23; }
+    .cat-row:last-child { border-bottom: 1px solid rgba(241,255,255,0.07); }
+    .cat-row:active { background: rgba(237,155,35,0.06); }
 
-    /* ── MAIN CONTENT ─────────────────────────────────────────── */
-    #menu-body { padding: 0 0 4rem; }
+    .cat-row-left { display: flex; flex-direction: column; gap: 0.3rem; }
 
-    /* ── CATEGORY SECTION ─────────────────────────────────────── */
-    .cat-section {
-      padding: 4rem 2.4rem 0;
-      scroll-margin-top: 130px;
-    }
-    .cat-section + .cat-section {
-      border-top: 1px solid rgba(237,155,35,0.08);
-      margin-top: 4rem;
-      padding-top: 4rem;
-    }
-
-    .cat-heading-row {
-      display: flex; align-items: flex-end; justify-content: space-between;
-      margin-bottom: 0.5rem; flex-wrap: wrap; gap: 0.5rem;
-    }
-    .cat-title {
+    .cat-row-name {
       font-family: 'Agbalumo', cursive;
-      font-style: italic; font-weight: 300;
-      font-size: clamp(2.6rem, 9vw, 4.5rem);
-      color: #F1FFFF; letter-spacing: -0.02em; line-height: 1;
+      font-weight: 300;
+      font-size: clamp(1.7rem, 5.5vw, 2.6rem);
+      color: #F1FFFF; line-height: 1;
+      letter-spacing: -0.01em;
     }
-    .cat-sub {
+
+    .cat-row-sub {
+      font-family: 'Quicksand', sans-serif;
+      font-size: 0.5rem; font-weight: 500;
+      letter-spacing: 0.22em; text-transform: uppercase;
+      color: #ED9B23;
+    }
+
+    .cat-row-arrow {
+      color: rgba(241,255,255,0.2);
+      flex-shrink: 0; margin-left: 1rem;
+      transition: color 0.2s ease, transform 0.2s ease;
+    }
+    .cat-row:hover .cat-row-arrow,
+    .cat-row:active .cat-row-arrow { color: #ED9B23; transform: translateX(4px); }
+
+    /* ── CATEGORY DETAIL VIEW ────────────────────────────────────── */
+    #cat-view {
+      position: fixed; inset: 0; z-index: 200;
+      background: #482E2B;
+      opacity: 0; transform: translateY(28px);
+      pointer-events: none;
+      transition: opacity 0.45s ease, transform 0.45s ease;
+      overflow-y: auto; overflow-x: hidden;
+      -webkit-overflow-scrolling: touch;
+    }
+    #cat-view.visible {
+      opacity: 1; transform: translateY(0); pointer-events: auto;
+    }
+
+    #cat-header {
+      padding: 5.5rem 2.4rem 2.4rem;
+      border-bottom: 1px solid rgba(237,155,35,0.12);
+    }
+
+    #cat-title {
+      font-family: 'Agbalumo', cursive;
+      font-weight: 300;
+      font-size: clamp(2.8rem, 10vw, 5rem);
+      color: #F1FFFF; line-height: 0.95;
+      letter-spacing: -0.02em;
+    }
+    #cat-sub {
       font-family: 'Quicksand', sans-serif;
       font-size: 0.52rem; font-weight: 500;
       letter-spacing: 0.22em; text-transform: uppercase;
-      color: #ED9B23; margin-bottom: 0.35rem;
+      color: #ED9B23; margin-top: 0.9rem;
     }
-    .cat-rule {
+    .cat-orn {
       width: 30px; height: 1px;
       background: linear-gradient(to right, #ED9B23, transparent);
-      margin-bottom: 2.4rem; margin-top: 1rem;
+      margin-top: 1.8rem;
     }
 
-    /* ── MENU ITEMS ───────────────────────────────────────────── */
-    .items-list { display: flex; flex-direction: column; }
+    #cat-items { padding: 0 2.4rem 5rem; }
 
     .menu-item {
       display: flex; justify-content: space-between;
-      align-items: flex-start; gap: 1.4rem;
-      padding: 1.7rem 0;
+      align-items: flex-start; gap: 1.2rem;
+      padding: 1.8rem 0;
       border-bottom: 1px solid rgba(241,255,255,0.05);
     }
-    .menu-item:first-child { border-top: 1px solid rgba(241,255,255,0.05); }
+    .menu-item:last-child { border-bottom: none; }
 
-    .menu-item-left { flex: 1; min-width: 0; }
+    .menu-item-left { flex: 1; }
     .menu-item-name {
       font-family: 'Agbalumo', cursive;
-      font-weight: 300; font-size: 1.45rem;
+      font-weight: 300; font-size: 1.5rem;
       color: #F1FFFF; line-height: 1.1;
-      letter-spacing: -0.01em; margin-bottom: 0.4rem;
+      letter-spacing: -0.01em;
     }
     .menu-item-desc {
       font-family: 'Quicksand', sans-serif;
-      font-size: 0.68rem; font-weight: 300;
-      line-height: 1.75; color: rgba(241,255,255,0.38);
+      font-size: 0.62rem; font-weight: 300;
+      line-height: 1.8; color: rgba(241,255,255,0.4);
+      margin-top: 0.4rem;
     }
     .menu-item-price {
       font-family: 'Quicksand', sans-serif;
-      font-size: 0.6rem; font-weight: 600;
-      letter-spacing: 0.08em; color: #ED9B23;
-      white-space: nowrap; padding-top: 0.25rem;
+      font-size: 0.56rem; font-weight: 500;
+      letter-spacing: 0.1em; color: #ED9B23;
+      white-space: nowrap; padding-top: 0.3rem;
       flex-shrink: 0;
     }
 
-    /* ── FOOTER ───────────────────────────────────────────────── */
-    .contact-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 0;
-    }
-    .contact-col {
-      padding: 2.4rem 2.4rem;
-      border-left: 1px solid rgba(237,155,35,0.12);
-    }
-    .contact-col:first-child { border-left: none; }
-    .contact-label {
-      display: block;
-      font-family: 'Quicksand', sans-serif;
-      font-size: 0.5rem; font-weight: 500;
-      letter-spacing: 0.28em; text-transform: uppercase;
-      color: #ED9B23; margin-bottom: 0.9rem;
-    }
-    .contact-val {
-      font-family: 'Quicksand', sans-serif;
-      font-size: 0.85rem; font-weight: 300;
-      line-height: 1.6; color: rgba(235,250,250,0.72);
-    }
-    @media (max-width: 768px) {
-      .contact-grid { grid-template-columns: 1fr !important; gap: 0 !important; }
-      .contact-col + .contact-col { border-left: none !important; border-top: 1px solid rgba(237,155,35,0.12) !important; }
-    }
-
-    /* ── WhatsApp widget ──────────────────────────────────────── */
+    /* ── WhatsApp widget ──────────────────────────────────────────── */
     #wa-widget {
       position: fixed; bottom: 1.6rem; right: 1.6rem;
       width: 54px; height: 54px; border-radius: 50%;
@@ -231,10 +187,9 @@
     #wa-widget:hover { transform: scale(1.1); }
 
     @media (max-width: 600px) {
-      #menu-hero { padding: 8rem 1.6rem 3rem; }
-      .cat-section { padding: 3rem 1.6rem 0; }
-      .contact-col { padding: 2rem 1.6rem; }
-      #cat-nav-inner { padding: 0 1.2rem; }
+      #picker-view  { padding: 6rem 1.6rem 3rem; }
+      #cat-header   { padding: 6rem 1.6rem 2rem; }
+      #cat-items    { padding: 0 1.6rem 5rem; }
     }
   </style>
 </head>
@@ -242,7 +197,7 @@
 
   <!-- ── TOP NAV ──────────────────────────────────────────────── -->
   <nav id="top-nav">
-    <a href="index.html" class="back-link">
+    <a href="index.html" class="back-link" id="nav-back">
       <svg width="15" height="10" viewBox="0 0 15 10" fill="none" style="flex-shrink:0;">
         <line x1="14" y1="5" x2="1" y2="5" stroke="currentColor" stroke-width="0.85" stroke-linecap="round"/>
         <polyline points="5,1 1,5 5,9" stroke="currentColor" stroke-width="0.85" stroke-linecap="round" stroke-linejoin="round"/>
@@ -250,269 +205,72 @@
       Voltar
     </a>
     <img src="Brand Reasources/logo.png" class="nav-logo" alt="Okulya Café" />
-    <a href="index.html#contact" class="nav-contact">Contacto</a>
+    <a href="index.html#contact"
+       style="font-family:'Quicksand',sans-serif;font-size:0.56rem;font-weight:500;
+              letter-spacing:0.22em;text-transform:uppercase;color:rgba(241,255,255,0.45);
+              text-decoration:none;transition:color 0.22s ease;"
+       onmouseover="this.style.color='#ED9B23'" onmouseout="this.style.color='rgba(241,255,255,0.45)'">Contacto</a>
   </nav>
 
-  <!-- ── HERO ─────────────────────────────────────────────────── -->
-  <section id="menu-hero">
-    <p class="hero-overline">Okulya Café &nbsp;·&nbsp; Talatona</p>
-    <h1 class="hero-title">Cardápio</h1>
-    <div class="hero-rule"></div>
-    <p class="hero-sub">Da primeira chávena de café ao último petisco da tarde — cada prato feito com cuidado.</p>
-  </section>
+  <!-- ── CATEGORY PICKER ──────────────────────────────────────── -->
+  <div id="picker-view">
+    <h1 class="picker-heading">menu</h1>
+    <div class="picker-rule"></div>
 
-  <!-- ── STICKY CATEGORY NAV ──────────────────────────────────── -->
-  <nav id="cat-nav" aria-label="Categorias">
-    <div id="cat-nav-inner">
-      <button class="cat-nav-btn active" data-target="entradas">Entradas</button>
-      <button class="cat-nav-btn" data-target="pratos">Pratos Principais</button>
-      <button class="cat-nav-btn" data-target="sobremesas">Sobremesas</button>
-      <button class="cat-nav-btn" data-target="bebidas">Bebidas</button>
+    <button class="cat-row" onclick="showCategory('entradas')">
+      <div class="cat-row-left">
+        <span class="cat-row-name">Entradas</span>
+        <span class="cat-row-sub">Petiscos &amp; Sopas</span>
+      </div>
+      <svg class="cat-row-arrow" width="18" height="14" viewBox="0 0 18 14" fill="none">
+        <line x1="1" y1="7" x2="16" y2="7" stroke="currentColor" stroke-width="0.9" stroke-linecap="round"/>
+        <polyline points="11,2 16,7 11,12" stroke="currentColor" stroke-width="0.9" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
+
+    <button class="cat-row" onclick="showCategory('pratos')">
+      <div class="cat-row-left">
+        <span class="cat-row-name">Pratos Principais</span>
+        <span class="cat-row-sub">Mar &amp; Terra</span>
+      </div>
+      <svg class="cat-row-arrow" width="18" height="14" viewBox="0 0 18 14" fill="none">
+        <line x1="1" y1="7" x2="16" y2="7" stroke="currentColor" stroke-width="0.9" stroke-linecap="round"/>
+        <polyline points="11,2 16,7 11,12" stroke="currentColor" stroke-width="0.9" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
+
+    <button class="cat-row" onclick="showCategory('sobremesas')">
+      <div class="cat-row-left">
+        <span class="cat-row-name">Sobremesas</span>
+        <span class="cat-row-sub">Doces Finais</span>
+      </div>
+      <svg class="cat-row-arrow" width="18" height="14" viewBox="0 0 18 14" fill="none">
+        <line x1="1" y1="7" x2="16" y2="7" stroke="currentColor" stroke-width="0.9" stroke-linecap="round"/>
+        <polyline points="11,2 16,7 11,12" stroke="currentColor" stroke-width="0.9" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
+
+    <button class="cat-row" onclick="showCategory('bebidas')">
+      <div class="cat-row-left">
+        <span class="cat-row-name">Bebidas</span>
+        <span class="cat-row-sub">Bar &amp; Carta de Vinhos</span>
+      </div>
+      <svg class="cat-row-arrow" width="18" height="14" viewBox="0 0 18 14" fill="none">
+        <line x1="1" y1="7" x2="16" y2="7" stroke="currentColor" stroke-width="0.9" stroke-linecap="round"/>
+        <polyline points="11,2 16,7 11,12" stroke="currentColor" stroke-width="0.9" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
+  </div>
+
+  <!-- ── CATEGORY DETAIL VIEW ─────────────────────────────────── -->
+  <div id="cat-view">
+    <div id="cat-header">
+      <h1 id="cat-title"></h1>
+      <p  id="cat-sub"></p>
+      <div class="cat-orn"></div>
     </div>
-  </nav>
-
-  <!-- ── MENU BODY ─────────────────────────────────────────────── -->
-  <main id="menu-body">
-
-    <!-- ENTRADAS -->
-    <section class="cat-section" id="entradas">
-      <div class="cat-heading-row">
-        <h2 class="cat-title">Entradas</h2>
-        <span class="cat-sub">Petiscos &amp; Sopas</span>
-      </div>
-      <div class="cat-rule"></div>
-      <div class="items-list">
-        <div class="menu-item">
-          <div class="menu-item-left">
-            <p class="menu-item-name">Caldo de Amendoim</p>
-            <p class="menu-item-desc">Caldo tradicional angolano com amendoim tostado e coentros frescos</p>
-          </div>
-          <p class="menu-item-price">1 500 Kz</p>
-        </div>
-        <div class="menu-item">
-          <div class="menu-item-left">
-            <p class="menu-item-name">Camarão ao Alho</p>
-            <p class="menu-item-desc">Camarões salteados em azeite, alho laminado e piri-piri da casa</p>
-          </div>
-          <p class="menu-item-price">3 500 Kz</p>
-        </div>
-        <div class="menu-item">
-          <div class="menu-item-left">
-            <p class="menu-item-name">Polvo Grelhado</p>
-            <p class="menu-item-desc">Polvo grelhado sobre puré de batata-doce com azeite de ervas</p>
-          </div>
-          <p class="menu-item-price">4 200 Kz</p>
-        </div>
-        <div class="menu-item">
-          <div class="menu-item-left">
-            <p class="menu-item-name">Salada da Casa</p>
-            <p class="menu-item-desc">Folhas frescas, tomate, pepino, azeitona e vinagrete de limão</p>
-          </div>
-          <p class="menu-item-price">2 000 Kz</p>
-        </div>
-        <div class="menu-item">
-          <div class="menu-item-left">
-            <p class="menu-item-name">Tábua de Fumados</p>
-            <p class="menu-item-desc">Seleção de enchidos artesanais com queijos curados e acompanhamentos</p>
-          </div>
-          <p class="menu-item-price">5 000 Kz</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- PRATOS PRINCIPAIS -->
-    <section class="cat-section" id="pratos">
-      <div class="cat-heading-row">
-        <h2 class="cat-title">Pratos Principais</h2>
-        <span class="cat-sub">Mar &amp; Terra</span>
-      </div>
-      <div class="cat-rule"></div>
-      <div class="items-list">
-        <div class="menu-item">
-          <div class="menu-item-left">
-            <p class="menu-item-name">Costela Premium</p>
-            <p class="menu-item-desc">Costela maturada 72 horas, fumada ao carvão com especiarias da casa</p>
-          </div>
-          <p class="menu-item-price">8 500 Kz</p>
-        </div>
-        <div class="menu-item">
-          <div class="menu-item-left">
-            <p class="menu-item-name">Lagosta Grelhada</p>
-            <p class="menu-item-desc">Lagosta fresca grelhada com manteiga de ervas e limão galego</p>
-          </div>
-          <p class="menu-item-price">12 000 Kz</p>
-        </div>
-        <div class="menu-item">
-          <div class="menu-item-left">
-            <p class="menu-item-name">Entrecosto Wagyu</p>
-            <p class="menu-item-desc">Wagyu A4 ao ponto, molho de vinho tinto e batata rústica assada</p>
-          </div>
-          <p class="menu-item-price">15 500 Kz</p>
-        </div>
-        <div class="menu-item">
-          <div class="menu-item-left">
-            <p class="menu-item-name">Camarão Flambado</p>
-            <p class="menu-item-desc">Camarão jumbo flambado em aguardente com arroz de tomate e coentros</p>
-          </div>
-          <p class="menu-item-price">9 500 Kz</p>
-        </div>
-        <div class="menu-item">
-          <div class="menu-item-left">
-            <p class="menu-item-name">Frango na Brasa</p>
-            <p class="menu-item-desc">Frango campestre marinado 24 horas, grelhado na brasa com piri-piri</p>
-          </div>
-          <p class="menu-item-price">6 000 Kz</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- SOBREMESAS -->
-    <section class="cat-section" id="sobremesas">
-      <div class="cat-heading-row">
-        <h2 class="cat-title">Sobremesas</h2>
-        <span class="cat-sub">Doces Finais</span>
-      </div>
-      <div class="cat-rule"></div>
-      <div class="items-list">
-        <div class="menu-item">
-          <div class="menu-item-left">
-            <p class="menu-item-name">Pudim de Coco</p>
-            <p class="menu-item-desc">Pudim cremoso de coco com calda de caramelo salgado e flor de sal</p>
-          </div>
-          <p class="menu-item-price">1 800 Kz</p>
-        </div>
-        <div class="menu-item">
-          <div class="menu-item-left">
-            <p class="menu-item-name">Tarte de Chocolate</p>
-            <p class="menu-item-desc">Tarte de chocolate amargo com gelado de baunilha Madagascar</p>
-          </div>
-          <p class="menu-item-price">2 200 Kz</p>
-        </div>
-        <div class="menu-item">
-          <div class="menu-item-left">
-            <p class="menu-item-name">Mousse de Maracujá</p>
-            <p class="menu-item-desc">Mousse aerada de maracujá fresco com coulis de frutas tropicais</p>
-          </div>
-          <p class="menu-item-price">1 600 Kz</p>
-        </div>
-        <div class="menu-item">
-          <div class="menu-item-left">
-            <p class="menu-item-name">Frutos da Época</p>
-            <p class="menu-item-desc">Seleção de frutos tropicais frescos com mel de abelha e hortelã</p>
-          </div>
-          <p class="menu-item-price">1 400 Kz</p>
-        </div>
-        <div class="menu-item">
-          <div class="menu-item-left">
-            <p class="menu-item-name">Semifrio de Amendoim</p>
-            <p class="menu-item-desc">Semifrio artesanal com crocante de caramelo e amendoim tostado</p>
-          </div>
-          <p class="menu-item-price">2 000 Kz</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- BEBIDAS -->
-    <section class="cat-section" id="bebidas">
-      <div class="cat-heading-row">
-        <h2 class="cat-title">Bebidas</h2>
-        <span class="cat-sub">Bar &amp; Carta de Vinhos</span>
-      </div>
-      <div class="cat-rule"></div>
-      <div class="items-list">
-        <div class="menu-item">
-          <div class="menu-item-left">
-            <p class="menu-item-name">Caipirinha da Casa</p>
-            <p class="menu-item-desc">Limão, açúcar mascavado e cachaça premium — clássica ou com fruta da época</p>
-          </div>
-          <p class="menu-item-price">2 500 Kz</p>
-        </div>
-        <div class="menu-item">
-          <div class="menu-item-left">
-            <p class="menu-item-name">Cocktail do Chefe</p>
-            <p class="menu-item-desc">Criação semanal exclusiva com destilados artesanais e frutas frescas</p>
-          </div>
-          <p class="menu-item-price">3 200 Kz</p>
-        </div>
-        <div class="menu-item">
-          <div class="menu-item-left">
-            <p class="menu-item-name">Vinho Tinto da Casa</p>
-            <p class="menu-item-desc">Seleção mensal de adegas parceiras — pergunte ao nosso sommelier</p>
-          </div>
-          <p class="menu-item-price">4 500 Kz / garrafa</p>
-        </div>
-        <div class="menu-item">
-          <div class="menu-item-left">
-            <p class="menu-item-name">Cerveja Brava</p>
-            <p class="menu-item-desc">Cerveja angolana gelada, a escolha perfeita para as nossas costelas</p>
-          </div>
-          <p class="menu-item-price">1 200 Kz</p>
-        </div>
-        <div class="menu-item">
-          <div class="menu-item-left">
-            <p class="menu-item-name">Sumos Naturais</p>
-            <p class="menu-item-desc">Espremidos na hora: maracujá, manga, laranja ou papaia</p>
-          </div>
-          <p class="menu-item-price">1 000 Kz</p>
-        </div>
-      </div>
-    </section>
-
-  </main>
-
-  <!-- ── FOOTER ────────────────────────────────────────────────── -->
-  <footer id="contact" style="background:#000000;border-top:1px solid rgba(237,155,35,0.12);padding:0;position:relative;overflow:hidden;margin-top:5rem;">
-    <div style="position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse 70% 60% at 50% 0%,rgba(237,155,35,0.06) 0%, transparent 70%);"></div>
-
-    <div style="position:relative;z-index:1;text-align:center;padding:5rem 2.4rem 4rem;border-bottom:1px solid rgba(237,155,35,0.1);">
-      <p style="font-family:'Quicksand',sans-serif;font-size:0.62rem;font-weight:500;letter-spacing:0.35em;text-transform:uppercase;color:#ED9B23;margin-bottom:1.2rem;">Junte-se à conversa</p>
-      <h2 style="font-family:'Agbalumo',cursive;font-style:italic;font-size:clamp(2.4rem,5.5vw,4.5rem);color:#F1FFFF;letter-spacing:-0.02em;line-height:1;margin-bottom:1rem;">Siga. Partilhe. <em style="color:#ED9B23;">Inspire.</em></h2>
-      <p style="font-family:'Quicksand',sans-serif;font-size:0.82rem;font-weight:300;color:rgba(241,255,255,0.45);margin-bottom:0.6rem;letter-spacing:0.04em;">Marque-nos nas suas fotos e faça parte da nossa história.</p>
-      <p style="font-family:'Agbalumo',cursive;font-style:italic;font-size:1.3rem;color:rgba(237,155,35,0.6);margin-bottom:2.5rem;">@0kulya.cafe</p>
-      <div style="display:flex;align-items:center;justify-content:center;gap:1rem;flex-wrap:wrap;margin-bottom:2rem;">
-        <a href="https://www.instagram.com/0kulya.cafe/" target="_blank" rel="noopener" style="display:inline-flex;flex-direction:column;align-items:center;gap:0.5rem;text-decoration:none;transition:transform 0.22s cubic-bezier(0.34,1.56,0.64,1);" onmouseover="this.style.transform='translateY(-4px)'" onmouseout="this.style.transform=''">
-          <div style="width:46px;height:46px;border-radius:50%;border:1px solid rgba(241,255,255,0.12);background:rgba(241,255,255,0.04);display:flex;align-items:center;justify-content:center;color:#F1FFFF;transition:border-color 0.22s ease;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></div>
-          <span style="font-family:'Quicksand',sans-serif;font-size:0.48rem;font-weight:500;letter-spacing:0.18em;text-transform:uppercase;color:rgba(241,255,255,0.3);">Instagram</span>
-        </a>
-        <a href="https://www.facebook.com/profile.php?id=100083340589429" target="_blank" rel="noopener" style="display:inline-flex;flex-direction:column;align-items:center;gap:0.5rem;text-decoration:none;transition:transform 0.22s cubic-bezier(0.34,1.56,0.64,1);" onmouseover="this.style.transform='translateY(-4px)'" onmouseout="this.style.transform=''">
-          <div style="width:46px;height:46px;border-radius:50%;border:1px solid rgba(241,255,255,0.12);background:rgba(241,255,255,0.04);display:flex;align-items:center;justify-content:center;color:#F1FFFF;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></div>
-          <span style="font-family:'Quicksand',sans-serif;font-size:0.48rem;font-weight:500;letter-spacing:0.18em;text-transform:uppercase;color:rgba(241,255,255,0.3);">Facebook</span>
-        </a>
-        <a href="https://www.tiktok.com/@0kulya.cafe" target="_blank" rel="noopener" style="display:inline-flex;flex-direction:column;align-items:center;gap:0.5rem;text-decoration:none;transition:transform 0.22s cubic-bezier(0.34,1.56,0.64,1);" onmouseover="this.style.transform='translateY(-4px)'" onmouseout="this.style.transform=''">
-          <div style="width:46px;height:46px;border-radius:50%;border:1px solid rgba(241,255,255,0.12);background:rgba(241,255,255,0.04);display:flex;align-items:center;justify-content:center;color:#F1FFFF;"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.29 6.29 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.34-6.34V8.74a8.2 8.2 0 0 0 4.79 1.52V6.82a4.85 4.85 0 0 1-1.03-.13z"/></svg></div>
-          <span style="font-family:'Quicksand',sans-serif;font-size:0.48rem;font-weight:500;letter-spacing:0.18em;text-transform:uppercase;color:rgba(241,255,255,0.3);">TikTok</span>
-        </a>
-        <a href="https://www.linkedin.com/company/okulya" target="_blank" rel="noopener" style="display:inline-flex;flex-direction:column;align-items:center;gap:0.5rem;text-decoration:none;transition:transform 0.22s cubic-bezier(0.34,1.56,0.64,1);" onmouseover="this.style.transform='translateY(-4px)'" onmouseout="this.style.transform=''">
-          <div style="width:46px;height:46px;border-radius:50%;border:1px solid rgba(241,255,255,0.12);background:rgba(241,255,255,0.04);display:flex;align-items:center;justify-content:center;color:#F1FFFF;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></div>
-          <span style="font-family:'Quicksand',sans-serif;font-size:0.48rem;font-weight:500;letter-spacing:0.18em;text-transform:uppercase;color:rgba(241,255,255,0.3);">LinkedIn</span>
-        </a>
-        <a href="https://www.tripadvisor.co.uk/Restaurant_Review-g293763-d33320831-Reviews-Okulya_Cafe-Luanda_Luanda_Province.html" target="_blank" rel="noopener" style="display:inline-flex;flex-direction:column;align-items:center;gap:0.5rem;text-decoration:none;transition:transform 0.22s cubic-bezier(0.34,1.56,0.64,1);" onmouseover="this.style.transform='translateY(-4px)'" onmouseout="this.style.transform=''">
-          <div style="width:46px;height:46px;border-radius:50%;border:1px solid rgba(241,255,255,0.12);background:rgba(241,255,255,0.04);display:flex;align-items:center;justify-content:center;color:#F1FFFF;"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"/></svg></div>
-          <span style="font-family:'Quicksand',sans-serif;font-size:0.48rem;font-weight:500;letter-spacing:0.18em;text-transform:uppercase;color:rgba(241,255,255,0.3);">TripAdvisor</span>
-        </a>
-      </div>
-      <a href="https://linktr.ee/okulya.cafe" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:0.6rem;font-family:'Quicksand',sans-serif;font-size:0.68rem;font-weight:500;letter-spacing:0.15em;color:rgba(237,155,35,0.7);text-decoration:none;border:1px solid rgba(237,155,35,0.25);padding:0.65rem 1.6rem;border-radius:2px;transition:border-color 0.22s ease,color 0.22s ease;" onmouseover="this.style.borderColor='#ED9B23';this.style.color='#ED9B23'" onmouseout="this.style.borderColor='rgba(237,155,35,0.25)';this.style.color='rgba(237,155,35,0.7)'">Todos os nossos links &nbsp;→&nbsp; linktr.ee/okulya.cafe</a>
-    </div>
-
-    <div style="padding:4rem 2.4rem 3rem;position:relative;z-index:1;">
-      <div class="contact-grid">
-        <div class="contact-col">
-          <span class="contact-label">Morada</span>
-          <a href="https://www.google.com/maps/dir//Quick+Shop,+35MX%2B4RC,+Unnamed+Road,+Belas,+Angola/@51.5254742,-0.105732,5778m/data=!3m1!1e3!4m8!4m7!1m0!1m5!1m1!1s0x1a51f5836cad81bd:0x32e2ee1b39045b8c!2m2!1d13.1995378!2d-8.9171841?entry=ttu&g_ep=EgoyMDI2MDQyMi4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener" class="contact-val" style="color:rgba(235,250,250,0.72);text-decoration:none;border-bottom:1px solid rgba(237,155,35,0.3);padding-bottom:2px;" onmouseover="this.style.color='#ED9B23'" onmouseout="this.style.color='rgba(235,250,250,0.72)'">Rua do Mat, ao lado do<br>Espaço Luanda, Talatona</a>
-        </div>
-        <div class="contact-col">
-          <span class="contact-label">Reservas &amp; Encomendas</span>
-          <p class="contact-val">+244 943 410 347</p>
-        </div>
-        <div class="contact-col">
-          <span class="contact-label">Horário</span>
-          <p class="contact-val" style="line-height:1.8;">Seg. – Sex. &nbsp;7h – 20h<br><span style="font-size:0.88em;opacity:0.65;">Sáb., Dom. e Feriados<br>7h – 18h</span></p>
-        </div>
-      </div>
-    </div>
-    <div style="width:48px;height:1px;background:rgba(237,155,35,0.22);margin:0 auto 2rem;position:relative;z-index:1;"></div>
-    <p style="font-family:'Quicksand',sans-serif;font-size:0.52rem;font-weight:300;letter-spacing:0.2em;text-transform:uppercase;color:rgba(235,250,250,0.15);text-align:center;padding-bottom:3rem;position:relative;z-index:1;">&copy; 2026 Okulya Café &nbsp;&middot;&nbsp; Talatona, Luanda, Angola</p>
-  </footer>
+    <div id="cat-items"></div>
+  </div>
 
   <!-- ── WhatsApp Widget ──────────────────────────────────────── -->
   <div id="wa-widget" title="Falar connosco no WhatsApp">
@@ -522,35 +280,90 @@
   </div>
 
   <script>
-  (function(){
-    // sticky category nav highlight
-    var btns = document.querySelectorAll('.cat-nav-btn');
-    var sections = Array.from(document.querySelectorAll('.cat-section'));
+  (function() {
+    var MENU = {
+      entradas: { title:'Entradas', sub:'Para começar', items:[
+        {name:'Caldo de Amendoim',   desc:'Caldo tradicional angolano com amendoim tostado e coentros frescos',          price:'1 500 Kz'},
+        {name:'Camarão ao Alho',     desc:'Camarões salteados em azeite, alho laminado e piri-piri da casa',             price:'3 500 Kz'},
+        {name:'Polvo Grelhado',      desc:'Polvo grelhado sobre puré de batata-doce com azeite de ervas',                price:'4 200 Kz'},
+        {name:'Salada da Casa',      desc:'Folhas frescas, tomate, pepino, azeitona e vinagrete de limão',               price:'2 000 Kz'},
+        {name:'Tábua de Fumados',    desc:'Seleção de enchidos artesanais com queijos curados e acompanhamentos',        price:'5 000 Kz'},
+      ]},
+      pratos: { title:'Pratos Principais', sub:'Mar & Terra', items:[
+        {name:'Costela Premium',     desc:'Costela maturada 72 horas, fumada ao carvão com especiarias da casa',         price:'8 500 Kz'},
+        {name:'Lagosta Grelhada',    desc:'Lagosta fresca grelhada com manteiga de ervas e limão galego',                price:'12 000 Kz'},
+        {name:'Entrecosto Wagyu',    desc:'Wagyu A4 ao ponto, molho de vinho tinto e batata rústica assada',             price:'15 500 Kz'},
+        {name:'Camarão Flambado',    desc:'Camarão jumbo flambado em aguardente com arroz de tomate e coentros',         price:'9 500 Kz'},
+        {name:'Frango na Brasa',     desc:'Frango campestre marinado 24 horas, grelhado na brasa com piri-piri',         price:'6 000 Kz'},
+      ]},
+      sobremesas: { title:'Sobremesas', sub:'Doces finais', items:[
+        {name:'Pudim de Coco',       desc:'Pudim cremoso de coco com calda de caramelo salgado e flor de sal',          price:'1 800 Kz'},
+        {name:'Tarte de Chocolate',  desc:'Tarte de chocolate amargo com gelado de baunilha Madagascar',                price:'2 200 Kz'},
+        {name:'Mousse de Maracujá',  desc:'Mousse aerada de maracujá fresco com coulis de frutas tropicais',            price:'1 600 Kz'},
+        {name:'Frutos da Época',     desc:'Seleção de frutos tropicais frescos com mel de abelha e hortelã',            price:'1 400 Kz'},
+        {name:'Semifrio de Amendoim',desc:'Semifrio artesanal com crocante de caramelo e amendoim tostado',             price:'2 000 Kz'},
+      ]},
+      bebidas: { title:'Bebidas', sub:'Bar & Carta de Vinhos', items:[
+        {name:'Caipirinha da Casa',  desc:'Limão, açúcar mascavado e cachaça premium — clássica ou com fruta da época', price:'2 500 Kz'},
+        {name:'Cocktail do Chefe',   desc:'Criação semanal exclusiva com destilados artesanais e frutas frescas',       price:'3 200 Kz'},
+        {name:'Vinho Tinto da Casa', desc:'Seleção mensal de adegas parceiras — pergunte ao nosso sommelier',           price:'4 500 Kz / garrafa'},
+        {name:'Cerveja Brava',       desc:'Cerveja angolana gelada, a escolha perfeita para as nossas costelas',        price:'1 200 Kz'},
+        {name:'Sumos Naturais',      desc:'Espremidos na hora: maracujá, manga, laranja ou papaia',                     price:'1 000 Kz'},
+      ]},
+    };
 
-    var obs = new IntersectionObserver(function(entries) {
-      entries.forEach(function(e) {
-        if (e.isIntersecting) {
-          btns.forEach(function(b) { b.classList.remove('active'); });
-          var active = document.querySelector('.cat-nav-btn[data-target="'+e.target.id+'"]');
-          if (active) active.classList.add('active');
-        }
-      });
-    }, { rootMargin: '-30% 0px -60% 0px', threshold: 0 });
+    function renderItems(key) {
+      var data = MENU[key]; if (!data) return;
+      document.getElementById('cat-title').textContent = data.title;
+      document.getElementById('cat-sub').textContent   = data.sub;
+      document.getElementById('cat-items').innerHTML   = data.items.map(function(it){
+        return '<div class="menu-item"><div class="menu-item-left">' +
+          '<p class="menu-item-name">'+it.name+'</p>' +
+          '<p class="menu-item-desc">'+it.desc+'</p></div>' +
+          '<p class="menu-item-price">'+it.price+'</p></div>';
+      }).join('');
+    }
 
-    sections.forEach(function(s) { obs.observe(s); });
+    function showCat(key) {
+      if (!MENU[key]) return;
+      renderItems(key);
+      document.getElementById('cat-view').classList.add('visible');
+      document.getElementById('picker-view').classList.add('hidden');
+      var nb = document.getElementById('nav-back');
+      nb._origHref = nb.href;
+      nb.href = '#';
+      nb.onclick = function(e) {
+        e.preventDefault();
+        hideCat();
+      };
+      if (history.pushState) history.pushState({ cat: key }, '', '#' + key);
+    }
 
-    btns.forEach(function(btn) {
-      btn.addEventListener('click', function() {
-        var target = document.getElementById(btn.dataset.target);
-        if (target) target.scrollIntoView({ behavior: 'smooth' });
-      });
+    function hideCat() {
+      document.getElementById('cat-view').classList.remove('visible');
+      document.getElementById('picker-view').classList.remove('hidden');
+      var nb = document.getElementById('nav-back');
+      nb.href = 'index.html';
+      nb.onclick = null;
+      if (history.pushState) history.pushState(null, '', location.pathname);
+    }
+
+    window.showCategory = showCat;
+
+    window.addEventListener('popstate', function() {
+      if (document.getElementById('cat-view').classList.contains('visible')) {
+        hideCat();
+      }
     });
+
+    var h = (location.hash || '').replace('#', '');
+    if (h && MENU[h]) showCat(h);
 
     // WhatsApp widget
     var wa = document.getElementById('wa-widget');
     if (!wa) return;
     var startX, startY, isDragging = false;
-    var waUrl = 'https://wa.me/244943410347?text=Ol%C3%A1!%20Gostaria%20de%20saber%20mais%20sobre%20o%20Okulya%20Caf%C3%A9.';
+    var waUrl = 'https://wa.me/244933002904?text=Ol%C3%A1!%20Gostaria%20de%20saber%20mais%20sobre%20o%20Okulya%20Caf%C3%A9.';
     wa.addEventListener('pointerdown', function(e) {
       e.preventDefault();
       wa.setPointerCapture(e.pointerId);
