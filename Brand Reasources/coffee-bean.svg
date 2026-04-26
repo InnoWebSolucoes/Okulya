@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 220">
+  <!-- Outer bean body -->
+  <path d="M42,156 C16,118 20,55 58,28 C96,1 164,0 212,24 C250,42 276,78 268,114 C260,151 232,175 192,185 C146,197 68,194 42,156Z" fill="#C47B0A"/>
+  <!-- Inner hole -->
+  <path d="M84,142 C64,116 72,76 98,58 C124,40 164,40 194,60 C220,76 226,110 212,134 C196,160 158,170 126,165 C104,162 96,160 84,142Z" fill="white"/>
+  <!-- Highlight stripes right side -->
+  <path d="M212,30 C240,56 246,96 228,132" fill="none" stroke="rgba(255,220,140,0.36)" stroke-width="9" stroke-linecap="round"/>
+  <path d="M222,40 C248,66 252,104 236,138" fill="none" stroke="rgba(255,220,140,0.22)" stroke-width="6" stroke-linecap="round"/>
+  <path d="M228,50 C254,76 256,112 240,144" fill="none" stroke="rgba(255,220,140,0.12)" stroke-width="4" stroke-linecap="round"/>
+  <!-- Specks top left -->
+  <circle cx="58" cy="76" r="5" fill="rgba(170,100,0,0.55)"/>
+  <circle cx="70" cy="65" r="3.5" fill="rgba(170,100,0,0.42)"/>
+</svg>

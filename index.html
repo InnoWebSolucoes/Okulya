@@ -264,13 +264,30 @@
       margin: 1.8rem auto;
     }
 
+    /* ─── Coffee bean scatter ─────────────────────────────────────────────────── */
+    .bean-sprite {
+      position: absolute;
+      pointer-events: auto;
+      opacity: 0;
+      transition: opacity 0.9s cubic-bezier(0.4,0,0.2,1);
+      will-change: opacity;
+      display: block;
+    }
+    .bean-sprite.in-view { opacity: var(--op, 0.07); }
+    .bean-sprite:hover { opacity: 0.22 !important; transition: opacity 0.18s ease; cursor: default; }
+    .bean-cluster { position: absolute; pointer-events: none; z-index: 1; }
+    .bean-cluster .bean-sprite { pointer-events: auto; }
+    @media (max-width: 768px) {
+      .bean-cluster { transform: scale(0.7); transform-origin: top left; }
+    }
+
     /* ─── Contact footer grid ────────────────────────────────────────────────── */
     .contact-grid {
       display: grid;
       grid-template-columns: 1fr 1fr 1fr;
       gap: 3rem;
       max-width: 800px;
-      margin: 0 auto 4rem;
+      margin: 0 auto;
       position: relative; z-index: 1;
       text-align: center;
     }
@@ -563,19 +580,10 @@
     <div style="position:absolute;inset:0;background:#0d0907;overflow:hidden;">
       <video id="hero-video" autoplay muted loop playsinline preload="auto"
              style="position:absolute;inset:0;width:100%;height:100%;
-                    object-fit:cover;object-position:center;">
-        <!-- Source injected by inline script below for correct mobile/desktop pick -->
+                    object-fit:cover;object-position:center;background:#0d0907;"
+             poster="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScAAAAAElFTkSuQmCC">
+        <source src="hero-video.mp4" type="video/mp4" />
       </video>
-      <script>
-        (function () {
-          var vid = document.getElementById('hero-video');
-          var isMob = window.screen.width < 768 || window.innerWidth < 768;
-          var src = document.createElement('source');
-          src.type = 'video/mp4';
-          src.src  = 'hero-video.mp4';
-          vid.appendChild(src);
-        })();
-      </script>
     </div>
 
     <div style="position:absolute;inset:0;background:rgba(0,0,0,0.38);z-index:1;"></div>
@@ -622,17 +630,26 @@
                 justify-content:center;gap:2.5rem;
                 text-align:center;padding:0 2rem;">
       <h1 class="tagline">O sabor de casa. A alma de Luanda.</h1>
-      <a href="menu.html"
-         style="display:inline-block;
-                font-family:'Quicksand',sans-serif;font-size:0.68rem;font-weight:600;
-                letter-spacing:0.22em;text-transform:uppercase;text-decoration:none;
-                color:#1a0e07;background:#ED9B23;
-                padding:1rem 2.8rem;border-radius:2px;
-                transition:opacity 0.22s ease,transform 0.22s cubic-bezier(0.34,1.56,0.64,1);"
-         onmouseover="this.style.opacity='0.85';this.style.transform='translateY(-2px)'"
-         onmouseout="this.style.opacity='1';this.style.transform=''">
-        Ver Menu
+      <a href="menu.html" class="slot-btn">
+        <span class="slot-inner">
+          <span class="slot-track">
+            <span class="slot-word">Ver Menu</span>
+            <span class="slot-word">Ver Menu</span>
+          </span>
+        </span>
       </a>
+    </div>
+
+    <!-- Bean scatter: hero bottom corners -->
+    <div class="bean-cluster" style="position:absolute;bottom:4%;left:2%;width:180px;height:160px;z-index:3;">
+      <img class="bean-sprite" src="Brand Reasources/coffee-bean.svg" style="--op:0.05;width:54px;left:0;bottom:60px;transform:rotate(-15deg);" />
+      <img class="bean-sprite" src="Brand Reasources/coffee-bean.svg" style="--op:0.04;width:38px;left:44px;bottom:10px;transform:rotate(22deg);" />
+      <img class="bean-sprite" src="Brand Reasources/coffee-bean.svg" style="--op:0.06;width:46px;left:8px;bottom:0;transform:rotate(-5deg);" />
+    </div>
+    <div class="bean-cluster" style="position:absolute;bottom:4%;right:2%;width:180px;height:160px;z-index:3;">
+      <img class="bean-sprite" src="Brand Reasources/coffee-bean.svg" style="--op:0.05;width:60px;right:0;bottom:70px;transform:rotate(18deg);" />
+      <img class="bean-sprite" src="Brand Reasources/coffee-bean.svg" style="--op:0.04;width:40px;right:50px;bottom:12px;transform:rotate(-20deg);" />
+      <img class="bean-sprite" src="Brand Reasources/coffee-bean.svg" style="--op:0.06;width:50px;right:6px;bottom:2px;transform:rotate(8deg);" />
     </div>
 
   </section>
@@ -668,8 +685,8 @@
     <!-- Contact info pinned to bottom -->
     <div style="position:absolute;bottom:2.5rem;left:2.5rem;right:2.5rem;">
       <div style="width:36px;height:1px;background:rgba(255,255,255,0.18);margin-bottom:1rem;"></div>
-      <p class="mob-contact">Luanda, Angola</p>
-      <p class="mob-contact">+244 933 002 904</p>
+      <p class="mob-contact">Rua do Mat, ao lado do Espaço Luanda, Talatona</p>
+      <p class="mob-contact" style="margin-top:0.35rem;">Seg. – Sex. 7h – 20h &nbsp;·&nbsp; Sáb., Dom. e Feriados 7h – 18h</p>
     </div>
 
   </div>
@@ -903,6 +920,41 @@
 
       </div>
 
+      <!-- ── BEAN CLUSTERS: scattered in negative space around dining articles ── -->
+      <!-- Cluster A: right edge, article 0 area -->
+      <div class="bean-cluster" style="right:0;top:8%;width:220px;height:320px;">
+        <img class="bean-sprite" src="Brand Reasources/coffee-bean.svg" style="--op:0.08;width:68px;right:18px;top:30px;transform:rotate(14deg);" />
+        <img class="bean-sprite" src="Brand Reasources/coffee-bean.svg" style="--op:0.06;width:44px;right:62px;top:90px;transform:rotate(-8deg);" />
+        <img class="bean-sprite" src="Brand Reasources/coffee-bean.svg" style="--op:0.09;width:82px;right:8px;top:160px;transform:rotate(28deg);" />
+        <img class="bean-sprite" src="Brand Reasources/coffee-bean.svg" style="--op:0.05;width:36px;right:80px;top:220px;transform:rotate(-22deg);" />
+        <img class="bean-sprite" src="Brand Reasources/coffee-bean.svg" style="--op:0.07;width:56px;right:30px;top:270px;transform:rotate(5deg);" />
+      </div>
+      <!-- Cluster B: left edge, article 1 area -->
+      <div class="bean-cluster" style="left:0;top:25%;width:180px;height:280px;">
+        <img class="bean-sprite" src="Brand Reasources/coffee-bean.svg" style="--op:0.07;width:52px;left:8px;top:10px;transform:rotate(-18deg);" />
+        <img class="bean-sprite" src="Brand Reasources/coffee-bean.svg" style="--op:0.09;width:76px;left:50px;top:70px;transform:rotate(12deg);" />
+        <img class="bean-sprite" src="Brand Reasources/coffee-bean.svg" style="--op:0.06;width:42px;left:14px;top:148px;transform:rotate(30deg);" />
+        <img class="bean-sprite" src="Brand Reasources/coffee-bean.svg" style="--op:0.08;width:60px;left:58px;top:200px;transform:rotate(-6deg);" />
+        <img class="bean-sprite" src="Brand Reasources/coffee-bean.svg" style="--op:0.05;width:34px;left:22px;top:248px;transform:rotate(22deg);" />
+        <img class="bean-sprite" src="Brand Reasources/coffee-bean.svg" style="--op:0.06;width:48px;left:86px;top:240px;transform:rotate(-14deg);" />
+      </div>
+      <!-- Cluster C: right edge, article 2-3 area -->
+      <div class="bean-cluster" style="right:0;top:46%;width:200px;height:300px;">
+        <img class="bean-sprite" src="Brand Reasources/coffee-bean.svg" style="--op:0.06;width:58px;right:12px;top:20px;transform:rotate(-10deg);" />
+        <img class="bean-sprite" src="Brand Reasources/coffee-bean.svg" style="--op:0.08;width:78px;right:50px;top:80px;transform:rotate(20deg);" />
+        <img class="bean-sprite" src="Brand Reasources/coffee-bean.svg" style="--op:0.07;width:46px;right:14px;top:158px;transform:rotate(-28deg);" />
+        <img class="bean-sprite" src="Brand Reasources/coffee-bean.svg" style="--op:0.09;width:64px;right:60px;top:210px;transform:rotate(8deg);" />
+        <img class="bean-sprite" src="Brand Reasources/coffee-bean.svg" style="--op:0.05;width:38px;right:28px;top:268px;transform:rotate(35deg);" />
+      </div>
+      <!-- Cluster D: left edge, article 4-5 area -->
+      <div class="bean-cluster" style="left:0;top:67%;width:170px;height:260px;">
+        <img class="bean-sprite" src="Brand Reasources/coffee-bean.svg" style="--op:0.08;width:62px;left:6px;top:15px;transform:rotate(16deg);" />
+        <img class="bean-sprite" src="Brand Reasources/coffee-bean.svg" style="--op:0.06;width:40px;left:52px;top:80px;transform:rotate(-24deg);" />
+        <img class="bean-sprite" src="Brand Reasources/coffee-bean.svg" style="--op:0.09;width:72px;left:18px;top:130px;transform:rotate(6deg);" />
+        <img class="bean-sprite" src="Brand Reasources/coffee-bean.svg" style="--op:0.07;width:50px;left:60px;top:200px;transform:rotate(-12deg);" />
+        <img class="bean-sprite" src="Brand Reasources/coffee-bean.svg" style="--op:0.05;width:36px;left:10px;top:220px;transform:rotate(28deg);" />
+      </div>
+
       <!-- ── RIGHT: sticky timeline - vertical line RIGHT, ticks extend LEFT ── -->
       <div id="dining-timeline-col" style="width:84px;flex-shrink:0;position:sticky;top:0;height:100vh;">
 
@@ -1048,8 +1100,14 @@
 
     <div style="position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse 70% 60% at 50% 0%,rgba(237,155,35,0.06) 0%, transparent 70%);"></div>
 
+    <!-- ── TITLE ── -->
+    <div style="text-align:center;padding:0 2.4rem 2.5rem;position:relative;z-index:1;">
+      <p style="font-family:'Quicksand',sans-serif;font-size:0.55rem;font-weight:500;letter-spacing:0.35em;text-transform:uppercase;color:#ED9B23;margin-bottom:0.7rem;">Encontre-nos</p>
+      <h2 style="font-family:'Playfair Display',serif;font-style:italic;font-weight:700;font-size:clamp(1.8rem,3.5vw,2.8rem);color:#F1FFFF;letter-spacing:-0.02em;line-height:1.1;margin:0;">Okulya Café</h2>
+    </div>
+
     <!-- ── INFO GRID (first) ── -->
-    <div style="padding:0 2.4rem 2rem;position:relative;z-index:1;">
+    <div style="padding:0 2.4rem 0;position:relative;z-index:1;border-top:1px solid rgba(237,155,35,0.1);">
       <div class="contact-grid">
         <div class="contact-col">
           <span class="contact-label">Morada</span>
@@ -1484,6 +1542,22 @@
         });
       }, { threshold: 0.52 });
       document.querySelectorAll('.dining-item').forEach(item => imgObs.observe(item));
+    })();
+
+    /* ── Coffee bean scatter: scroll fade in/out ─────────────────────────────── */
+    (function () {
+      const beanObs = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          e.target.querySelectorAll('.bean-sprite').forEach((b, i) => {
+            if (e.isIntersecting) {
+              setTimeout(() => b.classList.add('in-view'), i * 60);
+            } else {
+              b.classList.remove('in-view');
+            }
+          });
+        });
+      }, { threshold: 0.08, rootMargin: '0px 0px -60px 0px' });
+      document.querySelectorAll('.bean-cluster').forEach(c => beanObs.observe(c));
     })();
 
   </script>
