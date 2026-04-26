@@ -294,16 +294,16 @@
     }
     .contact-col { padding: 2rem 0; }
     .contact-col + .contact-col {
-      border-left: 1px solid rgba(237,155,35,0.12);
+      border-left: 1px solid rgba(196,123,10,0.15);
     }
     .contact-label {
       font-family: 'Quicksand', sans-serif; font-size: 0.6rem;
       font-weight: 500; letter-spacing: 0.28em; text-transform: uppercase;
-      color: #ED9B23; margin-bottom: 1rem; display: block;
+      color: #C47B0A; margin-bottom: 1rem; display: block;
     }
     .contact-val {
       font-family: 'Quicksand', sans-serif; font-size: 0.9rem;
-      font-weight: 400; line-height: 1.75; color: rgba(235,250,250,0.72);
+      font-weight: 400; line-height: 1.75; color: rgba(45,27,14,0.7);
     }
 
     /* ─── Desktop overrides (min-width: 769px) ─────────────────────────────── */
@@ -541,21 +541,21 @@
     .social-icon-btn:hover { transform: translateY(-4px); }
     .social-icon-circle {
       width: 46px; height: 46px; border-radius: 50%;
-      border: 1px solid rgba(241,255,255,0.12);
-      background: rgba(241,255,255,0.04);
+      border: 1px solid rgba(71,51,31,0.18);
+      background: rgba(71,51,31,0.05);
       display: flex; align-items: center; justify-content: center;
-      color: #F1FFFF;
+      color: #2D1B0E;
       transition: border-color 0.22s ease, background 0.22s ease;
     }
     .social-icon-btn:hover .social-icon-circle {
-      border-color: #ED9B23; background: rgba(237,155,35,0.08);
+      border-color: #C47B0A; background: rgba(196,123,10,0.08);
     }
-    .social-icon-btn:hover .social-icon-circle svg { color: #ED9B23; }
+    .social-icon-btn:hover .social-icon-circle svg { color: #C47B0A; }
     .social-icon-label {
       font-family: 'Quicksand', sans-serif;
       font-size: 0.48rem; font-weight: 500;
       letter-spacing: 0.18em; text-transform: uppercase;
-      color: rgba(241,255,255,0.3);
+      color: rgba(45,27,14,0.4);
     }
 
     /* ─── WhatsApp widget ─────────────────────────────────────────────────────── */
@@ -582,7 +582,7 @@
       <video id="hero-video" autoplay muted loop playsinline preload="auto"
              style="position:absolute;inset:0;width:100%;height:100%;
                     object-fit:cover;object-position:center;background:#0d0907;"
-             poster="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScAAAAAElFTkSuQmCC">
+             poster="dining-monday.jpg">
         <source src="hero-video.mp4" type="video/mp4" />
       </video>
     </div>
@@ -701,7 +701,18 @@
   ══════════════════════════════════════════════════════════════════════════ -->
   <section id="carousel-section"
            style="position:sticky;top:-15vh;z-index:1;width:100%;
-                  background:#fff;overflow:visible;">
+                  background:#fff;overflow:visible;position:relative;">
+    <!-- Bean clusters in white section — multiply blend makes white bg disappear -->
+    <div class="bean-cluster" style="right:0;top:5%;width:160px;height:220px;">
+      <img class="bean-sprite" src="Brand Reasources/coffee-bean.png" style="--op:0.55;width:64px;right:10px;top:18px;transform:rotate(12deg);mix-blend-mode:multiply;" />
+      <img class="bean-sprite" src="Brand Reasources/coffee-bean.png" style="--op:0.4;width:42px;right:70px;top:75px;transform:rotate(-18deg);mix-blend-mode:multiply;" />
+      <img class="bean-sprite" src="Brand Reasources/coffee-bean.png" style="--op:0.5;width:52px;right:18px;top:140px;transform:rotate(28deg);mix-blend-mode:multiply;" />
+    </div>
+    <div class="bean-cluster" style="left:0;top:10%;width:150px;height:200px;">
+      <img class="bean-sprite" src="Brand Reasources/coffee-bean.png" style="--op:0.45;width:56px;left:8px;top:22px;transform:rotate(-10deg);mix-blend-mode:multiply;" />
+      <img class="bean-sprite" src="Brand Reasources/coffee-bean.png" style="--op:0.35;width:38px;left:58px;top:82px;transform:rotate(20deg);mix-blend-mode:multiply;" />
+      <img class="bean-sprite" src="Brand Reasources/coffee-bean.png" style="--op:0.5;width:60px;left:10px;top:144px;transform:rotate(-5deg);mix-blend-mode:multiply;" />
+    </div>
 
     <!-- Feature text - in flow, compact top so plates stay in viewport -->
     <div id="section2-feature-text"
@@ -925,39 +936,48 @@
 
       </div>
 
-      <!-- ── BEAN CLUSTERS: scattered in negative space around dining articles ── -->
-      <!-- Cluster A: right edge, article 0 area -->
-      <div class="bean-cluster" style="right:0;top:8%;width:220px;height:320px;">
-        <img class="bean-sprite" src="Brand Reasources/coffee-bean.png" style="--op:0.08;width:68px;right:18px;top:30px;transform:rotate(14deg);" />
-        <img class="bean-sprite" src="Brand Reasources/coffee-bean.png" style="--op:0.06;width:44px;right:62px;top:90px;transform:rotate(-8deg);" />
-        <img class="bean-sprite" src="Brand Reasources/coffee-bean.png" style="--op:0.09;width:82px;right:8px;top:160px;transform:rotate(28deg);" />
-        <img class="bean-sprite" src="Brand Reasources/coffee-bean.png" style="--op:0.05;width:36px;right:80px;top:220px;transform:rotate(-22deg);" />
-        <img class="bean-sprite" src="Brand Reasources/coffee-bean.png" style="--op:0.07;width:56px;right:30px;top:270px;transform:rotate(5deg);" />
+      <!-- ── BEAN CLUSTERS: one per dining article, alternating left/right ── -->
+      <!-- Article 0 (café) — right edge -->
+      <div class="bean-cluster" style="right:0;top:2%;width:220px;height:260px;">
+        <img class="bean-sprite" src="Brand Reasources/coffee-bean.png" style="--op:0.08;width:74px;right:10px;top:20px;transform:rotate(14deg);" />
+        <img class="bean-sprite" src="Brand Reasources/coffee-bean.png" style="--op:0.06;width:46px;right:68px;top:80px;transform:rotate(-8deg);" />
+        <img class="bean-sprite" src="Brand Reasources/coffee-bean.png" style="--op:0.09;width:56px;right:16px;top:145px;transform:rotate(28deg);" />
+        <img class="bean-sprite" src="Brand Reasources/coffee-bean.png" style="--op:0.05;width:38px;right:78px;top:200px;transform:rotate(-20deg);" />
       </div>
-      <!-- Cluster B: left edge, article 1 area -->
-      <div class="bean-cluster" style="left:0;top:25%;width:180px;height:280px;">
-        <img class="bean-sprite" src="Brand Reasources/coffee-bean.png" style="--op:0.07;width:52px;left:8px;top:10px;transform:rotate(-18deg);" />
-        <img class="bean-sprite" src="Brand Reasources/coffee-bean.png" style="--op:0.09;width:76px;left:50px;top:70px;transform:rotate(12deg);" />
-        <img class="bean-sprite" src="Brand Reasources/coffee-bean.png" style="--op:0.06;width:42px;left:14px;top:148px;transform:rotate(30deg);" />
-        <img class="bean-sprite" src="Brand Reasources/coffee-bean.png" style="--op:0.08;width:60px;left:58px;top:200px;transform:rotate(-6deg);" />
-        <img class="bean-sprite" src="Brand Reasources/coffee-bean.png" style="--op:0.05;width:34px;left:22px;top:248px;transform:rotate(22deg);" />
-        <img class="bean-sprite" src="Brand Reasources/coffee-bean.png" style="--op:0.06;width:48px;left:86px;top:240px;transform:rotate(-14deg);" />
+      <!-- Article 1 (pastelaria) — left edge -->
+      <div class="bean-cluster" style="left:0;top:18%;width:190px;height:260px;">
+        <img class="bean-sprite" src="Brand Reasources/coffee-bean.png" style="--op:0.07;width:58px;left:6px;top:15px;transform:rotate(-18deg);" />
+        <img class="bean-sprite" src="Brand Reasources/coffee-bean.png" style="--op:0.09;width:80px;left:52px;top:72px;transform:rotate(12deg);" />
+        <img class="bean-sprite" src="Brand Reasources/coffee-bean.png" style="--op:0.06;width:44px;left:12px;top:158px;transform:rotate(30deg);" />
+        <img class="bean-sprite" src="Brand Reasources/coffee-bean.png" style="--op:0.08;width:62px;left:62px;top:206px;transform:rotate(-6deg);" />
       </div>
-      <!-- Cluster C: right edge, article 2-3 area -->
-      <div class="bean-cluster" style="right:0;top:46%;width:200px;height:300px;">
-        <img class="bean-sprite" src="Brand Reasources/coffee-bean.png" style="--op:0.06;width:58px;right:12px;top:20px;transform:rotate(-10deg);" />
-        <img class="bean-sprite" src="Brand Reasources/coffee-bean.png" style="--op:0.08;width:78px;right:50px;top:80px;transform:rotate(20deg);" />
-        <img class="bean-sprite" src="Brand Reasources/coffee-bean.png" style="--op:0.07;width:46px;right:14px;top:158px;transform:rotate(-28deg);" />
-        <img class="bean-sprite" src="Brand Reasources/coffee-bean.png" style="--op:0.09;width:64px;right:60px;top:210px;transform:rotate(8deg);" />
-        <img class="bean-sprite" src="Brand Reasources/coffee-bean.png" style="--op:0.05;width:38px;right:28px;top:268px;transform:rotate(35deg);" />
+      <!-- Article 2 (almoço) — right edge -->
+      <div class="bean-cluster" style="right:0;top:35%;width:200px;height:250px;">
+        <img class="bean-sprite" src="Brand Reasources/coffee-bean.png" style="--op:0.06;width:62px;right:8px;top:22px;transform:rotate(-12deg);" />
+        <img class="bean-sprite" src="Brand Reasources/coffee-bean.png" style="--op:0.08;width:44px;right:64px;top:86px;transform:rotate(22deg);" />
+        <img class="bean-sprite" src="Brand Reasources/coffee-bean.png" style="--op:0.09;width:76px;right:14px;top:148px;transform:rotate(-30deg);" />
+        <img class="bean-sprite" src="Brand Reasources/coffee-bean.png" style="--op:0.05;width:40px;right:72px;top:210px;transform:rotate(8deg);" />
       </div>
-      <!-- Cluster D: left edge, article 4-5 area -->
-      <div class="bean-cluster" style="left:0;top:67%;width:170px;height:260px;">
-        <img class="bean-sprite" src="Brand Reasources/coffee-bean.png" style="--op:0.08;width:62px;left:6px;top:15px;transform:rotate(16deg);" />
-        <img class="bean-sprite" src="Brand Reasources/coffee-bean.png" style="--op:0.06;width:40px;left:52px;top:80px;transform:rotate(-24deg);" />
-        <img class="bean-sprite" src="Brand Reasources/coffee-bean.png" style="--op:0.09;width:72px;left:18px;top:130px;transform:rotate(6deg);" />
-        <img class="bean-sprite" src="Brand Reasources/coffee-bean.png" style="--op:0.07;width:50px;left:60px;top:200px;transform:rotate(-12deg);" />
-        <img class="bean-sprite" src="Brand Reasources/coffee-bean.png" style="--op:0.05;width:36px;left:10px;top:220px;transform:rotate(28deg);" />
+      <!-- Article 3 (petiscos) — left edge -->
+      <div class="bean-cluster" style="left:0;top:51%;width:185px;height:250px;">
+        <img class="bean-sprite" src="Brand Reasources/coffee-bean.png" style="--op:0.08;width:66px;left:8px;top:18px;transform:rotate(20deg);" />
+        <img class="bean-sprite" src="Brand Reasources/coffee-bean.png" style="--op:0.06;width:42px;left:58px;top:85px;transform:rotate(-14deg);" />
+        <img class="bean-sprite" src="Brand Reasources/coffee-bean.png" style="--op:0.09;width:78px;left:16px;top:142px;transform:rotate(5deg);" />
+        <img class="bean-sprite" src="Brand Reasources/coffee-bean.png" style="--op:0.06;width:48px;left:64px;top:204px;transform:rotate(-26deg);" />
+      </div>
+      <!-- Article 4 (vinho) — right edge -->
+      <div class="bean-cluster" style="right:0;top:68%;width:210px;height:250px;">
+        <img class="bean-sprite" src="Brand Reasources/coffee-bean.png" style="--op:0.07;width:54px;right:18px;top:24px;transform:rotate(-8deg);" />
+        <img class="bean-sprite" src="Brand Reasources/coffee-bean.png" style="--op:0.09;width:72px;right:62px;top:80px;transform:rotate(18deg);" />
+        <img class="bean-sprite" src="Brand Reasources/coffee-bean.png" style="--op:0.06;width:40px;right:10px;top:152px;transform:rotate(35deg);" />
+        <img class="bean-sprite" src="Brand Reasources/coffee-bean.png" style="--op:0.08;width:60px;right:56px;top:200px;transform:rotate(-16deg);" />
+      </div>
+      <!-- Article 5 (cocktails) — left edge -->
+      <div class="bean-cluster" style="left:0;top:84%;width:180px;height:240px;">
+        <img class="bean-sprite" src="Brand Reasources/coffee-bean.png" style="--op:0.08;width:68px;left:10px;top:12px;transform:rotate(10deg);" />
+        <img class="bean-sprite" src="Brand Reasources/coffee-bean.png" style="--op:0.06;width:44px;left:56px;top:78px;transform:rotate(-22deg);" />
+        <img class="bean-sprite" src="Brand Reasources/coffee-bean.png" style="--op:0.09;width:74px;left:14px;top:140px;transform:rotate(28deg);" />
+        <img class="bean-sprite" src="Brand Reasources/coffee-bean.png" style="--op:0.05;width:38px;left:64px;top:200px;transform:rotate(-5deg);" />
       </div>
 
       <!-- ── RIGHT: sticky timeline - vertical line RIGHT, ticks extend LEFT ── -->
@@ -1101,41 +1121,41 @@
   </section>
 
   <!-- ══════════════════════════════════════════════════ CONTACT FOOTER ══════ -->
-  <footer id="contact" style="background:#000000;border-top:1px solid rgba(237,155,35,0.12);padding:5rem 0 0;position:relative;z-index:2;overflow:hidden;">
+  <footer id="contact" style="background:#ffffff;border-top:1px solid rgba(71,51,31,0.12);padding:5rem 0 0;position:relative;z-index:2;overflow:hidden;">
 
-    <div style="position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse 70% 60% at 50% 0%,rgba(237,155,35,0.06) 0%, transparent 70%);"></div>
+    <div style="position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse 70% 60% at 50% 0%,rgba(196,123,10,0.05) 0%, transparent 70%);"></div>
 
     <!-- ── TITLE ── -->
     <div style="text-align:center;padding:0 2.4rem 2.5rem;position:relative;z-index:1;">
-      <p style="font-family:'Quicksand',sans-serif;font-size:0.55rem;font-weight:500;letter-spacing:0.35em;text-transform:uppercase;color:#ED9B23;margin-bottom:0.7rem;">Encontre-nos</p>
-      <h2 style="font-family:'Playfair Display',serif;font-style:italic;font-weight:700;font-size:clamp(1.8rem,3.5vw,2.8rem);color:#F1FFFF;letter-spacing:-0.02em;line-height:1.1;margin:0;">Okulya Café</h2>
+      <p style="font-family:'Quicksand',sans-serif;font-size:0.55rem;font-weight:500;letter-spacing:0.35em;text-transform:uppercase;color:#C47B0A;margin-bottom:0.7rem;">Encontre-nos</p>
+      <h2 style="font-family:'Playfair Display',serif;font-style:italic;font-weight:700;font-size:clamp(1.8rem,3.5vw,2.8rem);color:#2D1B0E;letter-spacing:-0.02em;line-height:1.1;margin:0;">Okulya Café</h2>
     </div>
 
     <!-- ── INFO GRID (first) ── -->
-    <div style="padding:0 2.4rem 0;position:relative;z-index:1;border-top:1px solid rgba(237,155,35,0.1);">
+    <div style="padding:0 2.4rem 0;position:relative;z-index:1;border-top:1px solid rgba(196,123,10,0.15);">
       <div class="contact-grid">
         <div class="contact-col">
-          <span class="contact-label">Morada</span>
+          <span class="contact-label" style="color:#C47B0A;">Morada</span>
           <a href="https://www.google.com/maps/dir//Quick+Shop,+35MX%2B4RC,+Unnamed+Road,+Belas,+Angola/@51.5254742,-0.105732,5778m/data=!3m1!1e3!4m8!4m7!1m0!1m5!1m1!1s0x1a51f5836cad81bd:0x32e2ee1b39045b8c!2m2!1d13.1995378!2d-8.9171841?entry=ttu&g_ep=EgoyMDI2MDQyMi4wIKXMDSoASAFQAw%3D%3D"
              target="_blank" rel="noopener"
              class="contact-val"
-             style="color:rgba(235,250,250,0.72);text-decoration:none;border-bottom:1px solid rgba(237,155,35,0.3);padding-bottom:2px;transition:color 0.22s ease;"
-             onmouseover="this.style.color='#ED9B23'" onmouseout="this.style.color='rgba(235,250,250,0.72)'">
+             style="color:rgba(45,27,14,0.7);text-decoration:none;border-bottom:1px solid rgba(196,123,10,0.3);padding-bottom:2px;transition:color 0.22s ease;"
+             onmouseover="this.style.color='#C47B0A'" onmouseout="this.style.color='rgba(45,27,14,0.7)'">
             Rua do Mat, ao lado do<br>Espaço Luanda, Talatona
           </a>
         </div>
         <div class="contact-col">
-          <span class="contact-label">Horário</span>
-          <p class="contact-val" style="line-height:1.9;">Seg. – Sex. &nbsp;7h – 20h<br>Sáb., Dom. e Feriados &nbsp;7h – 18h</p>
+          <span class="contact-label" style="color:#C47B0A;">Horário</span>
+          <p class="contact-val" style="line-height:1.9;color:rgba(45,27,14,0.7);">Seg. – Sex. &nbsp;7h – 20h<br>Sáb., Dom. e Feriados &nbsp;7h – 18h</p>
         </div>
       </div>
     </div>
 
     <!-- ── SOCIAL CTA (second) ── -->
-    <div class="footer-social-cta">
-      <h2 style="font-family:'Playfair Display',serif;font-style:italic;font-weight:700;font-size:clamp(2rem,4.5vw,3.8rem);color:#F1FFFF;letter-spacing:-0.02em;line-height:1.1;margin-bottom:0.8rem;position:relative;z-index:1;">Siga. Partilhe. <em style="color:#ED9B23;font-style:normal;">Inspire.</em></h2>
-      <p style="font-family:'Quicksand',sans-serif;font-size:0.78rem;font-weight:300;color:rgba(241,255,255,0.4);margin-bottom:0.5rem;letter-spacing:0.04em;position:relative;z-index:1;">Marque-nos nas suas fotos e faça parte da nossa história.</p>
-      <p style="font-family:'Playfair Display',serif;font-style:italic;font-size:1.1rem;color:rgba(237,155,35,0.55);margin-bottom:2.4rem;position:relative;z-index:1;">@0kulya.cafe</p>
+    <div class="footer-social-cta" style="border-top:1px solid rgba(196,123,10,0.12);">
+      <h2 style="font-family:'Playfair Display',serif;font-style:italic;font-weight:700;font-size:clamp(2rem,4.5vw,3.8rem);color:#2D1B0E;letter-spacing:-0.02em;line-height:1.1;margin-bottom:0.8rem;position:relative;z-index:1;">Siga. Partilhe. <em style="color:#C47B0A;font-style:normal;">Inspire.</em></h2>
+      <p style="font-family:'Quicksand',sans-serif;font-size:0.78rem;font-weight:300;color:rgba(45,27,14,0.45);margin-bottom:0.5rem;letter-spacing:0.04em;position:relative;z-index:1;">Marque-nos nas suas fotos e faça parte da nossa história.</p>
+      <p style="font-family:'Playfair Display',serif;font-style:italic;font-size:1.1rem;color:rgba(196,123,10,0.7);margin-bottom:2.4rem;position:relative;z-index:1;">@0kulya.cafe</p>
 
       <!-- Social icons — nowrap, all on one line -->
       <div class="social-icons-row" style="position:relative;z-index:1;">
@@ -1174,7 +1194,7 @@
     </div>
 
     <!-- Copyright -->
-    <p style="font-family:'Quicksand',sans-serif;font-size:0.52rem;font-weight:300;letter-spacing:0.2em;text-transform:uppercase;color:rgba(235,250,250,0.28);text-align:center;padding-bottom:1.5rem;position:relative;z-index:1;">
+    <p style="font-family:'Quicksand',sans-serif;font-size:0.52rem;font-weight:300;letter-spacing:0.2em;text-transform:uppercase;color:rgba(45,27,14,0.3);text-align:center;padding-bottom:1.5rem;position:relative;z-index:1;">
       &copy; 2026 Okulya Café &nbsp;&middot;&nbsp; Talatona, Luanda, Angola
     </p>
 
