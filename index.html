@@ -642,17 +642,6 @@
       </a>
     </div>
 
-    <!-- Bean scatter: hero bottom corners -->
-    <div class="bean-cluster" style="position:absolute;bottom:4%;left:2%;width:180px;height:160px;z-index:3;">
-      <img class="bean-sprite" src="Brand Reasources/coffee-bean.png" style="--op:0.05;width:54px;left:0;bottom:60px;transform:rotate(-15deg);" />
-      <img class="bean-sprite" src="Brand Reasources/coffee-bean.png" style="--op:0.04;width:38px;left:44px;bottom:10px;transform:rotate(22deg);" />
-      <img class="bean-sprite" src="Brand Reasources/coffee-bean.png" style="--op:0.06;width:46px;left:8px;bottom:0;transform:rotate(-5deg);" />
-    </div>
-    <div class="bean-cluster" style="position:absolute;bottom:4%;right:2%;width:180px;height:160px;z-index:3;">
-      <img class="bean-sprite" src="Brand Reasources/coffee-bean.png" style="--op:0.05;width:60px;right:0;bottom:70px;transform:rotate(18deg);" />
-      <img class="bean-sprite" src="Brand Reasources/coffee-bean.png" style="--op:0.04;width:40px;right:50px;bottom:12px;transform:rotate(-20deg);" />
-      <img class="bean-sprite" src="Brand Reasources/coffee-bean.png" style="--op:0.06;width:50px;right:6px;bottom:2px;transform:rotate(8deg);" />
-    </div>
 
   </section>
 
@@ -691,7 +680,16 @@
       <div style="width:36px;height:1px;background:#ED9B23;margin-bottom:1.2rem;opacity:0.6;"></div>
       <p style="font-family:'Quicksand',sans-serif;font-size:0.48rem;font-weight:600;letter-spacing:0.32em;text-transform:uppercase;color:#ED9B23;margin-bottom:0.8rem;opacity:0.85;">Encontre-nos</p>
       <p class="mob-contact">Rua do Mat, ao lado do Espaço Luanda, Talatona</p>
-      <p class="mob-contact" style="margin-top:0.5rem;color:rgba(237,155,35,0.8);">Seg. – Sex. &nbsp;7h – 20h &nbsp;·&nbsp; Sáb., Dom. e Feriados &nbsp;7h – 18h</p>
+      <div style="margin-top:0.6rem;display:flex;flex-direction:column;gap:0.22rem;">
+        <div style="display:flex;justify-content:space-between;align-items:baseline;">
+          <span class="mob-contact" style="color:rgba(237,155,35,0.8);">Seg. – Sex.</span>
+          <span class="mob-contact" style="color:rgba(237,155,35,0.8);">7h – 20h</span>
+        </div>
+        <div style="display:flex;justify-content:space-between;align-items:baseline;">
+          <span class="mob-contact" style="color:rgba(237,155,35,0.8);">Sáb., Dom. e Feriados</span>
+          <span class="mob-contact" style="color:rgba(237,155,35,0.8);">7h – 18h</span>
+        </div>
+      </div>
     </div>
 
   </div>
@@ -847,7 +845,17 @@
       <div id="dining-left-col" style="flex:1;min-width:0;padding:4rem 1.6rem 5rem 1.6rem;">
 
         <!-- Item 0: Coffee -->
-        <article class="dining-item" data-period="0">
+        <article class="dining-item" data-period="0" style="position:relative;">
+          <!-- Bean near where title meets the image edge -->
+          <div class="bean-cluster" style="left:40%;top:6%;width:52px;height:72px;">
+            <img class="bean-sprite" src="Brand Reasources/coffee-bean.png" style="--op:0.62;width:46px;left:2px;top:4px;transform:rotate(14deg);" />
+            <img class="bean-sprite" src="Brand Reasources/coffee-bean.png" style="--op:0.46;width:30px;left:16px;top:48px;transform:rotate(-22deg);" />
+          </div>
+          <!-- Bean near the CTA link, bottom of text side -->
+          <div class="bean-cluster" style="left:78%;bottom:10%;width:48px;height:66px;">
+            <img class="bean-sprite" src="Brand Reasources/coffee-bean.png" style="--op:0.55;width:42px;left:3px;top:4px;transform:rotate(-10deg);" />
+            <img class="bean-sprite" src="Brand Reasources/coffee-bean.png" style="--op:0.42;width:28px;left:14px;top:42px;transform:rotate(24deg);" />
+          </div>
           <div class="dining-item-img-col" style="overflow:hidden;">
             <img src="dining-coffee.webp" alt="Café"
                  style="width:100%;aspect-ratio:3/4;object-fit:cover;display:block;" />
@@ -862,7 +870,17 @@
         </article>
 
         <!-- Item 1: Pastries -->
-        <article class="dining-item" data-period="1">
+        <article class="dining-item" data-period="1" style="position:relative;">
+          <!-- Bean at top-left of text col, next to title -->
+          <div class="bean-cluster" style="left:2%;top:5%;width:50px;height:68px;">
+            <img class="bean-sprite" src="Brand Reasources/coffee-bean.png" style="--op:0.6;width:44px;left:3px;top:4px;transform:rotate(-16deg);" />
+            <img class="bean-sprite" src="Brand Reasources/coffee-bean.png" style="--op:0.44;width:28px;left:18px;top:44px;transform:rotate(20deg);" />
+          </div>
+          <!-- Bean overlapping the image left edge at mid-height -->
+          <div class="bean-cluster" style="left:54%;top:42%;width:52px;height:70px;">
+            <img class="bean-sprite" src="Brand Reasources/coffee-bean.png" style="--op:0.58;width:46px;left:2px;top:6px;transform:rotate(18deg);" />
+            <img class="bean-sprite" src="Brand Reasources/coffee-bean.png" style="--op:0.42;width:30px;left:20px;top:48px;transform:rotate(-12deg);" />
+          </div>
           <div class="dining-item-img-col" style="overflow:hidden;">
             <img src="dining-snacks.webp" alt="Pastelaria"
                  style="width:100%;aspect-ratio:3/4;object-fit:cover;display:block;" />
@@ -877,7 +895,17 @@
         </article>
 
         <!-- Item 2: Light Lunch -->
-        <article class="dining-item" data-period="2">
+        <article class="dining-item" data-period="2" style="position:relative;">
+          <!-- Bean overlapping lower portion of image -->
+          <div class="bean-cluster" style="left:10%;bottom:18%;width:54px;height:74px;">
+            <img class="bean-sprite" src="Brand Reasources/coffee-bean.png" style="--op:0.65;width:48px;left:2px;top:4px;transform:rotate(-8deg);" />
+            <img class="bean-sprite" src="Brand Reasources/coffee-bean.png" style="--op:0.48;width:30px;left:20px;top:50px;transform:rotate(28deg);" />
+          </div>
+          <!-- Bean next to the CTA link, bottom right of text col -->
+          <div class="bean-cluster" style="left:74%;bottom:8%;width:48px;height:66px;">
+            <img class="bean-sprite" src="Brand Reasources/coffee-bean.png" style="--op:0.56;width:42px;left:3px;top:5px;transform:rotate(16deg);" />
+            <img class="bean-sprite" src="Brand Reasources/coffee-bean.png" style="--op:0.4;width:28px;left:16px;top:44px;transform:rotate(-20deg);" />
+          </div>
           <div class="dining-item-img-col" style="overflow:hidden;">
             <img src="dining-salad.webp" alt="Almoço"
                  style="width:100%;aspect-ratio:3/4;object-fit:cover;display:block;" />
@@ -892,7 +920,17 @@
         </article>
 
         <!-- Item 3: Snacks -->
-        <article class="dining-item" data-period="3">
+        <article class="dining-item" data-period="3" style="position:relative;">
+          <!-- Bean at top of image col -->
+          <div class="bean-cluster" style="left:56%;top:6%;width:50px;height:68px;">
+            <img class="bean-sprite" src="Brand Reasources/coffee-bean.png" style="--op:0.6;width:44px;left:3px;top:4px;transform:rotate(-14deg);" />
+            <img class="bean-sprite" src="Brand Reasources/coffee-bean.png" style="--op:0.45;width:28px;left:18px;top:46px;transform:rotate(22deg);" />
+          </div>
+          <!-- Bean near button, bottom-left of text col -->
+          <div class="bean-cluster" style="left:6%;bottom:8%;width:48px;height:66px;">
+            <img class="bean-sprite" src="Brand Reasources/coffee-bean.png" style="--op:0.58;width:42px;left:2px;top:5px;transform:rotate(10deg);" />
+            <img class="bean-sprite" src="Brand Reasources/coffee-bean.png" style="--op:0.43;width:26px;left:18px;top:44px;transform:rotate(-26deg);" />
+          </div>
           <div class="dining-item-img-col" style="overflow:hidden;">
             <img src="dining-pastry.webp" alt="Petiscos"
                  style="width:100%;aspect-ratio:3/4;object-fit:cover;display:block;" />
@@ -907,7 +945,17 @@
         </article>
 
         <!-- Item 4: Wine -->
-        <article class="dining-item" data-period="4">
+        <article class="dining-item" data-period="4" style="position:relative;">
+          <!-- Bean at top of text col, next to title -->
+          <div class="bean-cluster" style="left:47%;top:5%;width:50px;height:68px;">
+            <img class="bean-sprite" src="Brand Reasources/coffee-bean.png" style="--op:0.62;width:44px;left:2px;top:4px;transform:rotate(20deg);" />
+            <img class="bean-sprite" src="Brand Reasources/coffee-bean.png" style="--op:0.45;width:28px;left:18px;top:46px;transform:rotate(-8deg);" />
+          </div>
+          <!-- Bean overlapping image lower-left area -->
+          <div class="bean-cluster" style="left:24%;bottom:14%;width:52px;height:72px;">
+            <img class="bean-sprite" src="Brand Reasources/coffee-bean.png" style="--op:0.6;width:46px;left:2px;top:5px;transform:rotate(-18deg);" />
+            <img class="bean-sprite" src="Brand Reasources/coffee-bean.png" style="--op:0.44;width:30px;left:18px;top:48px;transform:rotate(30deg);" />
+          </div>
           <div class="dining-item-img-col" style="overflow:hidden;">
             <img src="dining-wine.webp" alt="Vinho"
                  style="width:100%;aspect-ratio:3/4;object-fit:cover;display:block;" />
@@ -922,7 +970,17 @@
         </article>
 
         <!-- Item 5: Cocktails -->
-        <article class="dining-item" data-period="5">
+        <article class="dining-item" data-period="5" style="position:relative;">
+          <!-- Bean near button, bottom-left of text col -->
+          <div class="bean-cluster" style="left:3%;bottom:7%;width:50px;height:68px;">
+            <img class="bean-sprite" src="Brand Reasources/coffee-bean.png" style="--op:0.6;width:44px;left:2px;top:4px;transform:rotate(-12deg);" />
+            <img class="bean-sprite" src="Brand Reasources/coffee-bean.png" style="--op:0.44;width:28px;left:18px;top:46px;transform:rotate(18deg);" />
+          </div>
+          <!-- Bean at image center-right area -->
+          <div class="bean-cluster" style="left:66%;top:38%;width:52px;height:72px;">
+            <img class="bean-sprite" src="Brand Reasources/coffee-bean.png" style="--op:0.58;width:46px;left:2px;top:5px;transform:rotate(22deg);" />
+            <img class="bean-sprite" src="Brand Reasources/coffee-bean.png" style="--op:0.42;width:30px;left:18px;top:50px;transform:rotate(-16deg);" />
+          </div>
           <div class="dining-item-img-col" style="overflow:hidden;">
             <img src="dining-cocktails.webp" alt="Cocktails"
                  style="width:100%;aspect-ratio:3/4;object-fit:cover;display:block;" />
@@ -1076,31 +1134,6 @@
 
     </div>
 
-    <!-- Bean accents: right gutter, one cluster per article — clear of all text -->
-    <div class="bean-cluster" style="right:6px;top:7%;width:58px;height:90px;">
-      <img class="bean-sprite" src="Brand Reasources/coffee-bean.png" style="--op:0.6;width:50px;right:4px;top:6px;transform:rotate(14deg);" />
-      <img class="bean-sprite" src="Brand Reasources/coffee-bean.png" style="--op:0.45;width:34px;right:18px;top:52px;transform:rotate(-22deg);" />
-    </div>
-    <div class="bean-cluster" style="right:6px;top:22%;width:58px;height:90px;">
-      <img class="bean-sprite" src="Brand Reasources/coffee-bean.png" style="--op:0.55;width:44px;right:6px;top:8px;transform:rotate(-10deg);" />
-      <img class="bean-sprite" src="Brand Reasources/coffee-bean.png" style="--op:0.48;width:36px;right:14px;top:54px;transform:rotate(26deg);" />
-    </div>
-    <div class="bean-cluster" style="right:6px;top:37%;width:58px;height:90px;">
-      <img class="bean-sprite" src="Brand Reasources/coffee-bean.png" style="--op:0.62;width:52px;right:2px;top:4px;transform:rotate(20deg);" />
-      <img class="bean-sprite" src="Brand Reasources/coffee-bean.png" style="--op:0.44;width:32px;right:22px;top:56px;transform:rotate(-16deg);" />
-    </div>
-    <div class="bean-cluster" style="right:6px;top:52%;width:58px;height:90px;">
-      <img class="bean-sprite" src="Brand Reasources/coffee-bean.png" style="--op:0.58;width:48px;right:6px;top:6px;transform:rotate(-8deg);" />
-      <img class="bean-sprite" src="Brand Reasources/coffee-bean.png" style="--op:0.46;width:36px;right:16px;top:54px;transform:rotate(30deg);" />
-    </div>
-    <div class="bean-cluster" style="right:6px;top:67%;width:58px;height:90px;">
-      <img class="bean-sprite" src="Brand Reasources/coffee-bean.png" style="--op:0.6;width:50px;right:4px;top:8px;transform:rotate(12deg);" />
-      <img class="bean-sprite" src="Brand Reasources/coffee-bean.png" style="--op:0.42;width:34px;right:20px;top:56px;transform:rotate(-24deg);" />
-    </div>
-    <div class="bean-cluster" style="right:6px;top:82%;width:58px;height:90px;">
-      <img class="bean-sprite" src="Brand Reasources/coffee-bean.png" style="--op:0.56;width:46px;right:6px;top:6px;transform:rotate(-18deg);" />
-      <img class="bean-sprite" src="Brand Reasources/coffee-bean.png" style="--op:0.5;width:36px;right:14px;top:52px;transform:rotate(22deg);" />
-    </div>
 
   </section>
 
