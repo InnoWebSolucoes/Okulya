@@ -324,12 +324,12 @@
         -webkit-hyphens: none !important;
         overflow-wrap: normal !important;
         word-break: normal !important;
-        text-align: justify !important;
-        text-align-last: left !important;
+        text-align: right !important;
       }
       #feature-text {
         max-width: 480px !important;
-        text-align: left !important;
+        text-align: right !important;
+        align-self: flex-end;
       }
       /* Stage: 65vh - nearly original size; feature~14vh+stage65+panel22=101vh,
          names land at ~96vh so everything is visible */
@@ -467,9 +467,9 @@
       }
       #main-text {
         font-size: clamp(1.5rem, 5.5vw, 2.4rem) !important;
-        text-align: left !important;
+        text-align: right !important;
       }
-      #feature-text { text-align: left !important; }
+      #feature-text { text-align: right !important; align-self: flex-end; }
       /* Panel: auto height on mobile (content is shorter) */
       #sec2-bottom-panel {
         height: auto !important;
@@ -647,6 +647,16 @@
 
   <!-- ══════════════════════════════════ MOBILE MENU OVERLAY ══════════════ -->
   <div id="mobile-overlay" aria-hidden="true">
+    <!-- Beans next to logo (top area) -->
+    <div class="bean-cluster" style="position:absolute;top:1.2rem;right:7rem;width:58px;height:78px;z-index:5;">
+      <img class="bean-sprite" src="Brand Reasources/coffee-bean.png" style="--op:0.55;width:44px;left:0;top:4px;transform:rotate(16deg);" />
+      <img class="bean-sprite" src="Brand Reasources/coffee-bean.png" style="--op:0.38;width:26px;left:18px;top:50px;transform:rotate(-20deg);" />
+    </div>
+    <!-- Beans in blank space right side, mid-overlay -->
+    <div class="bean-cluster" style="position:absolute;top:42%;right:1.2rem;width:62px;height:84px;z-index:5;">
+      <img class="bean-sprite" src="Brand Reasources/coffee-bean.png" style="--op:0.52;width:48px;left:0;top:4px;transform:rotate(-14deg);" />
+      <img class="bean-sprite" src="Brand Reasources/coffee-bean.png" style="--op:0.36;width:28px;left:20px;top:54px;transform:rotate(22deg);" />
+    </div>
     <!-- Header row: Voltar left, logo right - mirrors the menu.html top nav -->
     <div style="display:flex;align-items:center;justify-content:space-between;
                 width:100%;padding:1.6rem 2rem;">
@@ -702,16 +712,16 @@
   <section id="carousel-section"
            style="position:sticky;top:-15vh;z-index:1;width:100%;
                   background:#fff;overflow:visible;position:relative;">
-    <!-- Bean clusters in white section — multiply blend makes white bg disappear -->
-    <div class="bean-cluster" style="right:0;top:5%;width:160px;height:220px;">
-      <img class="bean-sprite" src="Brand Reasources/coffee-bean.png" style="--op:0.55;width:64px;right:10px;top:18px;transform:rotate(12deg);mix-blend-mode:multiply;" />
-      <img class="bean-sprite" src="Brand Reasources/coffee-bean.png" style="--op:0.4;width:42px;right:70px;top:75px;transform:rotate(-18deg);mix-blend-mode:multiply;" />
-      <img class="bean-sprite" src="Brand Reasources/coffee-bean.png" style="--op:0.5;width:52px;right:18px;top:140px;transform:rotate(28deg);mix-blend-mode:multiply;" />
+    <!-- Bean clusters — bottom-left, underneath the plate titles area -->
+    <div class="bean-cluster" style="left:0;bottom:22%;width:140px;height:190px;">
+      <img class="bean-sprite" src="Brand Reasources/coffee-bean.png" style="--op:0.50;width:60px;left:8px;top:14px;transform:rotate(-10deg);mix-blend-mode:multiply;" />
+      <img class="bean-sprite" src="Brand Reasources/coffee-bean.png" style="--op:0.36;width:38px;left:54px;top:72px;transform:rotate(20deg);mix-blend-mode:multiply;" />
+      <img class="bean-sprite" src="Brand Reasources/coffee-bean.png" style="--op:0.46;width:56px;left:6px;top:130px;transform:rotate(-5deg);mix-blend-mode:multiply;" />
     </div>
-    <div class="bean-cluster" style="left:0;top:10%;width:150px;height:200px;">
-      <img class="bean-sprite" src="Brand Reasources/coffee-bean.png" style="--op:0.45;width:56px;left:8px;top:22px;transform:rotate(-10deg);mix-blend-mode:multiply;" />
-      <img class="bean-sprite" src="Brand Reasources/coffee-bean.png" style="--op:0.35;width:38px;left:58px;top:82px;transform:rotate(20deg);mix-blend-mode:multiply;" />
-      <img class="bean-sprite" src="Brand Reasources/coffee-bean.png" style="--op:0.5;width:60px;left:10px;top:144px;transform:rotate(-5deg);mix-blend-mode:multiply;" />
+    <div class="bean-cluster" style="left:6%;bottom:10%;width:120px;height:160px;">
+      <img class="bean-sprite" src="Brand Reasources/coffee-bean.png" style="--op:0.44;width:52px;left:4px;top:10px;transform:rotate(14deg);mix-blend-mode:multiply;" />
+      <img class="bean-sprite" src="Brand Reasources/coffee-bean.png" style="--op:0.32;width:34px;left:48px;top:62px;transform:rotate(-18deg);mix-blend-mode:multiply;" />
+      <img class="bean-sprite" src="Brand Reasources/coffee-bean.png" style="--op:0.42;width:48px;left:6px;top:108px;transform:rotate(8deg);mix-blend-mode:multiply;" />
     </div>
 
     <!-- Feature text - in flow, compact top so plates stay in viewport -->
@@ -869,19 +879,19 @@
 
         <!-- Item 1: Pastries -->
         <article class="dining-item" data-period="1" style="position:relative;">
-          <div class="dining-item-img-col" style="overflow:hidden;">
+          <div class="dining-item-img-col" style="overflow:hidden;position:relative;">
             <img src="dining-snacks.webp" alt="Pastelaria"
                  style="width:100%;aspect-ratio:3/4;object-fit:cover;display:block;" />
             <img class="dining-img-2" src="dish-2.webp" alt="" />
+            <div class="bean-cluster" style="top:1.5rem;right:0.5rem;width:58px;height:78px;">
+              <img class="bean-sprite" src="Brand Reasources/coffee-bean.png" style="--op:0.60;width:46px;left:0;top:4px;transform:rotate(-16deg);" />
+              <img class="bean-sprite" src="Brand Reasources/coffee-bean.png" style="--op:0.44;width:28px;left:18px;top:50px;transform:rotate(20deg);" />
+            </div>
           </div>
           <div class="dining-item-text-col" style="position:relative;">
-            <div class="bean-cluster" style="top:1.2rem;left:-14px;width:62px;height:84px;">
-              <img class="bean-sprite" src="Brand Reasources/coffee-bean.png" style="--op:0.60;width:48px;left:2px;top:4px;transform:rotate(-16deg);" />
-              <img class="bean-sprite" src="Brand Reasources/coffee-bean.png" style="--op:0.44;width:30px;left:20px;top:54px;transform:rotate(20deg);" />
-            </div>
-            <div class="bean-cluster" style="top:44%;right:-8px;width:58px;height:76px;">
-              <img class="bean-sprite" src="Brand Reasources/coffee-bean.png" style="--op:0.56;width:46px;left:0;top:4px;transform:rotate(18deg);" />
-              <img class="bean-sprite" src="Brand Reasources/coffee-bean.png" style="--op:0.40;width:30px;left:16px;top:50px;transform:rotate(-12deg);" />
+            <div class="bean-cluster" style="bottom:1.2rem;left:-14px;width:60px;height:82px;">
+              <img class="bean-sprite" src="Brand Reasources/coffee-bean.png" style="--op:0.58;width:46px;left:2px;top:4px;transform:rotate(18deg);" />
+              <img class="bean-sprite" src="Brand Reasources/coffee-bean.png" style="--op:0.42;width:28px;left:18px;top:50px;transform:rotate(-12deg);" />
             </div>
             <h2 class="dining-title">pastelaria</h2>
             <p class="dining-sub">a partir das 10h</p>
@@ -898,12 +908,12 @@
             <img class="dining-img-2" src="dish-3.webp" alt="" />
           </div>
           <div class="dining-item-text-col" style="position:relative;">
-            <div class="bean-cluster" style="top:40%;left:-8px;width:60px;height:82px;">
-              <img class="bean-sprite" src="Brand Reasources/coffee-bean.png" style="--op:0.64;width:48px;left:2px;top:4px;transform:rotate(-8deg);" />
-              <img class="bean-sprite" src="Brand Reasources/coffee-bean.png" style="--op:0.46;width:30px;left:20px;top:52px;transform:rotate(28deg);" />
+            <div class="bean-cluster" style="top:1.2rem;right:-14px;width:60px;height:82px;">
+              <img class="bean-sprite" src="Brand Reasources/coffee-bean.png" style="--op:0.64;width:48px;left:0;top:4px;transform:rotate(-8deg);" />
+              <img class="bean-sprite" src="Brand Reasources/coffee-bean.png" style="--op:0.46;width:30px;left:18px;top:52px;transform:rotate(28deg);" />
             </div>
-            <div class="bean-cluster" style="bottom:1.2rem;right:-14px;width:58px;height:76px;">
-              <img class="bean-sprite" src="Brand Reasources/coffee-bean.png" style="--op:0.55;width:44px;left:0;top:4px;transform:rotate(16deg);" />
+            <div class="bean-cluster" style="bottom:1.2rem;left:-8px;width:58px;height:76px;">
+              <img class="bean-sprite" src="Brand Reasources/coffee-bean.png" style="--op:0.55;width:44px;left:2px;top:4px;transform:rotate(16deg);" />
               <img class="bean-sprite" src="Brand Reasources/coffee-bean.png" style="--op:0.40;width:28px;left:18px;top:48px;transform:rotate(-20deg);" />
             </div>
             <h2 class="dining-title">almoço</h2>
@@ -938,19 +948,23 @@
 
         <!-- Item 4: Wine -->
         <article class="dining-item" data-period="4" style="position:relative;">
-          <div class="dining-item-img-col" style="overflow:hidden;">
+          <div class="dining-item-img-col" style="overflow:hidden;position:relative;">
             <img src="dining-wine.webp" alt="Vinho"
                  style="width:100%;aspect-ratio:3/4;object-fit:cover;display:block;" />
             <img class="dining-img-2" src="dining-cocktails.webp" alt="" />
+            <div class="bean-cluster" style="bottom:2rem;left:0.5rem;width:58px;height:78px;">
+              <img class="bean-sprite" src="Brand Reasources/coffee-bean.png" style="--op:0.58;width:46px;left:0;top:4px;transform:rotate(20deg);" />
+              <img class="bean-sprite" src="Brand Reasources/coffee-bean.png" style="--op:0.42;width:28px;left:18px;top:50px;transform:rotate(-8deg);" />
+            </div>
           </div>
           <div class="dining-item-text-col" style="position:relative;">
-            <div class="bean-cluster" style="top:1.2rem;left:-8px;width:60px;height:82px;">
-              <img class="bean-sprite" src="Brand Reasources/coffee-bean.png" style="--op:0.62;width:48px;left:0;top:4px;transform:rotate(20deg);" />
-              <img class="bean-sprite" src="Brand Reasources/coffee-bean.png" style="--op:0.44;width:30px;left:18px;top:54px;transform:rotate(-8deg);" />
+            <div class="bean-cluster" style="top:38%;left:-8px;width:60px;height:82px;">
+              <img class="bean-sprite" src="Brand Reasources/coffee-bean.png" style="--op:0.62;width:48px;left:0;top:4px;transform:rotate(-18deg);" />
+              <img class="bean-sprite" src="Brand Reasources/coffee-bean.png" style="--op:0.44;width:30px;left:18px;top:54px;transform:rotate(30deg);" />
             </div>
-            <div class="bean-cluster" style="top:44%;right:-14px;width:58px;height:76px;">
-              <img class="bean-sprite" src="Brand Reasources/coffee-bean.png" style="--op:0.60;width:46px;left:0;top:4px;transform:rotate(-18deg);" />
-              <img class="bean-sprite" src="Brand Reasources/coffee-bean.png" style="--op:0.43;width:30px;left:16px;top:50px;transform:rotate(30deg);" />
+            <div class="bean-cluster" style="top:56%;right:-14px;width:58px;height:76px;">
+              <img class="bean-sprite" src="Brand Reasources/coffee-bean.png" style="--op:0.58;width:46px;left:0;top:4px;transform:rotate(14deg);" />
+              <img class="bean-sprite" src="Brand Reasources/coffee-bean.png" style="--op:0.42;width:28px;left:16px;top:50px;transform:rotate(-22deg);" />
             </div>
             <h2 class="dining-title">vinho</h2>
             <p class="dining-sub">servido todo o dia</p>
@@ -979,6 +993,10 @@
             <p class="dining-sub">servido todo o dia</p>
             <p class="dining-desc">Os nossos cocktails celebram as estações e o carácter de cada ingrediente. Trabalhamos de perto com produtores locais e construímos o menu em torno do que está fresco e disponível. Usando técnicas como a evaporação rotativa, capturamos sabores puros em bebidas simples, expressivas e discretamente inventivas.</p>
             <a href="menu.html" class="dining-btn">ver menu de bebidas</a>
+            <div class="bean-cluster" style="bottom:-0.5rem;left:-8px;width:56px;height:74px;">
+              <img class="bean-sprite" src="Brand Reasources/coffee-bean.png" style="--op:0.55;width:44px;left:2px;top:4px;transform:rotate(-10deg);" />
+              <img class="bean-sprite" src="Brand Reasources/coffee-bean.png" style="--op:0.38;width:26px;left:20px;top:48px;transform:rotate(24deg);" />
+            </div>
           </div>
         </article>
 
